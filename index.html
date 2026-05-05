@@ -268,15 +268,108 @@
             border-radius: 30px;
             font-weight: 600;
         }
+
+        /* ═══════════════════════════════════════════════════════
+           PREÇOS DESTACADOS - IMPACTO VISUAL MÁXIMO
+           ═══════════════════════════════════════════════════════ */
         .price {
-            font-size: 2.3rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            margin: 0.8rem 0;
-            background: linear-gradient(135deg, #FFE6B3, #FFB347);
+            margin: 1rem 0;
+            background: linear-gradient(135deg, #FFD700, #FFB347, #FF8C00, #FFD700);
+            background-size: 300% 300%;
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            animation: priceShine 2.5s ease-in-out infinite, pricePulse 1.8s ease-in-out infinite;
+            text-shadow: none;
+            filter: drop-shadow(0 0 8px rgba(255, 179, 71, 0.5)) drop-shadow(0 0 20px rgba(255, 140, 0, 0.3));
+            letter-spacing: -1px;
+            line-height: 1;
+            display: inline-block;
+            position: relative;
         }
+        .price::before {
+            content: "";
+            position: absolute;
+            inset: -8px -16px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.1), rgba(255, 215, 0, 0.15));
+            border-radius: 20px;
+            z-index: -1;
+            animation: priceGlow 2s ease-in-out infinite alternate;
+            border: 1px solid rgba(255, 179, 71, 0.3);
+        }
+        .price small {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #b8e2ff;
+            background: none;
+            -webkit-background-clip: initial;
+            background-clip: initial;
+            filter: none;
+            animation: none;
+        }
+        @keyframes priceShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pricePulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(255, 179, 71, 0.5)) drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)); }
+            50% { transform: scale(1.03); filter: drop-shadow(0 0 15px rgba(255, 179, 71, 0.8)) drop-shadow(0 0 35px rgba(255, 140, 0, 0.5)); }
+        }
+        @keyframes priceGlow {
+            0% { opacity: 0.6; box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.1); }
+            100% { opacity: 1; box-shadow: inset 0 0 25px rgba(255, 215, 0, 0.2), 0 0 15px rgba(255, 179, 71, 0.2); }
+        }
+
+        /* Badge de "MAIS POPULAR" com mais destaque */
+        .popular-badge {
+            background: linear-gradient(135deg, #FFD700, #FF8C00);
+            color: #0a1a24;
+            font-size: 0.75rem;
+            font-weight: 900;
+            border-radius: 30px;
+            display: inline-block;
+            padding: 0.35rem 1.2rem;
+            margin-top: 0.5rem;
+            animation: badgePulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); transform: scale(1); }
+            50% { box-shadow: 0 0 25px rgba(255, 140, 0, 0.8); transform: scale(1.05); }
+        }
+
+        /* Destaque de "Vida" - animação de pulso de vida */
+        .vida-highlight {
+            display: inline-block;
+            position: relative;
+            color: #4fc3f7;
+            font-weight: 800;
+            animation: vidaPulse 2s ease-in-out infinite;
+        }
+        .vida-highlight::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4fc3f7, transparent);
+            animation: vidaLine 2s ease-in-out infinite;
+        }
+        @keyframes vidaPulse {
+            0%, 100% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(79, 195, 247, 0.9), 0 0 40px rgba(79, 195, 247, 0.4); }
+        }
+        @keyframes vidaLine {
+            0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+
         .card-features {
             padding: 0.5rem 1.5rem 1.5rem;
             list-style: none;
@@ -287,16 +380,7 @@
             gap: 0.6rem;
             font-size: 0.9rem;
         }
-        .popular-badge {
-            background: #ffb347;
-            color: #0a1a24;
-            font-size: 0.7rem;
-            font-weight: 800;
-            border-radius: 30px;
-            display: inline-block;
-            padding: 0.25rem 1rem;
-            margin-top: 0.3rem;
-        }
+
         .btn-whats {
             background: linear-gradient(95deg, #0f5c7a, #1287a8);
             color: white;
@@ -340,14 +424,33 @@
         }
         .tv-text { text-align: center; }
         .tv-text h2 { font-size: 1.9rem; font-weight: 800; }
+
+        /* Preço da TV com destaque */
         .tv-price {
-            font-size: 1.9rem;
+            font-size: 2.4rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #FFD166, #FFB347);
+            background: linear-gradient(135deg, #FFD700, #FFB347, #FF8C00, #FFD700);
+            background-size: 300% 300%;
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            animation: priceShine 2.5s ease-in-out infinite, pricePulse 1.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 179, 71, 0.5)) drop-shadow(0 0 20px rgba(255, 140, 0, 0.3));
+            display: inline-block;
+            position: relative;
+            letter-spacing: -1px;
         }
+        .tv-price::before {
+            content: "";
+            position: absolute;
+            inset: -6px -14px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.1), rgba(255, 215, 0, 0.15));
+            border-radius: 18px;
+            z-index: -1;
+            animation: priceGlow 2s ease-in-out infinite alternate;
+            border: 1px solid rgba(255, 179, 71, 0.3);
+        }
+
         /* Carrossel base */
         .carousel-container {
             position: relative;
@@ -590,7 +693,8 @@
             .header-main { flex-direction: column; text-align: center; }
             .banner-title h2 { font-size: 1.4rem; }
             .marquee span { font-size: 0.85rem; margin: 0 1rem; }
-            .price { font-size: 1.9rem; }
+            .price { font-size: 2.2rem; }
+            .tv-price { font-size: 2rem; }
             .carousel-slide img { max-height: 260px; }
             .carousel-btn { width: 34px; height: 34px; font-size: 0.9rem; }
             .carousel-container { max-width: 100%; }
@@ -604,6 +708,7 @@
             .carousel-container { max-width: 750px; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -671,7 +776,7 @@
             <div class="tv-content">
                 <div class="tv-text">
                     <h2>YayuTv Full Liberty</h2>
-                    <div class="tv-price">$35,99/mês <span style="font-size: 1rem;">(promocional)</span></div>
+                    <div class="tv-price">$35,99/mês <span style="font-size: 1rem; color:#b8e2ff; filter:none; animation:none; background:none; -webkit-background-clip:initial;">(promocional)</span></div>
                     <ul style="list-style: none; margin-top: 1rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
                         <li><i class="fas fa-check-circle" style="color:#4fc3f7;"></i> Canais Full HD</li>
                         <li><i class="fas fa-check-circle" style="color:#4fc3f7;"></i> Esportes, filmes, séries</li>
@@ -744,7 +849,7 @@
                 <div class="footer-brand">
                     <img src="https://i.im.ge/QMTg3GX/logoyayu1.png" alt="Yayu Logo" class="footer-logo"
                          onerror="this.src='https://placehold.co/200x80/0a3e52/white?text=YAYU'">
-                    <p class="brand-slogan">Conectividade que transforma vidas</p>
+                    <p class="brand-slogan">Conectividade que transforma <span class="vida-highlight">vidas</span></p>
                 </div>
                 <div class="social-section">
                     <h4 class="social-title">🌐 Nossas Comunidades</h4>
@@ -771,7 +876,7 @@
             </div>
             <div class="footer-bottom">
                 <p>© 2025 Yayu – Fibra, TV e Segurança | +500 mil clientes satisfeitos</p>
-                <p class="developer-credit"><i class="fas fa-fiber-tree"></i> Tecnologia que conecta</p>
+                <p class="developer-credit"><i class="fas fa-fiber-tree"></i> Tecnologia que conecta <span class="vida-highlight">vidas</span></p>
             </div>
         </footer>
     </div>
