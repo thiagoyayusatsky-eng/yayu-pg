@@ -65,18 +65,9 @@
       width: 100%; height: 100%;
       background-image: url('https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png');
       background-size: cover;
-      background-position: center 25%;
+      background-position: center 25%; /* Corta topo/baixo indesejado */
       opacity: 0.35;
       filter: brightness(1.1) contrast(1.1);
-    }
-    .bg-image::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 30%;
-      background: linear-gradient(to top, var(--darker) 0%, transparent 100%);
     }
     .bg-overlay {
       position: absolute;
@@ -151,7 +142,7 @@
       font-weight: 800;
     }
 
-    /* POPUP */
+    /* POPUP TV */
     .popup-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -426,55 +417,116 @@
       border: 1px solid var(--glass-border);
       position: relative;
     }
+    /* Gradiente para esconder rodapé da imagem (marca AI) */
     .hero-image::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 25%;
+      height: 30%;
       background: linear-gradient(to top, var(--darker) 0%, transparent 100%);
       pointer-events: none;
     }
     .hero-image img {
       width: 100%;
       display: block;
-      object-position: center 15%;
+      object-position: center 15%; /* Foca no centro/cima, corta baixo */
       object-fit: cover;
       transform: scale(1.05);
     }
 
-    /* FLOATING REGISTRATION FORM */
-    .float-register {
+    /* =========================================
+       FLOATING REGISTER FORM (MINIMIZÁVEL)
+       ========================================= */
+    .float-register-wrapper {
       position: fixed;
       bottom: 100px;
       left: 25px;
       z-index: 9998;
-      animation: slideInLeft 0.5s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
+
+    /* Estado Expandido (Card) */
     .register-card {
       background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(5,8,20,0.98) 100%);
       border: 2px solid var(--accent);
       border-radius: 20px;
       padding: 1.5rem;
-      width: 280px;
-      box-shadow: 0 15px 50px rgba(255, 214, 0, 0.3),
-                  0 0 0 4px rgba(255, 214, 0, 0.1);
+      width: 300px;
+      box-shadow: 0 15px 50px rgba(255, 214, 0, 0.25), 0 0 0 4px rgba(255, 214, 0, 0.1);
       backdrop-filter: blur(20px);
+      transform-origin: bottom left;
+      transition: all 0.4s ease;
+      opacity: 1;
+      transform: scale(1);
     }
+
+    /* Estado Minimizado (Ícone Pequeno) */
+    .float-register-wrapper.minimized .register-card {
+      opacity: 0;
+      transform: scale(0.5);
+      pointer-events: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .minimized-trigger {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 214, 0, 0.4);
+      transition: all 0.3s;
+      opacity: 0;
+      transform: scale(0.5);
+      pointer-events: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    
+    .minimized-trigger i {
+      font-size: 1.8rem;
+      color: var(--dark);
+    }
+
+    .float-register-wrapper.minimized .minimized-trigger {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      animation: float-icon 3s ease-in-out infinite;
+    }
+    
+    .minimized-trigger:hover {
+      transform: scale(1.1) !important;
+    }
+
+    @keyframes float-icon {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1); }
+    }
+
+    /* Conteúdo do Card */
     .register-header {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      justify-content: space-between;
       margin-bottom: 1rem;
-      padding-bottom: 1rem;
+      padding-bottom: 0.8rem;
       border-bottom: 1px solid var(--glass-border);
     }
-    .register-header i {
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .header-info i {
       font-size: 1.5rem;
       color: var(--accent);
       animation: bounce 2s infinite;
@@ -483,17 +535,38 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
-    .register-header h4 {
+    .header-info h4 {
       font-size: 1rem;
       font-weight: 800;
       color: var(--light);
+      line-height: 1.2;
     }
-    .register-header span {
-      display: block;
+    .header-info span {
       font-size: 0.75rem;
       color: var(--gray);
       font-weight: 500;
     }
+    
+    /* Botão Minimizar */
+    .btn-minimize {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--gray);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    .btn-minimize:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+    }
+
     .register-form input,
     .register-form select {
       width: 100%;
@@ -507,9 +580,7 @@
       font-family: inherit;
       transition: all 0.3s;
     }
-    .register-form input::placeholder {
-      color: var(--gray);
-    }
+    .register-form input::placeholder { color: var(--gray); }
     .register-form input:focus,
     .register-form select:focus {
       outline: none;
@@ -548,12 +619,9 @@
       margin-top: 0.75rem;
       line-height: 1.4;
     }
-    .register-note i {
-      color: var(--success);
-      margin-right: 0.25rem;
-    }
+    .register-note i { color: var(--success); margin-right: 0.25rem; }
 
-    /* FLOAT WHATSAPP - SEMPRE VISÍVEL E DESTACADO */
+    /* FLOAT WHATSAPP */
     .float-whatsapp {
       position: fixed;
       bottom: 25px;
@@ -576,38 +644,22 @@
       text-decoration: none;
       font-weight: 800;
       font-size: 1rem;
-      box-shadow: 0 8px 35px rgba(37, 211, 102, 0.6), 
-                  0 0 0 4px rgba(37, 211, 102, 0.2),
-                  0 0 30px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 8px 35px rgba(37, 211, 102, 0.6), 0 0 0 4px rgba(37, 211, 102, 0.2);
       transition: all 0.3s;
       border: 2px solid rgba(255,255,255,0.3);
     }
     .float-whatsapp a:hover {
       transform: scale(1.08);
-      box-shadow: 0 12px 45px rgba(37, 211, 102, 0.8),
-                  0 0 0 6px rgba(37, 211, 102, 0.3),
-                  0 0 40px rgba(37, 211, 102, 0.6);
+      box-shadow: 0 12px 45px rgba(37, 211, 102, 0.8);
     }
-    .float-whatsapp i {
-      font-size: 1.6rem;
-      animation: pulse-icon 1.5s infinite;
-    }
-    @keyframes pulse-icon {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-    .float-whatsapp .phone-number {
-      font-weight: 900;
-      letter-spacing: 0.5px;
-    }
+    .float-whatsapp i { font-size: 1.6rem; animation: pulse-icon 1.5s infinite; }
+    @keyframes pulse-icon { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    .float-whatsapp .phone-number { font-weight: 900; letter-spacing: 0.5px; }
 
     /* SECTIONS */
     section { padding: 6rem 2rem; }
     .container { max-width: 1400px; margin: 0 auto; }
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
     .section-tag {
       display: inline-block;
       background: var(--glass);
@@ -618,10 +670,7 @@
       color: var(--secondary);
       margin-bottom: 1rem;
     }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 1rem;
-    }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
     .section-title span {
       background: var(--gradient-primary);
       -webkit-background-clip: text;
@@ -635,13 +684,8 @@
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
-    .carousel-slides {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-    .carousel-slide {
-      min-width: 100%;
-    }
+    .carousel-slides { display: flex; transition: transform 0.5s ease; }
+    .carousel-slide { min-width: 100%; }
     .carousel-slide img {
       width: 100%;
       height: 500px;
@@ -666,334 +710,147 @@
       align-items: center;
       justify-content: center;
     }
-    .carousel-btn:hover {
-      background: var(--primary);
-    }
+    .carousel-btn:hover { background: var(--primary); }
     .carousel-btn.prev { left: 20px; }
     .carousel-btn.next { right: 20px; }
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 1rem;
-    }
+    .carousel-dots { display: flex; justify-content: center; gap: 10px; margin-top: 1rem; }
     .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--glass);
-      cursor: pointer;
-      transition: all 0.3s;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--glass); cursor: pointer; transition: all 0.3s;
     }
-    .dot.active {
-      background: var(--secondary);
-      width: 30px;
-      border-radius: 6px;
-    }
+    .dot.active { background: var(--secondary); width: 30px; border-radius: 6px; }
 
     /* TV SECTION */
-    .tv-showcase {
-      background: linear-gradient(180deg, rgba(0,102,255,0.05) 0%, transparent 100%);
-    }
-    .tv-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .tv-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
+    .tv-showcase { background: linear-gradient(180deg, rgba(0,102,255,0.05) 0%, transparent 100%); }
+    .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .tv-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
     .tv-content h2 span {
       background: var(--gradient-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .tv-features {
-      list-style: none;
-      margin: 2rem 0;
-    }
+    .tv-features { list-style: none; margin: 2rem 0; }
     .tv-features li {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--glass-border);
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);
     }
     .tv-features li i {
-      width: 40px;
-      height: 40px;
-      background: var(--gradient-primary);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
+      width: 40px; height: 40px; background: var(--gradient-primary);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; color: white;
     }
     .tv-price-box {
-      background: var(--glass);
-      border: 2px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 2rem;
-      margin: 2rem 0;
-      position: relative;
+      background: var(--glass); border: 2px solid var(--glass-border);
+      border-radius: 24px; padding: 2rem; margin: 2rem 0; position: relative;
     }
     .tv-price-box::before {
-      content: 'OFERTA';
-      position: absolute;
-      top: 15px;
-      right: -35px;
-      background: var(--gradient-gold);
-      color: var(--dark);
-      padding: 0.4rem 3rem;
-      font-size: 0.75rem;
-      font-weight: 800;
+      content: 'OFERTA'; position: absolute; top: 15px; right: -35px;
+      background: var(--gradient-gold); color: var(--dark);
+      padding: 0.4rem 3rem; font-size: 0.75rem; font-weight: 800;
       transform: rotate(45deg);
     }
-    .tv-price {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
+    .tv-price { display: flex; align-items: flex-start; gap: 0.5rem; }
     .tv-price-value {
-      font-family: 'Outfit', sans-serif;
-      font-size: 4.5rem;
-      font-weight: 900;
-      background: var(--gradient-gold);
-      -webkit-background-clip: text;
+      font-family: 'Outfit', sans-serif; font-size: 4.5rem; font-weight: 900;
+      background: var(--gradient-gold); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     /* PLANOS */
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
+    .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
     .plan-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      backdrop-filter: blur(20px);
-      transition: all 0.4s;
-      position: relative;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 2.5rem 2rem; backdrop-filter: blur(20px);
+      transition: all 0.4s; position: relative;
     }
-    .plan-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--secondary);
-    }
-    .plan-card.featured {
-      border: 2px solid var(--accent);
-      transform: scale(1.05);
-    }
+    .plan-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
+    .plan-card.featured { border: 2px solid var(--accent); transform: scale(1.05); }
     .plan-badge {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: var(--gradient-gold);
-      color: var(--dark);
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 800;
+      position: absolute; top: 15px; right: 15px;
+      background: var(--gradient-gold); color: var(--dark);
+      padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 800;
     }
     .plan-icon {
-      width: 70px;
-      height: 70px;
-      background: var(--gradient-primary);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      color: white;
+      width: 70px; height: 70px; background: var(--gradient-primary);
+      border-radius: 20px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1.5rem; font-size: 2rem; color: white;
     }
-    .plan-price {
-      margin: 1.5rem 0;
-    }
+    .plan-price { margin: 1.5rem 0; }
     .plan-price-value {
-      font-family: 'Outfit', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 900;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
+      font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 900;
+      background: var(--gradient-primary); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .plan-features {
-      list-style: none;
-      margin: 1.5rem 0;
-    }
-    .plan-features li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.5rem 0;
-      color: var(--gray);
-    }
-    .plan-features li i {
-      color: var(--success);
-    }
+    .plan-features { list-style: none; margin: 1.5rem 0; }
+    .plan-features li { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; color: var(--gray); }
+    .plan-features li i { color: var(--success); }
     .plan-button {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 12px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.3s;
+      width: 100%; padding: 1rem; border-radius: 12px; border: none;
+      font-weight: 700; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem; transition: all 0.3s;
     }
-    .plan-button.primary {
-      background: var(--gradient-primary);
-      color: white;
-    }
-    .plan-button.gold {
-      background: var(--gradient-gold);
-      color: var(--dark);
-    }
+    .plan-button.primary { background: var(--gradient-primary); color: white; }
+    .plan-button.gold { background: var(--gradient-gold); color: var(--dark); }
 
     /* BENEFITS */
-    .benefits {
-      background: linear-gradient(180deg, #0A0E27 0%, #050814 100%);
-    }
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
+    .benefits { background: linear-gradient(180deg, #0A0E27 0%, #050814 100%); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
     .benefit-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s;
     }
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--secondary);
-    }
+    .benefit-card:hover { transform: translateY(-5px); border-color: var(--secondary); }
     .benefit-icon {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2rem;
-      color: white;
+      width: 80px; height: 80px; background: var(--gradient-primary);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; color: white;
     }
 
     /* CTA */
     .cta-section {
       background: linear-gradient(135deg, rgba(0,102,255,0.1) 0%, rgba(0,212,255,0.05) 100%);
-      border-radius: 40px;
-      padding: 5rem 3rem;
-      text-align: center;
-      margin: 4rem auto;
-      max-width: 1200px;
+      border-radius: 40px; padding: 5rem 3rem; text-align: center;
+      margin: 4rem auto; max-width: 1200px;
     }
-    .cta-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      margin-bottom: 1rem;
-    }
+    .cta-title { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1rem; }
     .cta-title span {
-      background: var(--gradient-gold);
-      -webkit-background-clip: text;
+      background: var(--gradient-gold); -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     /* FOOTER */
-    footer {
-      background: var(--darker);
-      border-top: 1px solid var(--glass-border);
-      padding: 4rem 2rem 2rem;
-    }
+    footer { background: var(--darker); border-top: 1px solid var(--glass-border); padding: 4rem 2rem 2rem; }
     .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 4rem;
-      margin-bottom: 3rem;
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem; margin-bottom: 3rem;
     }
-    .footer-brand img {
-      height: 60px;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
+    .footer-brand img { height: 60px; border-radius: 12px; margin-bottom: 1rem; }
+    .footer-social { display: flex; gap: 1rem; margin-top: 1rem; }
     .footer-social a {
-      width: 45px;
-      height: 45px;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--light);
-      transition: all 0.3s;
+      width: 45px; height: 45px; background: var(--glass);
+      border: 1px solid var(--glass-border); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--light); transition: all 0.3s;
     }
-    .footer-social a:hover {
-      background: var(--gradient-primary);
-      transform: translateY(-3px);
-    }
-    .footer-links {
-      list-style: none;
-    }
-    .footer-links li {
-      margin-bottom: 0.875rem;
-    }
-    .footer-links a {
-      color: var(--gray);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover {
-      color: var(--secondary);
-    }
+    .footer-social a:hover { background: var(--gradient-primary); transform: translateY(-3px); }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.875rem; }
+    .footer-links a { color: var(--gray); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--secondary); }
     .footer-bottom {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding-top: 2rem;
-      border-top: 1px solid var(--glass-border);
-      text-align: center;
-      color: var(--gray);
+      max-width: 1400px; margin: 0 auto; padding-top: 2rem;
+      border-top: 1px solid var(--glass-border); text-align: center; color: var(--gray);
     }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .hero-content, .tv-grid, .popup-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-content {
-        grid-template-columns: 1fr 1fr;
-      }
-      .carousel-slide img {
-        height: 350px;
-      }
-      .float-register {
-        bottom: 90px;
-        left: 15px;
-      }
-      .register-card {
-        width: 260px;
-        padding: 1.25rem;
-      }
+      .hero-content, .tv-grid, .popup-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr 1fr; }
+      .carousel-slide img { height: 350px; }
+      .float-register-wrapper { bottom: 90px; left: 15px; }
+      .register-card { width: 280px; padding: 1.25rem; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -1002,24 +859,19 @@
       section { padding: 4rem 1.5rem; }
       .footer-content { grid-template-columns: 1fr; }
       .popup-buttons { flex-direction: column; }
-      .float-whatsapp a {
-        padding: 0.9rem 1.5rem;
-        font-size: 0.95rem;
-      }
-      .float-whatsapp .phone-number {
-        display: none;
-      }
-      .float-whatsapp i {
-        font-size: 1.8rem;
-      }
-      .float-register {
-        bottom: 85px;
+      .float-whatsapp a { padding: 0.9rem 1.5rem; font-size: 0.95rem; }
+      .float-whatsapp .phone-number { display: none; }
+      .float-whatsapp i { font-size: 1.8rem; }
+      
+      /* Mobile Form Adjustments */
+      .float-register-wrapper {
+        bottom: 90px;
         left: 15px;
-        right: auto;
+        right: 15px;
+        width: auto;
       }
       .register-card {
-        width: calc(100vw - 40px);
-        max-width: 320px;
+        width: 100%;
       }
     }
   </style>
@@ -1151,21 +1003,36 @@
         </div>
       </div>
       <div class="hero-image">
+        <!-- Imagem com corte CSS para não mostrar "AI" -->
         <img src="https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png" alt="Yayu Fibra">
       </div>
     </div>
   </section>
 
-  <!-- FLOATING REGISTRATION FORM - YAYU -->
-  <div class="float-register">
+  <!-- FLOATING REGISTRATION FORM (MINIMIZÁVEL) -->
+  <div class="float-register-wrapper" id="registerWrapper">
+    
+    <!-- Ícone Minimizado (Aparece quando fechado) -->
+    <div class="minimized-trigger" onclick="toggleRegister()" title="Abrir Cadastro Rápido">
+      <i class="fas fa-rocket"></i>
+    </div>
+
+    <!-- Card do Formulário -->
     <div class="register-card">
       <div class="register-header">
-        <i class="fas fa-rocket"></i>
-        <div>
-          <h4>Yayu</h4>
-          <span>Cadastro Rápido</span>
+        <div class="header-info">
+          <i class="fas fa-paper-plane"></i>
+          <div>
+            <h4>Yayu</h4>
+            <span>Cadastro Rápido</span>
+          </div>
         </div>
+        <!-- Botão Minimizar -->
+        <button class="btn-minimize" onclick="toggleRegister()" title="Minimizar">
+          <i class="fas fa-minus"></i>
+        </button>
       </div>
+      
       <form class="register-form" id="quickRegister" onsubmit="sendToWhatsApp(event)">
         <input type="text" id="regName" placeholder="Seu nome *" required maxlength="50">
         <input type="tel" id="regPhone" placeholder="Seu WhatsApp (opcional)" pattern="[0-9\s\-\(\)]+">
@@ -1183,7 +1050,7 @@
         </button>
       </form>
       <p class="register-note">
-        <i class="fas fa-shield-alt"></i> Seus dados estão seguros. Atendimento imediato pelo WhatsApp.
+        <i class="fas fa-shield-alt"></i> Seus dados estão seguros.
       </p>
     </div>
   </div>
@@ -1192,12 +1059,8 @@
   <section class="tv-showcase" id="tv">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">
-          <i class="fas fa-tv"></i> YayuTV
-        </div>
-        <h2 class="section-title">
-          Entretenimento <span>Premium</span>
-        </h2>
+        <div class="section-tag"><i class="fas fa-tv"></i> YayuTV</div>
+        <h2 class="section-title">Entretenimento <span>Premium</span></h2>
       </div>
       <div class="tv-grid">
         <div>
@@ -1242,12 +1105,8 @@
                 <img src="https://i.im.ge/QMreyg6/ChatGPT_Image_4_de_mai._de_2026_10_59_48.png" alt="YayuTV">
               </div>
             </div>
-            <button class="carousel-btn prev" onclick="moveCarousel('tv', -1)">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next" onclick="moveCarousel('tv', 1)">
-              <i class="fas fa-chevron-right"></i>
-            </button>
+            <button class="carousel-btn prev" onclick="moveCarousel('tv', -1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next" onclick="moveCarousel('tv', 1)"><i class="fas fa-chevron-right"></i></button>
           </div>
           <div class="carousel-dots" id="tvDots"></div>
         </div>
@@ -1259,18 +1118,12 @@
   <section id="planos">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">
-          <i class="fas fa-wifi"></i> Planos de Internet
-        </div>
-        <h2 class="section-title">
-          Escolha sua <span>Velocidade</span>
-        </h2>
+        <div class="section-tag"><i class="fas fa-wifi"></i> Planos de Internet</div>
+        <h2 class="section-title">Escolha sua <span>Velocidade</span></h2>
       </div>
       <div class="plans-grid">
         <div class="plan-card">
-          <div class="plan-icon">
-            <i class="fas fa-home"></i>
-          </div>
+          <div class="plan-icon"><i class="fas fa-home"></i></div>
           <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">House Yayu</h3>
           <div style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">100 MEGA FULL</div>
           <div class="plan-price">
@@ -1290,12 +1143,8 @@
         </div>
 
         <div class="plan-card featured">
-          <div class="plan-badge">
-            <i class="fas fa-star"></i> MAIS POPULAR
-          </div>
-          <div class="plan-icon" style="background: var(--gradient-gold);">
-            <i class="fas fa-rocket"></i>
-          </div>
+          <div class="plan-badge"><i class="fas fa-star"></i> MAIS POPULAR</div>
+          <div class="plan-icon" style="background: var(--gradient-gold);"><i class="fas fa-rocket"></i></div>
           <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Yayu Conect</h3>
           <div style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">300 MEGA FULL</div>
           <div class="plan-price">
@@ -1315,9 +1164,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-icon">
-            <i class="fas fa-gamepad"></i>
-          </div>
+          <div class="plan-icon"><i class="fas fa-gamepad"></i></div>
           <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Yayu Gamer</h3>
           <div style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">500 MEGA FULL</div>
           <div class="plan-price">
@@ -1343,12 +1190,8 @@
   <section id="seguranca" style="background: var(--glass);">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">
-          <i class="fas fa-shield-alt"></i> Segurança
-        </div>
-        <h2 class="section-title">
-          Câmeras <span>House Yayu</span>
-        </h2>
+        <div class="section-tag"><i class="fas fa-shield-alt"></i> Segurança</div>
+        <h2 class="section-title">Câmeras <span>House Yayu</span></h2>
       </div>
       <div style="max-width: 900px; margin: 0 auto;">
         <div class="carousel-container">
@@ -1363,12 +1206,8 @@
               <img src="https://i.im.ge/QMreUgT/ChatGPT_Image_4_de_mai._de_2026_10_36_23.png" alt="Câmera 3">
             </div>
           </div>
-          <button class="carousel-btn prev" onclick="moveCarousel('cam', -1)">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="carousel-btn next" onclick="moveCarousel('cam', 1)">
-            <i class="fas fa-chevron-right"></i>
-          </button>
+          <button class="carousel-btn prev" onclick="moveCarousel('cam', -1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-btn next" onclick="moveCarousel('cam', 1)"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="carousel-dots" id="camDots"></div>
       </div>
@@ -1384,39 +1223,27 @@
   <section class="benefits" id="beneficios">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">
-          <i class="fas fa-star"></i> Por que Yayu?
-        </div>
-        <h2 class="section-title">
-          Diferenciais que <span>encantam</span>
-        </h2>
+        <div class="section-tag"><i class="fas fa-star"></i> Por que Yayu?</div>
+        <h2 class="section-title">Diferenciais que <span>encantam</span></h2>
       </div>
       <div class="benefits-grid">
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-bolt"></i>
-          </div>
+          <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
           <h3 style="margin-bottom: 0.75rem;">Velocidade Real</h3>
           <p style="color: var(--gray);">Fibra óptica de verdade. Contrate 100 Mega, receba 100 Mega.</p>
         </div>
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-headset"></i>
-          </div>
+          <div class="benefit-icon"><i class="fas fa-headset"></i></div>
           <h3 style="margin-bottom: 0.75rem;">Suporte 24/7</h3>
           <p style="color: var(--gray);">Atendimento humano. Sem robôs, sem espera.</p>
         </div>
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-tools"></i>
-          </div>
+          <div class="benefit-icon"><i class="fas fa-tools"></i></div>
           <h3 style="margin-bottom: 0.75rem;">Instalação Rápida</h3>
           <p style="color: var(--gray);">Em até 24h na sua casa. Sem complicação.</p>
         </div>
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
+          <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
           <h3 style="margin-bottom: 0.75rem;">Conexão Estável</h3>
           <p style="color: var(--gray);">99% de uptime. Sua internet não cai.</p>
         </div>
@@ -1428,9 +1255,7 @@
   <section>
     <div class="container">
       <div class="cta-section">
-        <h2 class="cta-title">
-          Pronto para se <span>conectar</span>?
-        </h2>
+        <h2 class="cta-title">Pronto para se <span>conectar</span>?</h2>
         <p style="color: var(--gray); font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem;">
           Junte-se a 500+ clientes. Instalação em 24h.
         </p>
@@ -1485,7 +1310,7 @@
     </div>
   </footer>
 
-  <!-- Float WhatsApp - SEMPRE VISÍVEL -->
+  <!-- Float WhatsApp -->
   <div class="float-whatsapp">
     <a href="https://wa.me/5513988777008?text=Olá!+Vi+o+site+e+quero+contratar+a+Yayu" target="_blank">
       <i class="fab fa-whatsapp"></i>
@@ -1496,7 +1321,13 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   <script>
-    // === REGISTRO RÁPIDO - ENVIA PARA WHATSAPP ===
+    // === LÓGICA DO FORMULÁRIO MINIMIZÁVEL ===
+    function toggleRegister() {
+      const wrapper = document.getElementById('registerWrapper');
+      wrapper.classList.toggle('minimized');
+    }
+
+    // === ENVIO PARA WHATSAPP ===
     function sendToWhatsApp(e) {
       e.preventDefault();
       
@@ -1509,24 +1340,21 @@
         return;
       }
       
-      // Formata mensagem para WhatsApp
       const message = `🚀 *NOVO CADASTRO YAYU*\n\n` +
                       `👤 *Nome:* ${name}\n` +
                       (phone ? `📱 *WhatsApp:* ${phone}\n` : '') +
                       `📦 *Interesse:* ${plan}\n\n` +
                       `💬 Gostaria de mais informações sobre este plano!`;
       
-      // Codifica para URL
       const encodedMessage = encodeURIComponent(message);
-      
-      // Redireciona para WhatsApp
       window.open(`https://wa.me/5513988777008?text=${encodedMessage}`, '_blank');
       
-      // Reset form
+      // Minimiza após enviar para não atrapalhar
+      document.getElementById('registerWrapper').classList.add('minimized');
       document.getElementById('quickRegister').reset();
     }
 
-    // Popup
+    // Popup TV
     function openPopup() {
       document.getElementById('tvPopup').classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -1536,8 +1364,6 @@
       document.body.style.overflow = 'auto';
       localStorage.setItem('popupClosed', Date.now());
     }
-
-    // Show popup after 2s if not closed in last 24h
     window.addEventListener('load', () => {
       const closed = localStorage.getItem('popupClosed');
       const now = Date.now();
@@ -1545,7 +1371,6 @@
         setTimeout(openPopup, 2000);
       }
     });
-
     document.getElementById('tvPopup').addEventListener('click', (e) => {
       if (e.target.id === 'tvPopup') closePopup();
     });
@@ -1556,22 +1381,16 @@
       cam: { current: 0, total: 3 },
       popup: { current: 0, total: 2 }
     };
-
     function moveCarousel(name, dir) {
       const c = carousels[name];
       c.current = (c.current + dir + c.total) % c.total;
       updateCarousel(name);
     }
-
     function updateCarousel(name) {
       const c = carousels[name];
       const track = document.getElementById(name + 'Carousel');
       const dotsContainer = document.getElementById(name + 'Dots');
-      
-      if (track) {
-        track.style.transform = `translateX(-${c.current * 100}%)`;
-      }
-      
+      if (track) track.style.transform = `translateX(-${c.current * 100}%)`;
       if (dotsContainer) {
         dotsContainer.innerHTML = '';
         for (let i = 0; i < c.total; i++) {
@@ -1582,17 +1401,10 @@
         }
       }
     }
-
-    function movePopupCarousel(dir) {
-      moveCarousel('popup', dir);
-    }
-
-    // Initialize carousels
+    function movePopupCarousel(dir) { moveCarousel('popup', dir); }
     updateCarousel('tv');
     updateCarousel('cam');
     updateCarousel('popup');
-
-    // Auto-advance carousels
     setInterval(() => moveCarousel('tv', 1), 5000);
     setInterval(() => moveCarousel('cam', 1), 5000);
 
@@ -1607,12 +1419,7 @@
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particles = [];
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -1623,8 +1430,7 @@
         this.opacity = Math.random() * 0.5 + 0.2;
       }
       update() {
-        this.x += this.vx;
-        this.y += this.vy;
+        this.x += this.vx; this.y += this.vy;
         if (this.x < 0) this.x = canvas.width;
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
@@ -1632,25 +1438,17 @@
       }
       draw() {
         ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
       }
     }
-
     function initParticles() {
       particles = [];
       const count = Math.min(100, (canvas.width * canvas.height) / 15000);
       for (let i = 0; i < count; i++) particles.push(new Particle());
     }
-
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      // Connect particles
+      particles.forEach(p => { p.update(); p.draw(); });
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -1668,11 +1466,8 @@
       }
       requestAnimationFrame(animate);
     }
-
     window.addEventListener('resize', () => { resize(); initParticles(); });
-    resize();
-    initParticles();
-    animate();
+    resize(); initParticles(); animate();
   </script>
 </body>
 </html>
