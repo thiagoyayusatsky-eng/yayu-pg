@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Yayu Fibra Óptica: Internet rápida, TV completa e segurança residencial. Oferta imperdível!">
-  <title>Yayu | Fibra, TV e Segurança · Oferta Imperdível</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yayu Fibra Óptica e TV: Conectando você ao que importa.">
+  <title>Yayu | Fibra Óptica e TV · Oferta Exclusiva</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MVG068Y0V"></script>
@@ -15,1079 +15,1664 @@
     gtag('config', 'G-4MVG068Y0V');
   </script>
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons & Lightbox -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 
-  <!-- Preload background image for performance -->
-  <link rel="preload" as="image" href="https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png">
-
   <style>
-    /* ── RESET & BASE ── */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: #eef4ff;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-      scroll-behavior: smooth;
-      background: #030d1a;
+    :root {
+      --primary: #0066FF;
+      --secondary: #00D4FF;
+      --accent: #FFD600;
+      --accent-orange: #FF6B35;
+      --dark: #0A0E27;
+      --darker: #050814;
+      --light: #FFFFFF;
+      --gray: #8B92A8;
+      --success: #00C853;
+      --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
+      --gradient-gold: linear-gradient(135deg, #FFD600 0%, #FF6B35 100%);
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
 
-    /* ── FUNDO FIXO COM IMAGEM REALÇADA ── */
-    body::before {
-      content: "";
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; font-weight: 800; }
+
+    /* BACKGROUND */
+    .bg-container {
       position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+    .bg-image {
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background-image: url('https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png');
       background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      opacity: 0.42; /* ↑ Aumentado para aparecer mais */
-      pointer-events: none;
-      z-index: 0;
-      filter: brightness(1.1) contrast(1.05) saturate(1.1);
-      transition: opacity 0.4s ease;
+      background-position: center 25%;
+      opacity: 0.35;
+      filter: brightness(1.1) contrast(1.1);
     }
-    body::before:hover { opacity: 0.48; }
-
-    body::after {
-      content: "";
-      position: fixed;
+    .bg-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30%;
+      background: linear-gradient(to top, var(--darker) 0%, transparent 100%);
+    }
+    .bg-overlay {
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      /* Gradient suave que não esconde o fundo */
-      background: linear-gradient(160deg, 
-        rgba(0,0,0,0.35) 0%, 
-        rgba(0,10,30,0.25) 50%,
-        rgba(0,20,40,0.4) 100%);
-      pointer-events: none;
-      z-index: 0;
+      background: linear-gradient(180deg, rgba(10,14,39,0.85) 0%, rgba(5,8,20,0.92) 100%);
     }
-
-    /* ── CANVAS BG OTIMIZADO ── */
-    #canvas-bg {
-      position: fixed;
+    #particles {
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.95;
     }
 
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 1280px;
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(10,14,39,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .navbar.scrolled {
+      padding: 0.7rem 2rem;
+      background: rgba(5,8,20,0.95);
+    }
+    .nav-container {
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
-      position: relative;
-      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    /* ── HEADER ── */
-    .header-main {
+    .nav-logo {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(74,212,255,0.2);
+      gap: 0.75rem;
+      cursor: pointer;
     }
-    .logo-area { cursor: pointer; transition: transform 0.3s; }
-    .logo-area:hover { transform: scale(1.02); }
-    .logo-area img {
-      height: 65px; width: auto;
-      filter: drop-shadow(0 0 8px rgba(0,200,255,0.6));
-      border-radius: 24px;
-      animation: logoGlow 2s infinite alternate;
+    .nav-logo img {
+      height: 50px;
+      border-radius: 12px;
+      filter: drop-shadow(0 0 10px rgba(0,212,255,0.5));
     }
-    @keyframes logoGlow {
-      0%  { filter: drop-shadow(0 0 4px  rgba(0,200,255,0.5)); }
-      100%{ filter: drop-shadow(0 0 16px rgba(0,200,255,0.9)); }
+    .nav-logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .phone-header {
-      background: rgba(0,50,70,0.85);
-      backdrop-filter: blur(12px);
-      padding: 0.7rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 700;
-      border: 1px solid rgba(60,207,239,0.6);
-      animation: floatButton 3s ease-in-out infinite;
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--secondary); }
+    .nav-cta {
+      background: var(--gradient-gold);
+      color: var(--dark) !important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 800;
+    }
+
+    /* POPUP */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .popup-content {
+      background: linear-gradient(135deg, #1a1f3a 0%, #0f1428 100%);
+      border: 2px solid var(--accent);
+      border-radius: 30px;
+      padding: 2.5rem;
+      max-width: 1000px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.8);
+      transition: transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+    .popup-overlay.active .popup-content {
+      transform: scale(1);
+    }
+    .popup-close {
+      position: absolute;
+      top: 15px; right: 15px;
+      width: 40px; height: 40px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--light);
       transition: all 0.3s;
     }
-    @keyframes floatButton {
-      0%,100%{ transform: translateY(0); }
-      50%    { transform: translateY(-5px); }
+    .popup-close:hover {
+      background: var(--accent);
+      color: var(--dark);
+      transform: rotate(90deg);
     }
-    .phone-header:hover { 
-      background:#1287a8; 
-      transform:scale(1.03); 
-      animation:none; 
-      box-shadow:0 0 18px #3ccfef; 
-    }
-    .phone-header a { 
-      color:#fff; 
-      text-decoration:none; 
-      display:flex; 
-      align-items:center; 
-      gap:10px; 
-      font-size:1.2rem; 
-    }
-
-    /* ── BALÃO FLUTUANTE OFERTA ── */
-    .balloon-promo {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.2rem;
-      animation: balloonFloat 3.5s ease-in-out infinite;
-    }
-    @keyframes balloonFloat {
-      0%,100%{ transform: translateY(0) rotate(-1.5deg); }
-      50%    { transform: translateY(-16px) rotate(1.5deg); }
-    }
-    .balloon-body {
-      background: linear-gradient(135deg,#FFD600,#ff6a00);
-      color: #030d1a;
-      font-weight: 900;
-      font-size: clamp(15px,3vw,22px);
-      padding: 13px 36px;
-      border-radius: 100px;
-      letter-spacing: .5px;
-      box-shadow: 0 6px 30px rgba(255,180,0,.55), 0 0 0 3px rgba(255,214,0,.2);
-      white-space: nowrap;
-    }
-    .balloon-string {
-      width: 2px; height: 24px;
-      background: linear-gradient(to bottom,rgba(255,165,0,.8),transparent);
-    }
-
-    /* ── HERO BANNER ── */
-    .hero-banner {
-      background: linear-gradient(135deg, rgba(0,60,80,0.72), rgba(0,40,60,0.82));
-      backdrop-filter: blur(12px);
-      border-radius: 2rem;
-      margin: 0.5rem 0 2rem;
-      padding: 2.2rem 1.2rem 1.8rem;
-      border: 1px solid rgba(60,207,239,0.5);
-      box-shadow: 0 0 30px rgba(60,207,239,0.2);
-      animation: bannerGlow 3s ease-in-out infinite alternate;
-      text-align: center;
-    }
-    @keyframes bannerGlow {
-      0%  { box-shadow: 0 0 10px rgba(60,207,239,0.15); border-color: rgba(60,207,239,0.3); }
-      100%{ box-shadow: 0 0 38px rgba(60,207,239,0.45); border-color: rgba(60,207,239,0.75); }
-    }
-    .banner-title h2 {
-      font-size: clamp(1.4rem,4vw,2.4rem);
-      font-weight: 800;
-      background: linear-gradient(135deg,#fff,#8adcff,#4fc3f7);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    /* ── MARQUEE ── */
-    .action-strip {
-      background: rgba(0,20,30,0.7);
-      border-radius: 60px;
-      padding: 0.8rem 0;
-      margin: 0.8rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-      border-top: 2px solid #4fc3f7;
-      border-bottom: 2px solid #3ccfef;
-      box-shadow: 0 0 15px rgba(60,207,239,0.3), inset 0 0 8px rgba(60,207,239,0.15);
-    }
-    .marquee { display:inline-block; animation:marqueeAnim 32s linear infinite; padding-left:100%; }
-    .marquee span {
-      display:inline-block; margin:0 2rem;
-      font-size:1rem; font-weight:700; letter-spacing:1px; color:#8adcff;
-      animation: ledPulse 1.5s ease-in-out infinite alternate;
-    }
-    .marquee i { margin-right:8px; color:#4fc3f7; }
-    @keyframes marqueeAnim { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-    @keyframes ledPulse {
-      0%  { text-shadow:0 0 2px #3ccfef,0 0 4px #1f8eae; opacity:.9; }
-      100%{ text-shadow:0 0 8px #8adcff,0 0 15px #4fc3f7,0 0 22px #3ccfef; opacity:1; }
-    }
-
-    /* ── MEGA CTA BUTTON ── */
-    .banner-cta { margin-top:1.5rem; }
-    .btn-mega {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg,#0057ff,#00c8ff);
-      color: #030d1a;
-      border-radius: 100px;
-      padding: clamp(14px,2.5vw,20px) clamp(28px,5vw,56px);
-      text-decoration: none;
-      font-size: clamp(16px,2.5vw,22px);
-      font-weight: 900;
-      letter-spacing: .5px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 40px rgba(0,87,255,.6);
-      animation: ctaPulse 2s ease-in-out infinite;
-      transition: .25s;
-    }
-    @keyframes ctaPulse {
-      0%,100%{ box-shadow:0 8px 40px rgba(0,87,255,.6); }
-      50%    { box-shadow:0 8px 60px rgba(0,200,255,.9), 0 0 0 10px rgba(0,87,255,.12); }
-    }
-    .btn-mega:hover { transform:scale(1.05); }
-
-    /* ── SECTION TITLES ── */
-    .section-title {
-      font-size: clamp(1.6rem,4vw,2.2rem);
-      font-weight: 800;
-      margin: 3rem 0 2rem;
-      text-align: center;
-      color: #fff;
-    }
-    .section-title i { color:#4fc3f7; margin-right:12px; }
-
-    /* ── TRUST STRIP ── */
-    .trust-strip {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px 32px;
-      margin: 1.5rem 0 2.5rem;
-    }
-    .trust-item {
-      text-align: center;
-      background: rgba(0,50,80,0.45);
-      border: 1px solid rgba(0,200,255,0.2);
-      border-radius: 16px;
-      padding: 16px 24px;
-      min-width: 110px;
-    }
-    .trust-num { font-size:2.2rem; font-weight:900; color:#00c8ff; line-height:1; }
-    .trust-label { font-size:12px; color:rgba(180,220,255,0.7); margin-top:4px; font-weight:600; }
-
-    /* ── PLANOS ── */
-    .plans-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.8rem;
-      justify-content: center;
-    }
-    .card {
-      background: rgba(12,25,40,0.75);
-      backdrop-filter: blur(14px);
-      border-radius: 2rem;
-      flex: 1 1 260px;
-      max-width: 310px;
-      border: 1px solid rgba(60,207,239,0.3);
-      transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
-      animation: cardReveal 0.6s ease-out backwards;
-      overflow: hidden;
-    }
-    .card:nth-child(1){animation-delay:.1s}
-    .card:nth-child(2){animation-delay:.2s;border:2px solid rgba(0,87,255,.55);background:linear-gradient(160deg,rgba(0,50,120,.55),rgba(0,30,70,.7))}
-    .card:nth-child(3){animation-delay:.3s}
-    @keyframes cardReveal {
-      from{opacity:0;transform:translateY(40px) scale(0.96)}
-      to  {opacity:1;transform:translateY(0)    scale(1)}
-    }
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: #3ccfef;
-      box-shadow: 0 28px 48px -12px rgba(0,0,0,.55), 0 0 0 1px rgba(60,207,239,.5);
-    }
-    .card-header { padding:1.5rem 1rem 0.5rem; text-align:center; }
-    .card-header > i { font-size:2.4rem; color:#8adcff; background:rgba(0,60,80,.6); padding:0.6rem; border-radius:60px; }
-    .plan-name  { font-size:1.4rem; font-weight:800; margin:.8rem 0 .2rem; }
-    .plan-speed { font-size:.82rem; background:#0f3b4e; display:inline-block; padding:.2rem 1rem; border-radius:30px; font-weight:600; }
-
-    /* PREÇO ANIMADO */
-    .price {
-      font-size: 2.8rem;
-      font-weight: 900;
-      margin: 1rem 0;
-      background: linear-gradient(135deg,#FFD700,#FFB347,#FF8C00,#FFD700);
-      background-size: 300% 300%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: priceShine 2.5s ease-in-out infinite, pricePulse 1.8s ease-in-out infinite;
-      filter: drop-shadow(0 0 8px rgba(255,179,71,.5)) drop-shadow(0 0 20px rgba(255,140,0,.3));
-      letter-spacing: -1px;
-      line-height: 1;
-      display: inline-block;
-      position: relative;
-    }
-    .price::before {
-      content:"";position:absolute;inset:-8px -16px;
-      background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,140,0,.1),rgba(255,215,0,.15));
-      border-radius:20px;z-index:-1;
-      animation:priceGlow 2s ease-in-out infinite alternate;
-      border:1px solid rgba(255,179,71,.3);
-    }
-    .price small { 
-      font-size:.9rem; 
-      font-weight:600; 
-      color:#b8e2ff; 
-      background:none; 
-      -webkit-background-clip:initial; 
-      background-clip:initial; 
-      filter:none; 
-      animation:none; 
-    }
-    @keyframes priceShine  { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
-    @keyframes pricePulse  {
-      0%,100%{ transform:scale(1);   filter:drop-shadow(0 0 8px rgba(255,179,71,.5)) drop-shadow(0 0 20px rgba(255,140,0,.3)); }
-      50%    { transform:scale(1.04);filter:drop-shadow(0 0 15px rgba(255,179,71,.8)) drop-shadow(0 0 35px rgba(255,140,0,.5)); }
-    }
-    @keyframes priceGlow {
-      0%  { opacity:.6; box-shadow:inset 0 0 10px rgba(255,215,0,.1); }
-      100%{ opacity:1;  box-shadow:inset 0 0 25px rgba(255,215,0,.2), 0 0 15px rgba(255,179,71,.2); }
-    }
-
-    .popular-badge {
-      background: linear-gradient(135deg,#FFD700,#FF8C00);
-      color:#0a1a24; font-size:.72rem; font-weight:900;
-      border-radius:30px; display:inline-block;
-      padding:.35rem 1.2rem; margin-top:.5rem;
-      animation:badgePulse 1.5s ease-in-out infinite;
-      box-shadow:0 0 15px rgba(255,140,0,.5);
-      text-transform:uppercase; letter-spacing:1px;
-    }
-    @keyframes badgePulse {
-      0%,100%{ box-shadow:0 0 10px rgba(255,140,0,.5); transform:scale(1); }
-      50%    { box-shadow:0 0 25px rgba(255,140,0,.8); transform:scale(1.06); }
-    }
-
-    .card-features { padding:.5rem 1.5rem 1.5rem; list-style:none; }
-    .card-features li { margin-bottom:.7rem; display:flex; gap:.6rem; font-size:.9rem; align-items:center; }
-    .card-features li i { color:#4fc3f7; width:16px; flex-shrink:0; }
-
-    /* ── BOTÕES ── */
-    .btn-whats {
-      background: linear-gradient(95deg,#0f5c7a,#1287a8);
-      color:#fff; border-radius:60px;
-      padding:.75rem 1.6rem;
-      text-decoration:none; font-size:.9rem; font-weight:700;
-      display:inline-flex; align-items:center; gap:8px;
-      transition:all .3s; margin-bottom:1.2rem;
-      border:none; cursor:pointer;
-      animation:btnFloating 3s ease-in-out infinite;
-      box-shadow:0 4px 16px rgba(0,180,255,.3);
-    }
-    @keyframes btnFloating { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
-    .btn-whats:hover { background:linear-gradient(95deg,#0d4760,#0e6e8f); transform:scale(1.05); animation:none; box-shadow:0 0 24px #2cc6ff; }
-
-    .btn-gold {
-      display:inline-flex; align-items:center; gap:10px;
-      background:linear-gradient(135deg,#FFD600,#ff6a00);
-      color:#030d1a; font-weight:900; font-size:16px;
-      padding:15px 34px; border-radius:50px;
-      text-decoration:none; transition:.2s;
-      box-shadow:0 6px 24px rgba(255,165,0,.4);
-    }
-    .btn-gold:hover { transform:scale(1.05); box-shadow:0 8px 32px rgba(255,165,0,.65); }
-
-    .btn-outline-cyan {
-      display:inline-flex; align-items:center; gap:10px;
-      background:transparent; border:2px solid #00c8ff;
-      color:#00c8ff; font-weight:900; font-size:16px;
-      padding:14px 34px; border-radius:50px;
-      text-decoration:none; transition:.2s;
-    }
-    .btn-outline-cyan:hover { background:#00c8ff; color:#030d1a; transform:scale(1.04); }
-
-    /* ── TV SECTION ── */
-    .tv-section {
-      background: rgba(8,28,45,0.72);
-      backdrop-filter: blur(12px);
-      border-radius: 2rem;
-      padding: 2.4rem 1.8rem;
-      margin: 2rem 0;
-      border: 1px solid rgba(0,200,255,0.4);
-    }
-    .tv-inner {
+    .popup-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 2rem;
       align-items: center;
     }
-    @media(max-width:780px){ .tv-inner{ grid-template-columns:1fr; } }
-    .tv-text { }
-    .tv-text h2 { font-size:clamp(1.6rem,4vw,2.2rem); font-weight:800; margin-bottom:6px; }
-    .tv-price-wrap { margin:16px 0 20px; }
-    .tv-price {
-      font-size:2.6rem; font-weight:900;
-      background:linear-gradient(135deg,#FFD700,#FFB347,#FF8C00,#FFD700);
-      background-size:300% 300%;
-      background-clip:text; -webkit-background-clip:text; color:transparent;
-      animation:priceShine 2.5s ease-in-out infinite, pricePulse 1.8s ease-in-out infinite;
-      filter:drop-shadow(0 0 8px rgba(255,179,71,.5)) drop-shadow(0 0 20px rgba(255,140,0,.3));
-      display:inline-block; position:relative; letter-spacing:-1px;
+    .popup-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient-gold);
+      color: var(--dark);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
     }
-    .tv-price::before {
-      content:"";position:absolute;inset:-6px -14px;
-      background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,140,0,.1),rgba(255,215,0,.15));
-      border-radius:18px; z-index:-1;
-      animation:priceGlow 2s ease-in-out infinite alternate;
-      border:1px solid rgba(255,179,71,.3);
+    .popup-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-    .tv-price-note { font-size:.9rem; color:#b8e2ff; margin-left:6px; }
-    .tv-features { list-style:none; margin-bottom:24px; }
-    .tv-features li { font-size:15px; color:rgba(255,255,255,.82); padding:6px 0; display:flex; align-items:center; gap:10px; }
-    .tv-features li i { color:#4fc3f7; width:18px; }
+    .popup-title span {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .popup-text {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+    .popup-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .popup-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+    }
+    .popup-features li i {
+      color: var(--success);
+    }
+    .popup-price-box {
+      background: var(--glass);
+      border: 2px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .popup-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+    .popup-price-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .popup-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-popup {
+      flex: 1;
+      min-width: 200px;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-popup-primary {
+      background: var(--gradient-gold);
+      color: var(--dark);
+      box-shadow: 0 8px 30px rgba(255,214,0,0.4);
+    }
+    .btn-popup-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(255,214,0,0.6);
+    }
+    .btn-popup-secondary {
+      background: var(--glass);
+      color: var(--light);
+      border: 2px solid var(--glass-border);
+    }
+    .btn-popup-secondary:hover {
+      border-color: var(--secondary);
+      transform: translateY(-3px);
+    }
 
-    /* ── SEGURANÇA SECTION ── */
-    .security-section {
-      background: rgba(8,28,45,0.72);
-      backdrop-filter: blur(12px);
-      border-radius: 2rem;
-      padding: 2.4rem 1.8rem;
-      margin: 2rem 0;
-      border: 1px solid rgba(0,200,255,0.4);
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 4rem;
     }
-    .security-text { text-align:center; max-width:680px; margin:0 auto 24px; }
-    .security-text h2 { font-size:clamp(1.6rem,4vw,2.2rem); font-weight:800; margin-bottom:1rem; }
-    .cam-feats {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:12px; margin:20px 0 28px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(0,200,255,.15);
-      border-radius:16px; padding:22px 24px;
+    .hero-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
-    .cam-feat { display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(255,255,255,.82); }
-    .cam-feat i { color:#00c8ff; font-size:16px; width:20px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      animation: pulse-badge 2s infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4); }
+      50% { box-shadow: 0 0 0 15px rgba(0, 212, 255, 0); }
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-title span.gold {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--gradient-gold);
+      color: var(--dark);
+      padding: 1.1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 8px 30px rgba(255,214,0,0.4);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(255,214,0,0.6);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--glass);
+      color: var(--light);
+      padding: 1.1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 2px solid var(--glass-border);
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--secondary);
+      transform: translateY(-3px);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+    .hero-image {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      border: 1px solid var(--glass-border);
+      position: relative;
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 25%;
+      background: linear-gradient(to top, var(--darker) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-image img {
+      width: 100%;
+      display: block;
+      object-position: center 15%;
+      object-fit: cover;
+      transform: scale(1.05);
+    }
 
-    /* ── CARROSSEL ── */
+    /* FLOATING REGISTRATION FORM */
+    .float-register {
+      position: fixed;
+      bottom: 100px;
+      left: 25px;
+      z-index: 9998;
+      animation: slideInLeft 0.5s ease;
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .register-card {
+      background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(5,8,20,0.98) 100%);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      padding: 1.5rem;
+      width: 280px;
+      box-shadow: 0 15px 50px rgba(255, 214, 0, 0.3),
+                  0 0 0 4px rgba(255, 214, 0, 0.1);
+      backdrop-filter: blur(20px);
+    }
+    .register-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .register-header i {
+      font-size: 1.5rem;
+      color: var(--accent);
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .register-header h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--light);
+    }
+    .register-header span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    .register-form input,
+    .register-form select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--light);
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    .register-form input::placeholder {
+      color: var(--gray);
+    }
+    .register-form input:focus,
+    .register-form select:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+    }
+    .register-form select option {
+      background: var(--dark);
+      color: var(--light);
+    }
+    .register-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--gradient-gold);
+      color: var(--dark);
+      border: none;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(255, 214, 0, 0.3);
+    }
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 214, 0, 0.5);
+    }
+    .register-note {
+      font-size: 0.7rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 0.75rem;
+      line-height: 1.4;
+    }
+    .register-note i {
+      color: var(--success);
+      margin-right: 0.25rem;
+    }
+
+    /* FLOAT WHATSAPP - SEMPRE VISÍVEL E DESTACADO */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 9999;
+      animation: float-wpp 2.5s ease-in-out infinite;
+    }
+    @keyframes float-wpp {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.05); }
+    }
+    .float-whatsapp a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+      padding: 1rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 8px 35px rgba(37, 211, 102, 0.6), 
+                  0 0 0 4px rgba(37, 211, 102, 0.2),
+                  0 0 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .float-whatsapp a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 45px rgba(37, 211, 102, 0.8),
+                  0 0 0 6px rgba(37, 211, 102, 0.3),
+                  0 0 40px rgba(37, 211, 102, 0.6);
+    }
+    .float-whatsapp i {
+      font-size: 1.6rem;
+      animation: pulse-icon 1.5s infinite;
+    }
+    @keyframes pulse-icon {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .float-whatsapp .phone-number {
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-tag {
+      display: inline-block;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    .section-title span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* CAROUSEL */
     .carousel-container {
       position: relative;
-      width: 100%; max-width: 820px;
-      margin: 0 auto;
-      border-radius: 1.6rem;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,.55);
-      background: rgba(0,20,30,0.5);
-      border: 1px solid rgba(0,200,255,.18);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     }
-    .carousel-slides { display:flex; transition:transform .5s cubic-bezier(.4,0,.2,1); }
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
     .carousel-slide {
-      min-width:100%; flex-shrink:0;
-      display:flex; justify-content:center; align-items:center;
-      background:#081828;
+      min-width: 100%;
     }
-    .carousel-slide a { display:block; width:100%; }
     .carousel-slide img {
-      width:100%; display:block;
-      max-height:430px; object-fit:cover;
-      cursor:pointer; transition:transform .35s;
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
     }
-    .carousel-slide img:hover { transform:scale(1.02); }
     .carousel-btn {
-      position:absolute; top:50%; transform:translateY(-50%);
-      background:rgba(0,50,70,.88); backdrop-filter:blur(8px);
-      color:#fff; border:1px solid rgba(0,200,255,.35);
-      border-radius:50%; width:44px; height:44px;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; transition:.25s; z-index:10; font-size:14px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .carousel-btn:hover { background:#0057ff; border-color:#00c8ff; transform:translateY(-50%) scale(1.12); }
-    .btn-prev { left:14px; }
-    .btn-next { right:14px; }
-    .carousel-dots { display:flex; justify-content:center; gap:10px; margin-top:14px; }
-    .dot { width:9px; height:9px; border-radius:50%; background:rgba(60,207,239,.35); cursor:pointer; transition:.3s; }
-    .dot.active { background:#4fc3f7; width:26px; border-radius:8px; }
+    .carousel-btn:hover {
+      background: var(--primary);
+    }
+    .carousel-btn.prev { left: 20px; }
+    .carousel-btn.next { right: 20px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--glass);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dot.active {
+      background: var(--secondary);
+      width: 30px;
+      border-radius: 6px;
+    }
 
-    /* ── URGÊNCIA ── */
-    .urgency-bar {
-      background:linear-gradient(90deg,#b03000,#ff5000,#b03000);
-      background-size:200% auto;
-      animation:urgBg 4s linear infinite;
-      padding:16px 24px; text-align:center; margin:1.8rem 0;
-      border-radius:12px;
+    /* TV SECTION */
+    .tv-showcase {
+      background: linear-gradient(180deg, rgba(0,102,255,0.05) 0%, transparent 100%);
     }
-    @keyframes urgBg { to{ background-position:200% center; } }
-    .urgency-bar p { font-weight:900; font-size:clamp(13px,3vw,18px); letter-spacing:.5px; }
-    .urgency-bar a { color:#fff; font-weight:900; text-decoration:underline; }
+    .tv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .tv-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tv-content h2 span {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tv-features {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    .tv-features li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .tv-features li i {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .tv-price-box {
+      background: var(--glass);
+      border: 2px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .tv-price-box::before {
+      content: 'OFERTA';
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      background: var(--gradient-gold);
+      color: var(--dark);
+      padding: 0.4rem 3rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      transform: rotate(45deg);
+    }
+    .tv-price {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .tv-price-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-    /* ── CTA FINAL ── */
-    .final-cta {
-      background: linear-gradient(135deg,#001a80,#0057ff,#003fcd);
-      border-radius:2rem; padding:64px 24px;
-      text-align:center; margin:2rem 0;
+    /* PLANOS */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
     }
-    .final-cta h2 {
-      font-size:clamp(38px,7vw,80px);
-      font-weight:900; letter-spacing:2px; line-height:.95;
-      margin:22px 0 14px;
+    .plan-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.4s;
+      position: relative;
     }
-    .final-cta h2 span { color:#FFD600; }
-    .final-cta p { font-size:18px; color:rgba(255,255,255,.82); max-width:500px; margin:0 auto 32px; }
-    .btn-wpp-big {
-      display:inline-flex; align-items:center; gap:14px;
-      background:#25D366; color:#fff;
-      font-weight:900; font-size:clamp(17px,3vw,23px);
-      padding:22px 52px; border-radius:100px;
-      text-decoration:none;
-      box-shadow:0 8px 40px rgba(37,211,102,.55);
-      animation:wppPulse 2s ease-in-out infinite; transition:.25s;
+    .plan-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--secondary);
     }
-    @keyframes wppPulse {
-      0%,100%{ box-shadow:0 8px 36px rgba(37,211,102,.5); }
-      50%    { box-shadow:0 8px 60px rgba(37,211,102,.9),0 0 0 10px rgba(37,211,102,.12); }
+    .plan-card.featured {
+      border: 2px solid var(--accent);
+      transform: scale(1.05);
     }
-    .btn-wpp-big:hover { transform:scale(1.05); }
-    .final-cta .tel-link { margin-top:18px; font-size:14px; color:rgba(255,255,255,.45); }
-    .final-cta .tel-link a { color:#fff; font-weight:800; text-decoration:none; }
+    .plan-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--gradient-gold);
+      color: var(--dark);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .plan-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: white;
+    }
+    .plan-price {
+      margin: 1.5rem 0;
+    }
+    .plan-price-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .plan-features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .plan-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      color: var(--gray);
+    }
+    .plan-features li i {
+      color: var(--success);
+    }
+    .plan-button {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+    .plan-button.primary {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    .plan-button.gold {
+      background: var(--gradient-gold);
+      color: var(--dark);
+    }
 
-    /* ── FLOATING WPP ── */
-    .float-wpp {
-      position:fixed; bottom:22px; right:22px; z-index:999;
+    /* BENEFITS */
+    .benefits {
+      background: linear-gradient(180deg, #0A0E27 0%, #050814 100%);
     }
-    .float-wpp a {
-      display:flex; align-items:center; gap:10px;
-      background:#25D366; color:#fff;
-      font-weight:800; font-size:14px;
-      padding:14px 22px; border-radius:50px;
-      text-decoration:none;
-      box-shadow:0 6px 24px rgba(37,211,102,.55);
-      animation:floatWpp 3s ease-in-out infinite; transition:.2s;
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
     }
-    .float-wpp a i { font-size:20px; }
-    .float-wpp a:hover { transform:scale(1.07); }
-    @keyframes floatWpp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .benefit-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary);
+    }
+    .benefit-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: white;
+    }
 
-    /* ── RODAPÉ ── */
-    .main-footer {
-      background:rgba(5,18,36,0.92);
-      backdrop-filter:blur(16px);
-      border-radius:2rem 2rem 0 0;
-      padding:3rem 1.5rem 1.5rem;
-      margin-top:3rem;
-      border-top:1px solid rgba(60,207,239,.35);
-      box-shadow:0 -10px 30px rgba(0,0,0,.2);
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(0,102,255,0.1) 0%, rgba(0,212,255,0.05) 100%);
+      border-radius: 40px;
+      padding: 5rem 3rem;
+      text-align: center;
+      margin: 4rem auto;
+      max-width: 1200px;
+    }
+    .cta-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    .cta-title span {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--darker);
+      border-top: 1px solid var(--glass-border);
+      padding: 4rem 2rem 2rem;
     }
     .footer-content {
-      max-width:1280px; margin:0 auto;
-      display:flex; flex-wrap:wrap; justify-content:space-between;
-      gap:2rem; padding-bottom:2rem;
-      border-bottom:1px solid rgba(60,207,239,.15);
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
     }
-    .footer-brand { flex:1; min-width:190px; text-align:center; }
-    .footer-logo  { height:68px; filter:drop-shadow(0 0 8px rgba(0,200,255,.5)); border-radius:14px; transition:transform .3s; }
-    .footer-logo:hover { transform:scale(1.05); }
-    .brand-slogan { font-size:.85rem; color:#b8e2ff; margin-top:.5rem; }
-    .vida-highlight { color:#4fc3f7; font-weight:800; animation:vidaPulse 2s ease-in-out infinite; }
-    @keyframes vidaPulse {
-      0%,100%{ text-shadow:0 0 5px rgba(79,195,247,.5); }
-      50%    { text-shadow:0 0 20px rgba(79,195,247,.9); }
+    .footer-brand img {
+      height: 60px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
     }
-    .social-section { flex:1; min-width:200px; text-align:center; }
-    .social-title { font-size:1rem; font-weight:700; color:#4fc3f7; margin-bottom:1rem; text-transform:uppercase; letter-spacing:1px; }
-    .social-icons  { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; }
-    .social-icon {
-      display:inline-flex; align-items:center; gap:10px;
-      background:rgba(0,50,70,.6); backdrop-filter:blur(8px);
-      padding:.75rem 1.6rem; border-radius:60px;
-      text-decoration:none; color:#fff; font-weight:600; font-size:.95rem;
-      transition:all .3s cubic-bezier(0.2,0.9,0.4,1.1);
-      border:1px solid rgba(60,207,239,.3);
-      animation:socialFloat 3s ease-in-out infinite;
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
     }
-    .social-icon.instagram{ animation-delay:0s; }
-    .social-icon.whatsapp { animation-delay:.5s; }
-    @keyframes socialFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-    .social-icon i { font-size:1.5rem; transition:transform .3s; }
-    .social-icon.instagram:hover { background:linear-gradient(135deg,#833AB4,#FD1D1D,#FCAF45); transform:scale(1.08); box-shadow:0 0 25px rgba(225,48,108,.6); border-color:rgba(255,255,255,.3); }
-    .social-icon.whatsapp:hover  { background:linear-gradient(135deg,#25D366,#128C7E); transform:scale(1.08); box-shadow:0 0 25px rgba(37,211,102,.6); border-color:rgba(255,255,255,.3); }
-    .footer-contact { flex:1; min-width:190px; text-align:center; }
-    .footer-contact p { margin:.6rem 0; font-size:.9rem; color:#b8e2ff; }
-    .footer-contact i { color:#4fc3f7; margin-right:8px; }
-    .wpp-link { color:#25D366 !important; font-weight:700; text-decoration:none; transition:.2s; }
-    .wpp-link:hover { color:#00c8ff !important; }
-    .footer-bottom { max-width:1280px; margin:1.5rem auto 0; text-align:center; font-size:.75rem; color:#9bc7de; }
-    .footer-bottom p + p { margin-top:.4rem; opacity:.7; }
+    .footer-social a {
+      width: 45px;
+      height: 45px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      transition: all 0.3s;
+    }
+    .footer-social a:hover {
+      background: var(--gradient-primary);
+      transform: translateY(-3px);
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.875rem;
+    }
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      color: var(--gray);
+    }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:768px){
-      .header-main  { flex-direction:column; text-align:center; }
-      .banner-title h2 { font-size:1.35rem; }
-      .price, .tv-price { font-size:2.1rem; }
-      .carousel-slide img { max-height:260px; }
-      .carousel-btn { width:36px; height:36px; font-size:.85rem; }
-      .footer-content { flex-direction:column; text-align:center; }
-      .social-icon { padding:.6rem 1.2rem; font-size:.85rem; }
-      .social-icon i { font-size:1.25rem; }
-      .cam-feats { grid-template-columns:1fr 1fr; }
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-content, .tv-grid, .popup-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+      .carousel-slide img {
+        height: 350px;
+      }
+      .float-register {
+        bottom: 90px;
+        left: 15px;
+      }
+      .register-card {
+        width: 260px;
+        padding: 1.25rem;
+      }
     }
-    @media(min-width:1024px){ .carousel-container{ max-width:760px; } }
-    
-    /* ── MOBILE: FUNDO AJUSTADO ── */
-    @media(max-width: 768px) {
-      body::before {
-        opacity: 0.35;
-        background-size: 120% auto;
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .hero-stats { gap: 2rem; }
+      section { padding: 4rem 1.5rem; }
+      .footer-content { grid-template-columns: 1fr; }
+      .popup-buttons { flex-direction: column; }
+      .float-whatsapp a {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+      }
+      .float-whatsapp .phone-number {
+        display: none;
+      }
+      .float-whatsapp i {
+        font-size: 1.8rem;
+      }
+      .float-register {
+        bottom: 85px;
+        left: 15px;
+        right: auto;
+      }
+      .register-card {
+        width: calc(100vw - 40px);
+        max-width: 320px;
       }
     }
   </style>
-  <base target="_blank">
 </head>
 <body>
 
-<canvas id="canvas-bg"></canvas>
-
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header-main">
-    <div class="logo-area" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <img src="https://i.im.ge/QMTg3GX/logoyayu1.png" alt="Yayu Logo"
-           onerror="this.src='https://placehold.co/200x80/0a3e52/white?text=YAYU'">
-    </div>
-    <div class="phone-header">
-      <a href="https://wa.me/5513988777008"><i class="fab fa-whatsapp"></i> (13) 9 8877-7008</a>
-    </div>
+  <!-- Background -->
+  <div class="bg-container">
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+    <canvas id="particles"></canvas>
   </div>
 
-  <!-- BALÃO OFERTA -->
-  <div style="text-align:center; margin-top:.5rem">
-    <div class="balloon-promo">
-      <div class="balloon-body">🚀 FIBRA ÓPTICA DE VERDADE — SEM TRAVAMENTO!</div>
-      <div class="balloon-string"></div>
-    </div>
-  </div>
-
-  <!-- HERO BANNER -->
-  <div class="hero-banner">
-    <div class="banner-title"><h2>🔥 Oferta imperdível Yayu Fibra! 🔥</h2></div>
-    <div class="action-strip">
-      <div class="marquee">
-        <span><i class="fas fa-bolt"></i>Instalação Full RÁPIDA</span>
-        <span><i class="fas fa-headset"></i>Suporte 24/7</span>
-        <span><i class="fas fa-wifi"></i>Wi-Fi 6 de alta performance</span>
-        <span><i class="fas fa-tv"></i>TV completa para família</span>
-        <span><i class="fas fa-shield-alt"></i>Segurança residencial</span>
-        <span><i class="fas fa-tachometer-alt"></i>Fibra óptica de verdade</span>
-        <span><i class="fas fa-infinity"></i>Sem limite de dados</span>
-        <span><i class="fas fa-bolt"></i>Instalação Full RÁPIDA</span>
-        <span><i class="fas fa-headset"></i>Suporte 24/7</span>
-        <span><i class="fas fa-wifi"></i>Wi-Fi 6 de alta performance</span>
-        <span><i class="fas fa-tv"></i>TV completa para família</span>
-        <span><i class="fas fa-shield-alt"></i>Segurança residencial</span>
-        <span><i class="fas fa-tachometer-alt"></i>Fibra óptica de verdade</span>
-        <span><i class="fas fa-infinity"></i>Sem limite de dados</span>
+  <!-- Popup TV -->
+  <div class="popup-overlay" id="tvPopup">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePopup()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="popup-badge">
+        <i class="fas fa-tv"></i> OFERTA YAYUTV
       </div>
-    </div>
-    <div class="banner-cta">
-      <a href="https://wa.me/5513988777008?text=Olá!+Quero+contratar+um+plano+Yayu" class="btn-mega">
-        <i class="fab fa-whatsapp" style="font-size:22px"></i>
-        💥 Assine agora e navegue sem limites! 💥
-      </a>
-    </div>
-  </div>
-
-  <!-- URGÊNCIA -->
-  <div class="urgency-bar">
-    <p>⏳ PROMOÇÃO POR TEMPO LIMITADO —
-      <a href="https://wa.me/5513988777008">FALE AGORA NO WHATSAPP E GARANTA SEU PLANO!</a>
-    </p>
-  </div>
-
-  <!-- TRUST -->
-  <div class="trust-strip">
-    <div class="trust-item"><div class="trust-num">500+</div><div class="trust-label">Clientes Ativos</div></div>
-    <div class="trust-item"><div class="trust-num">24/7</div><div class="trust-label">Suporte</div></div>
-    <div class="trust-item"><div class="trust-num">99%</div><div class="trust-label">Uptime</div></div>
-    <div class="trust-item"><div class="trust-num">24h</div><div class="trust-label">Instalação</div></div>
-    <div class="trust-item"><div class="trust-num">3+</div><div class="trust-label">Anos na Região</div></div>
-  </div>
-
-  <!-- PLANOS -->
-  <div class="section-title"><i class="fas fa-wifi"></i>Planos de Fibra Yayu</div>
-  <div class="plans-grid">
-
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-wifi"></i>
-        <div class="plan-name">HOUSE YAYU</div>
-        <div class="plan-speed">100 FULL</div>
-        <div class="price">R$ 64,99 <small>/mês</small></div>
-      </div>
-      <ul class="card-features">
-        <li><i class="fas fa-tachometer-alt"></i>100 Mega simétrico</li>
-        <li><i class="fas fa-wifi"></i>Wi-Fi incluso</li>
-        <li><i class="fas fa-tools"></i>Instalação grátis</li>
-        <li><i class="fab fa-whatsapp"></i>Suporte via WhatsApp</li>
-      </ul>
-      <div style="text-align:center">
-        <a href="https://wa.me/5513988777008?text=Quero+o+plano+100+Mega+Yayu" class="btn-whats">
-          <i class="fab fa-whatsapp"></i> Contratar
-        </a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-rocket"></i>
-        <div class="plan-name">YAYU HOUSE</div>
-        <div class="plan-speed">CONECT LIVRE 300</div>
-        <div class="price">R$ 79,99 <small>/mês</small></div>
-        <div class="popular-badge"><i class="fas fa-star"></i> MAIS POPULAR</div>
-      </div>
-      <ul class="card-features">
-        <li><i class="fas fa-rocket"></i>300 Mega simétrico</li>
-        <li><i class="fas fa-wifi"></i>Wi-Fi 5GHz dual band</li>
-        <li><i class="fas fa-headset"></i>Suporte prioritário 24/7</li>
-        <li><i class="fas fa-film"></i>Streaming 4K sem travar</li>
-      </ul>
-      <div style="text-align:center">
-        <a href="https://wa.me/5513988777008?text=Quero+o+plano+300+Mega+Yayu" class="btn-whats" style="background:linear-gradient(135deg,#0057ff,#00c8ff);color:#030d1a;font-weight:900">
-          <i class="fab fa-whatsapp"></i> 🚀 Quero esse!
-        </a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <i class="fas fa-gamepad"></i>
-        <div class="plan-name">YAYU HOUSE</div>
-        <div class="plan-speed">GAMER FULL 500</div>
-        <div class="price">R$ 99,99 <small>/mês</small></div>
-      </div>
-      <ul class="card-features">
-        <li><i class="fas fa-rocket"></i>500 Mega ultra rápido</li>
-        <li><i class="fas fa-wifi"></i>Wi-Fi 6 premium</li>
-        <li><i class="fas fa-gamepad"></i>Latência ultrabaixa gamer</li>
-        <li><i class="fas fa-laptop"></i>Ideal para home office</li>
-      </ul>
-      <div style="text-align:center">
-        <a href="https://wa.me/5513988777008?text=Quero+o+plano+500+Mega+Yayu" class="btn-whats">
-          <i class="fab fa-whatsapp"></i> Assinar
-        </a>
-      </div>
-    </div>
-
-  </div><!-- /plans-grid -->
-
-  <!-- ── YAYU TV ── -->
-  <div class="section-title"><i class="fas fa-tv"></i>YayuTv</div>
-  <div class="tv-section">
-    <div class="tv-inner">
-      <div class="tv-text">
-        <h2>YayuTv Full Liberty</h2>
-        <div class="tv-price-wrap">
-          <span class="tv-price">R$&nbsp;35,99</span>
-          <span class="tv-price-note">/mês (promocional)</span>
-        </div>
-        <ul class="tv-features">
-          <li><i class="fas fa-check-circle"></i>Canais Full HD nacional e internacional</li>
-          <li><i class="fas fa-futbol"></i>Esportes, filmes e séries</li>
-          <li><i class="fas fa-play-circle"></i>On-demand completo</li>
-          <li><i class="fas fa-tablet-alt"></i>Smart TV, celular e tablet</li>
-          <li><i class="fas fa-link"></i>Combina com qualquer plano de fibra</li>
-        </ul>
-        <a href="https://wa.me/5513988777008?text=Quero+contratar+a+Yayu+TV" class="btn-gold">
-          <i class="fab fa-whatsapp"></i> Contratar TV
-        </a>
-      </div>
-      <!-- CARROSSEL TV -->
-      <div>
-        <div class="carousel-container">
-          <div class="carousel-slides" id="tvSlides">
-            <div class="carousel-slide">
-              <a href="https://i.im.ge/QMreCMF/ChatGPT_Image_4_de_mai._de_2026_11_03_24.png"
-                 data-lightbox="tv-carousel" data-title="YayuTV - Qualidade em Imagem">
-                <img src="https://i.im.ge/QMreCMF/ChatGPT_Image_4_de_mai._de_2026_11_03_24.png" alt="Yayu TV 1" loading="lazy">
-              </a>
-            </div>
-            <div class="carousel-slide">
-              <a href="https://i.im.ge/QMreyg6/ChatGPT_Image_4_de_mai._de_2026_10_59_48.png"
-                 data-lightbox="tv-carousel" data-title="YayuTV - Conteúdo para Toda Família">
-                <img src="https://i.im.ge/QMreyg6/ChatGPT_Image_4_de_mai._de_2026_10_59_48.png" alt="Yayu TV 2" loading="lazy">
-              </a>
+      <div class="popup-grid">
+        <div>
+          <h2 class="popup-title">
+            YayuTV Full Liberty:<br>
+            <span>Entretenimento Sem Limites</span>
+          </h2>
+          <p class="popup-text">
+            Mais de 150 canais em Full HD, filmes, séries e esportes. 
+            Assista na TV, celular ou tablet!
+          </p>
+          <ul class="popup-features">
+            <li><i class="fas fa-check-circle"></i> 150+ canais HD</li>
+            <li><i class="fas fa-check-circle"></i> Conteúdo on-demand</li>
+            <li><i class="fas fa-check-circle"></i> Qualidade 4K</li>
+            <li><i class="fas fa-check-circle"></i> 3 telas simultâneas</li>
+          </ul>
+          <div class="popup-price-box">
+            <div style="color: var(--gray); margin-bottom: 0.5rem;">De <s>R$ 59,90</s> por</div>
+            <div class="popup-price">
+              <span style="font-size: 1.5rem; color: var(--secondary);">R$</span>
+              <span class="popup-price-value">35</span>
+              <span style="font-size: 1.25rem; color: var(--gray);">,99/mês</span>
             </div>
           </div>
-          <button class="carousel-btn btn-prev" id="tvPrev"><i class="fas fa-chevron-left"></i></button>
-          <button class="carousel-btn btn-next" id="tvNext"><i class="fas fa-chevron-right"></i></button>
+          <div class="popup-buttons">
+            <a href="https://wa.me/5513988777008?text=Quero+YayuTV" class="btn-popup btn-popup-primary" target="_blank">
+              <i class="fab fa-whatsapp"></i> Assinar Agora
+            </a>
+            <button class="btn-popup btn-popup-secondary" onclick="closePopup()">
+              Ver Site
+            </button>
+          </div>
         </div>
-        <div class="carousel-dots" id="tvDots"></div>
+        <div class="carousel-container">
+          <div class="carousel-slides" id="popupCarousel">
+            <div class="carousel-slide">
+              <img src="https://i.im.ge/QMreCMF/ChatGPT_Image_4_de_mai._de_2026_11_03_24.png" alt="YayuTV 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="https://i.im.ge/QMreyg6/ChatGPT_Image_4_de_mai._de_2026_10_59_48.png" alt="YayuTV 2">
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="movePopupCarousel(-1)">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn next" onclick="movePopupCarousel(1)">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ── SEGURANÇA ── -->
-  <div class="section-title"><i class="fas fa-shield-alt"></i>Sistema de Segurança</div>
-  <div class="security-section">
-    <div class="security-text">
-      <h2>Câmeras House Yayu</h2>
-      <p style="color:rgba(180,220,255,.75);font-size:15px">Monitoramento profissional residencial e empresarial com acesso pelo celular, 24 horas por dia.</p>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo" onclick="window.scrollTo(0,0)">
+        <img src="https://i.im.ge/QMTg3GX/logoyayu1.png" alt="Yayu">
+        <span class="nav-logo-text">YAYU</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#tv">YayuTV</a></li>
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="https://wa.me/5513988777008" class="nav-cta" target="_blank">
+          <i class="fab fa-whatsapp"></i> Contratar
+        </a></li>
+      </ul>
     </div>
-    <!-- CARROSSEL CÂMERAS -->
-    <div class="carousel-container" style="max-width:820px;margin:0 auto">
-      <div class="carousel-slides" id="camSlides">
-        <div class="carousel-slide">
-          <a href="https://i.im.ge/QMuu6ih/ChatGPT_Image_4_de_mai._de_2026_16_20_56.png"
-             data-lightbox="security-carousel" data-title="Câmera Yayu - Visão Noturna">
-            <img src="https://i.im.ge/QMuu6ih/ChatGPT_Image_4_de_mai._de_2026_16_20_56.png" alt="Câmera 1" loading="lazy">
-          </a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i> Oferta Limitada!
         </div>
-        <div class="carousel-slide">
-          <a href="https://i.im.ge/QMuu9w9/ChatGPT_Image_4_de_mai._de_2026_16_19_02.png"
-             data-lightbox="security-carousel" data-title="Câmera Yayu - Monitoramento Inteligente">
-            <img src="https://i.im.ge/QMuu9w9/ChatGPT_Image_4_de_mai._de_2026_16_19_02.png" alt="Câmera 2" loading="lazy">
+        <h1 class="hero-title">
+          Conecte-se ao <span>Futuro</span> com a <span class="gold">Yayu</span>
+        </h1>
+        <p class="hero-subtitle">
+          Internet fibra óptica ultra-rápida, TV completa e segurança. 
+          Transforme sua casa com quem entende de conexão.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://wa.me/5513988777008" class="btn-primary" target="_blank">
+            <i class="fab fa-whatsapp"></i> Quero Assinar
           </a>
+          <button class="btn-secondary" onclick="openPopup()">
+            <i class="fas fa-tv"></i> Ver TV
+          </button>
         </div>
-        <div class="carousel-slide">
-          <a href="https://i.im.ge/QMreUgT/ChatGPT_Image_4_de_mai._de_2026_10_36_23.png"
-             data-lightbox="security-carousel" data-title="Câmera Yayu - Alta Definição">
-            <img src="https://i.im.ge/QMreUgT/ChatGPT_Image_4_de_mai._de_2026_10_36_23.png" alt="Câmera 3" loading="lazy">
-          </a>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Clientes</div>
+          </div>
+          <div>
+            <div class="stat-number">99%</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          <div>
+            <div class="stat-number">24h</div>
+            <div class="stat-label">Instalação</div>
+          </div>
         </div>
       </div>
-      <button class="carousel-btn btn-prev" id="camPrev"><i class="fas fa-chevron-left"></i></button>
-      <button class="carousel-btn btn-next" id="camNext"><i class="fas fa-chevron-right"></i></button>
+      <div class="hero-image">
+        <img src="https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png" alt="Yayu Fibra">
+      </div>
     </div>
-    <div class="carousel-dots" id="camDots"></div>
+  </section>
 
-    <!-- GRID FEATURES -->
-    <div class="cam-feats">
-      <div class="cam-feat"><i class="fas fa-video"></i>Full HD com visão noturna</div>
-      <div class="cam-feat"><i class="fas fa-clock"></i>Monitoramento 24/7</div>
-      <div class="cam-feat"><i class="fas fa-mobile-alt"></i>App com alertas em tempo real</div>
-      <div class="cam-feat"><i class="fas fa-tools"></i>Instalação profissional</div>
-      <div class="cam-feat"><i class="fas fa-cloud"></i>Gravação em nuvem</div>
-      <div class="cam-feat"><i class="fas fa-shield-alt"></i>Sistema anti-invasão</div>
-    </div>
-    <div style="text-align:center">
-      <a href="https://wa.me/5513988777008?text=Quero+orçamento+de+câmeras+Yayu" class="btn-outline-cyan">
-        <i class="fas fa-camera"></i> Solicitar orçamento gratuito
-      </a>
+  <!-- FLOATING REGISTRATION FORM - YAYU -->
+  <div class="float-register">
+    <div class="register-card">
+      <div class="register-header">
+        <i class="fas fa-rocket"></i>
+        <div>
+          <h4>Yayu</h4>
+          <span>Cadastro Rápido</span>
+        </div>
+      </div>
+      <form class="register-form" id="quickRegister" onsubmit="sendToWhatsApp(event)">
+        <input type="text" id="regName" placeholder="Seu nome *" required maxlength="50">
+        <input type="tel" id="regPhone" placeholder="Seu WhatsApp (opcional)" pattern="[0-9\s\-\(\)]+">
+        <select id="regPlan" required>
+          <option value="" disabled selected>Qual plano te interessa?</option>
+          <option value="100 Mega">📡 100 Mega - R$ 64,99</option>
+          <option value="300 Mega">🚀 300 Mega - R$ 79,99</option>
+          <option value="500 Mega">🎮 500 Mega Gamer - R$ 99,99</option>
+          <option value="YayuTV">📺 YayuTV - R$ 35,99</option>
+          <option value="Combo">🎁 Combo Fibra + TV</option>
+          <option value="Outro">💬 Quero mais informações</option>
+        </select>
+        <button type="submit" class="register-btn">
+          <i class="fab fa-whatsapp"></i> Enviar Agora
+        </button>
+      </form>
+      <p class="register-note">
+        <i class="fas fa-shield-alt"></i> Seus dados estão seguros. Atendimento imediato pelo WhatsApp.
+      </p>
     </div>
   </div>
 
-  <!-- CTA FINAL -->
-  <div class="final-cta">
-    <div style="text-align:center">
-      <div class="balloon-promo" style="animation-duration:4.5s">
-        <div class="balloon-body" style="font-size:clamp(14px,2.5vw,19px)">🎉 ASSINE HOJE E ECONOMIZE!</div>
-        <div class="balloon-string"></div>
+  <!-- TV Section -->
+  <section class="tv-showcase" id="tv">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fas fa-tv"></i> YayuTV
+        </div>
+        <h2 class="section-title">
+          Entretenimento <span>Premium</span>
+        </h2>
+      </div>
+      <div class="tv-grid">
+        <div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+            YayuTV Full Liberty:<br>
+            <span style="background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              Tudo que sua família merece
+            </span>
+          </h2>
+          <p style="color: var(--gray); font-size: 1.125rem; margin-bottom: 2rem;">
+            Mais de 150 canais em Full HD, filmes, séries, esportes e muito mais.
+          </p>
+          <ul class="tv-features">
+            <li><i class="fas fa-check"></i> 150+ canais nacionais e internacionais</li>
+            <li><i class="fas fa-check"></i> Conteúdo on-demand ilimitado</li>
+            <li><i class="fas fa-check"></i> Qualidade Full HD e 4K</li>
+            <li><i class="fas fa-check"></i> Assista em até 3 telas</li>
+            <li><i class="fas fa-check"></i> Smart TV, celular e tablet</li>
+          </ul>
+          <div class="tv-price-box">
+            <div style="color: var(--gray); margin-bottom: 0.5rem;">De <s>R$ 59,90</s> por apenas</div>
+            <div class="tv-price">
+              <span style="font-size: 2rem; color: var(--secondary);">R$</span>
+              <span class="tv-price-value">35</span>
+              <span style="font-size: 1.25rem; color: var(--gray); align-self: flex-end;">,99/mês</span>
+            </div>
+            <div style="margin-top: 1rem; color: var(--gray);">
+              <i class="fas fa-gift" style="color: var(--accent);"></i> 40% OFF nos 3 primeiros meses!
+            </div>
+          </div>
+          <a href="https://wa.me/5513988777008?text=Quero+YayuTV" class="btn-primary" style="font-size: 1.125rem; padding: 1.25rem 3rem;" target="_blank">
+            <i class="fab fa-whatsapp"></i> Assinar YayuTV
+          </a>
+        </div>
+        <div>
+          <div class="carousel-container">
+            <div class="carousel-slides" id="tvCarousel">
+              <div class="carousel-slide">
+                <img src="https://i.im.ge/QMreCMF/ChatGPT_Image_4_de_mai._de_2026_11_03_24.png" alt="YayuTV">
+              </div>
+              <div class="carousel-slide">
+                <img src="https://i.im.ge/QMreyg6/ChatGPT_Image_4_de_mai._de_2026_10_59_48.png" alt="YayuTV">
+              </div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('tv', -1)">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" onclick="moveCarousel('tv', 1)">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div class="carousel-dots" id="tvDots"></div>
+        </div>
       </div>
     </div>
-    <h2>PRONTO PARA SE<br><span>CONECTAR?</span></h2>
-    <p>Fale agora com nossa equipe pelo WhatsApp e tenha sua fibra instalada em até 24 horas.</p>
-    <a class="btn-wpp-big" href="https://wa.me/5513988777008?text=Olá!+Quero+contratar+um+plano+Yayu">
-      <i class="fab fa-whatsapp" style="font-size:26px"></i> CHAMAR NO WHATSAPP AGORA
-    </a>
-    <p class="tel-link">Ou ligue: <a href="tel:+5513988777008">(13) 9 8877-7008</a></p>
-  </div>
+  </section>
 
-  <!-- RODAPÉ -->
-  <footer class="main-footer">
+  <!-- Planos -->
+  <section id="planos">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fas fa-wifi"></i> Planos de Internet
+        </div>
+        <h2 class="section-title">
+          Escolha sua <span>Velocidade</span>
+        </h2>
+      </div>
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">House Yayu</h3>
+          <div style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">100 MEGA FULL</div>
+          <div class="plan-price">
+            <span style="font-size: 1.5rem;">R$</span>
+            <span class="plan-price-value">64</span>
+            <span style="color: var(--gray);">,99/mês</span>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check-circle"></i> 100 Mega simétrico</li>
+            <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
+            <li><i class="fas fa-check-circle"></i> Instalação grátis</li>
+            <li><i class="fas fa-check-circle"></i> Suporte WhatsApp</li>
+          </ul>
+          <a href="https://wa.me/5513988777008" class="plan-button primary" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contratar
+          </a>
+        </div>
+
+        <div class="plan-card featured">
+          <div class="plan-badge">
+            <i class="fas fa-star"></i> MAIS POPULAR
+          </div>
+          <div class="plan-icon" style="background: var(--gradient-gold);">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Yayu Conect</h3>
+          <div style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">300 MEGA FULL</div>
+          <div class="plan-price">
+            <span style="font-size: 1.5rem;">R$</span>
+            <span class="plan-price-value">79</span>
+            <span style="color: var(--gray);">,99/mês</span>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check-circle"></i> 300 Mega simétrico</li>
+            <li><i class="fas fa-check-circle"></i> Wi-Fi 6 Dual Band</li>
+            <li><i class="fas fa-check-circle"></i> Suporte 24/7</li>
+            <li><i class="fas fa-check-circle"></i> Streaming 4K</li>
+          </ul>
+          <a href="https://wa.me/5513988777008" class="plan-button gold" target="_blank">
+            <i class="fab fa-whatsapp"></i> Quero Esse!
+          </a>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-icon">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Yayu Gamer</h3>
+          <div style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">500 MEGA FULL</div>
+          <div class="plan-price">
+            <span style="font-size: 1.5rem;">R$</span>
+            <span class="plan-price-value">99</span>
+            <span style="color: var(--gray);">,99/mês</span>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check-circle"></i> 500 Mega ultra</li>
+            <li><i class="fas fa-check-circle"></i> Wi-Fi 6 Premium</li>
+            <li><i class="fas fa-check-circle"></i> Baixa latência</li>
+            <li><i class="fas fa-check-circle"></i> Ideal gamers</li>
+          </ul>
+          <a href="https://wa.me/5513988777008" class="plan-button primary" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contratar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segurança -->
+  <section id="seguranca" style="background: var(--glass);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fas fa-shield-alt"></i> Segurança
+        </div>
+        <h2 class="section-title">
+          Câmeras <span>House Yayu</span>
+        </h2>
+      </div>
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div class="carousel-container">
+          <div class="carousel-slides" id="camCarousel">
+            <div class="carousel-slide">
+              <img src="https://i.im.ge/QMuu6ih/ChatGPT_Image_4_de_mai._de_2026_16_20_56.png" alt="Câmera 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="https://i.im.ge/QMuu9w9/ChatGPT_Image_4_de_mai._de_2026_16_19_02.png" alt="Câmera 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="https://i.im.ge/QMreUgT/ChatGPT_Image_4_de_mai._de_2026_10_36_23.png" alt="Câmera 3">
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('cam', -1)">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn next" onclick="moveCarousel('cam', 1)">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="carousel-dots" id="camDots"></div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="https://wa.me/5513988777008" class="btn-secondary" style="font-size: 1.125rem;" target="_blank">
+          <i class="fas fa-camera"></i> Solicitar Orçamento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefícios -->
+  <section class="benefits" id="beneficios">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fas fa-star"></i> Por que Yayu?
+        </div>
+        <h2 class="section-title">
+          Diferenciais que <span>encantam</span>
+        </h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 style="margin-bottom: 0.75rem;">Velocidade Real</h3>
+          <p style="color: var(--gray);">Fibra óptica de verdade. Contrate 100 Mega, receba 100 Mega.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 style="margin-bottom: 0.75rem;">Suporte 24/7</h3>
+          <p style="color: var(--gray);">Atendimento humano. Sem robôs, sem espera.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 style="margin-bottom: 0.75rem;">Instalação Rápida</h3>
+          <p style="color: var(--gray);">Em até 24h na sua casa. Sem complicação.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 style="margin-bottom: 0.75rem;">Conexão Estável</h3>
+          <p style="color: var(--gray);">99% de uptime. Sua internet não cai.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container">
+      <div class="cta-section">
+        <h2 class="cta-title">
+          Pronto para se <span>conectar</span>?
+        </h2>
+        <p style="color: var(--gray); font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem;">
+          Junte-se a 500+ clientes. Instalação em 24h.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://wa.me/5513988777008" class="btn-primary" style="font-size: 1.125rem; padding: 1.25rem 3rem;" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp Agora
+          </a>
+          <a href="tel:+5513988777008" class="btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 3rem;">
+            <i class="fas fa-phone"></i> (13) 9 8877-7008
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
     <div class="footer-content">
       <div class="footer-brand">
-        <img src="https://i.im.ge/QMTg3GX/logoyayu1.png" alt="Yayu Logo" class="footer-logo"
-             onerror="this.src='https://placehold.co/200x80/0a3e52/white?text=YAYU'">
-        <p class="brand-slogan">Conectividade que transforma <span class="vida-highlight">vidas</span></p>
-      </div>
-      <div class="social-section">
-        <h4 class="social-title">🌐 Nossas Comunidades</h4>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/yayu013pg" class="social-icon instagram" rel="noopener">
-            <i class="fab fa-instagram"></i><span>Instagram</span>
-          </a>
-          <a href="https://wa.me/5513988777008" class="social-icon whatsapp" rel="noopener">
-            <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
-          </a>
+        <img src="https://i.im.ge/QMTg3GX/logoyayu1.png" alt="Yayu">
+        <p style="color: var(--gray); line-height: 1.7;">
+          Conectividade que transforma vidas. Internet fibra óptica, TV e segurança.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/yayu013pg" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/5513988777008" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
-      <div class="footer-contact">
-        <p><i class="fas fa-headset"></i>Suporte 24/7</p>
-        <p><i class="fas fa-envelope"></i>contato@yayu.com.br</p>
-        <p><a href="https://wa.me/5513988777008" class="wpp-link"><i class="fab fa-whatsapp"></i>(13) 9 8877-7008</a></p>
+      <div>
+        <h4 style="margin-bottom: 1rem;">Planos</h4>
+        <ul class="footer-links">
+          <li><a href="#planos">100 Mega</a></li>
+          <li><a href="#planos">300 Mega</a></li>
+          <li><a href="#planos">500 Mega</a></li>
+          <li><a href="#tv">YayuTV</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1rem;">Contato</h4>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/5513988777008" target="_blank">
+            <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> (13) 9 8877-7008
+          </a></li>
+          <li><a href="mailto:contato@yayu.com.br">
+            <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> contato@yayu.com.br
+          </a></li>
+        </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Yayu – Fibra, TV e Segurança | +500 mil clientes satisfeitos</p>
-      <p><i class="fas fa-signal"></i> Tecnologia que conecta <span class="vida-highlight">vidas</span></p>
+      <p>&copy; 2025 Yayu Telecom. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-</div><!-- /container -->
+  <!-- Float WhatsApp - SEMPRE VISÍVEL -->
+  <div class="float-whatsapp">
+    <a href="https://wa.me/5513988777008?text=Olá!+Vi+o+site+e+quero+contratar+a+Yayu" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      <span class="phone-number">(13) 9 8877-7008</span>
+    </a>
+  </div>
 
-<!-- FLOATING WPP -->
-<div class="float-wpp">
-  <a href="https://wa.me/5513988777008?text=Olá!+Quero+contratar+um+plano+Yayu">
-    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-  </a>
-</div>
-
-<!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-<script>
-// ── LIGHTBOX CONFIG ──
-lightbox.option({
-  resizeDuration: 200,
-  wrapAround: true,
-  albumLabel: "Imagem %1 de %2",
-  fadeDuration: 300,
-  fitImagesInViewport: true
-});
-
-// ── CARROSSEL GENÉRICO ──
-function initCarousel(slidesId, prevId, nextId, dotsId, interval){
-  const track = document.getElementById(slidesId);
-  if(!track) return;
-  const items = track.querySelectorAll('.carousel-slide');
-  const total = items.length;
-  const dotsEl = document.getElementById(dotsId);
-  let cur = 0, timer;
-
-  function go(n){
-    cur = (n + total) % total;
-    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-    dotsEl.querySelectorAll('.dot').forEach(function(d,i){ 
-      d.classList.toggle('active', i===cur); 
-    });
-  }
-  
-  function buildDots(){
-    dotsEl.innerHTML = '';
-    for(var i=0;i<total;i++){
-      var d = document.createElement('div');
-      d.className = 'dot' + (i===0?' active':'');
-      (function(idx){ 
-        d.onclick = function(){ go(idx); reset(); }; 
-      })(i);
-      dotsEl.appendChild(d);
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script>
+    // === REGISTRO RÁPIDO - ENVIA PARA WHATSAPP ===
+    function sendToWhatsApp(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('regName').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const plan = document.getElementById('regPlan').value;
+      
+      if (!name || !plan) {
+        alert('Por favor, preencha seu nome e selecione um plano.');
+        return;
+      }
+      
+      // Formata mensagem para WhatsApp
+      const message = `🚀 *NOVO CADASTRO YAYU*\n\n` +
+                      `👤 *Nome:* ${name}\n` +
+                      (phone ? `📱 *WhatsApp:* ${phone}\n` : '') +
+                      `📦 *Interesse:* ${plan}\n\n` +
+                      `💬 Gostaria de mais informações sobre este plano!`;
+      
+      // Codifica para URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Redireciona para WhatsApp
+      window.open(`https://wa.me/5513988777008?text=${encodedMessage}`, '_blank');
+      
+      // Reset form
+      document.getElementById('quickRegister').reset();
     }
-  }
-  
-  function reset(){ 
-    clearInterval(timer); 
-    timer = setInterval(function(){ go(cur+1); }, interval||5000); 
-  }
 
-  const prevBtn = document.getElementById(prevId);
-  const nextBtn = document.getElementById(nextId);
-  if(prevBtn) prevBtn.onclick = function(){ go(cur-1); reset(); };
-  if(nextBtn) nextBtn.onclick = function(){ go(cur+1); reset(); };
-  
-  buildDots();
-  reset();
-}
-
-// Inicializa carrosséis quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-  initCarousel('tvSlides',  'tvPrev',  'tvNext',  'tvDots',  5000);
-  initCarousel('camSlides', 'camPrev', 'camNext', 'camDots', 4000);
-});
-
-// ── FUNDO ANIMADO (canvas) ──
-var canvas = document.getElementById('canvas-bg');
-var ctx    = canvas.getContext('2d');
-var W, H, particles = [], time = 0;
-
-function resizeCanvas(){ 
-  W = canvas.width = window.innerWidth; 
-  H = canvas.height = window.innerHeight; 
-}
-
-function initParticles(){
-  particles = [];
-  var num = Math.min(110, Math.floor(W * H / 14000));
-  for(var i=0;i<num;i++){
-    particles.push({
-      x: Math.random()*W, 
-      y: Math.random()*H,
-      r: Math.random()*2.2+0.6,
-      vx: (Math.random()-.5)*.5, 
-      vy: (Math.random()-.5)*.4,
-      alpha: Math.random()*.55+0.18
-    });
-  }
-}
-
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  
-  // Grid animado (mais visível)
-  ctx.save();
-  ctx.globalAlpha = 0.18; 
-  ctx.strokeStyle = '#6ad5ff'; 
-  ctx.lineWidth = 0.75;
-  var step = 58, 
-      offX = (time*.06)%step, 
-      offY = (time*.04)%step;
-  
-  for(var x=-step; x<W+step; x+=step){ 
-    ctx.beginPath(); 
-    ctx.moveTo(x+offX,0); 
-    ctx.lineTo(x+offX,H); 
-    ctx.stroke(); 
-  }
-  for(var y=-step; y<H+step; y+=step){ 
-    ctx.beginPath(); 
-    ctx.moveTo(0,y+offY); 
-    ctx.lineTo(W,y+offY); 
-    ctx.stroke(); 
-  }
-  ctx.restore();
-  
-  // Partículas (mais brilhantes)
-  for(var p of particles){
-    ctx.beginPath(); 
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(60,207,239,' + (p.alpha * 0.85) + ')'; 
-    ctx.fill();
-    
-    p.x += p.vx; 
-    p.y += p.vy;
-    
-    if(p.x < 0) p.x = W; 
-    if(p.x > W) p.x = 0;
-    if(p.y < 0) p.y = H; 
-    if(p.y > H) p.y = 0;
-  }
-  
-  // Ondas suaves
-  ctx.save(); 
-  ctx.globalAlpha = 0.12;
-  for(var w=0; w<3; w++){
-    ctx.beginPath();
-    for(var x=0; x<W; x+=24){
-      var y = H*.68 + Math.sin(x*.007 + time*.024 + w*1.55)*40;
-      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    // Popup
+    function openPopup() {
+      document.getElementById('tvPopup').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
-    ctx.strokeStyle = '#6ad5ff'; 
-    ctx.lineWidth = 1.6; 
-    ctx.stroke();
-  }
-  ctx.restore();
-  
-  time++;
-  requestAnimationFrame(draw);
-}
+    function closePopup() {
+      document.getElementById('tvPopup').classList.remove('active');
+      document.body.style.overflow = 'auto';
+      localStorage.setItem('popupClosed', Date.now());
+    }
 
-// Inicializa canvas quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-  window.addEventListener('resize', function(){ 
-    resizeCanvas(); 
-    initParticles(); 
-  });
-  resizeCanvas(); 
-  initParticles(); 
-  draw();
-});
-</script>
+    // Show popup after 2s if not closed in last 24h
+    window.addEventListener('load', () => {
+      const closed = localStorage.getItem('popupClosed');
+      const now = Date.now();
+      if (!closed || (now - closed) > 86400000) {
+        setTimeout(openPopup, 2000);
+      }
+    });
+
+    document.getElementById('tvPopup').addEventListener('click', (e) => {
+      if (e.target.id === 'tvPopup') closePopup();
+    });
+
+    // Carousels
+    const carousels = {
+      tv: { current: 0, total: 2 },
+      cam: { current: 0, total: 3 },
+      popup: { current: 0, total: 2 }
+    };
+
+    function moveCarousel(name, dir) {
+      const c = carousels[name];
+      c.current = (c.current + dir + c.total) % c.total;
+      updateCarousel(name);
+    }
+
+    function updateCarousel(name) {
+      const c = carousels[name];
+      const track = document.getElementById(name + 'Carousel');
+      const dotsContainer = document.getElementById(name + 'Dots');
+      
+      if (track) {
+        track.style.transform = `translateX(-${c.current * 100}%)`;
+      }
+      
+      if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < c.total; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'dot' + (i === c.current ? ' active' : '');
+          dot.onclick = () => { c.current = i; updateCarousel(name); };
+          dotsContainer.appendChild(dot);
+        }
+      }
+    }
+
+    function movePopupCarousel(dir) {
+      moveCarousel('popup', dir);
+    }
+
+    // Initialize carousels
+    updateCarousel('tv');
+    updateCarousel('cam');
+    updateCarousel('popup');
+
+    // Auto-advance carousels
+    setInterval(() => moveCarousel('tv', 1), 5000);
+    setInterval(() => moveCarousel('cam', 1), 5000);
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // Particles
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+      }
+      draw() {
+        ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.min(100, (canvas.width * canvas.height) / 15000);
+      for (let i = 0; i < count; i++) particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      // Connect particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 212, 255, ${0.1 * (1 - dist/100)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => { resize(); initParticles(); });
+    resize();
+    initParticles();
+    animate();
+  </script>
 </body>
 </html>
