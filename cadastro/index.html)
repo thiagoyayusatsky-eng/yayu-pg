@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yayu — Escolha seu plano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070C14;
+    --surface:#0F1826;
+    --surface-2:#141F31;
+    --ink:#EAF3F2;
+    --muted:#8CA0A8;
+    --line:#233144;
+    --accent:#22E5B0;
+    --accent-dark:#12B891;
+    --warm:#FF7A45;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 500px at 15% -10%, rgba(34,229,176,.12), transparent 60%),
+      radial-gradient(700px 500px at 100% 0%, rgba(255,122,69,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:110px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 40px;}
+
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;}
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:800;
+    font-size:24px;
+    letter-spacing:-0.5px;
+    color:#fff;
+  }
+  .logo span{color:var(--accent);}
+  .badge-limitada{
+    font-size:11px;font-weight:700;color:var(--warm);
+    background:rgba(255,122,69,.12);
+    padding:6px 10px;border-radius:20px;
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:29px;
+    line-height:1.15;
+    margin:0 0 6px;
+    letter-spacing:-0.5px;
+    color:#fff;
+  }
+  h1 em{color:var(--accent);font-style:normal;}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 26px;}
+
+  .section-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin:0 0 12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .section-label::before{content:'';width:16px;height:2px;background:var(--accent);border-radius:2px;}
+
+  .plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px;}
+  @media(max-width:640px){.plans{grid-template-columns:1fr;}}
+
+  .plan-card{
+    background:var(--surface);
+    border:1.5px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 16px 16px;
+    cursor:pointer;
+    transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .plan-card:hover{transform:translateY(-2px);}
+  .plan-card.selected{
+    border-color:var(--accent);
+    box-shadow:0 0 0 1px var(--accent), 0 10px 24px rgba(34,229,176,.15);
+  }
+  .plan-card.selected::after{
+    content:'✓';
+    position:absolute;top:12px;right:14px;
+    width:20px;height:20px;
+    background:var(--accent);color:#04231C;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;
+  }
+  .popular-tag{
+    position:absolute;top:0;left:0;
+    background:var(--accent);color:#04231C;
+    font-size:10px;font-weight:800;letter-spacing:.05em;
+    padding:4px 10px 4px 12px;border-radius:0 0 10px 0;
+    text-transform:uppercase;
+  }
+  .plan-house{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;margin-top:6px;}
+  .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:10px;color:#fff;}
+  .plan-price{font-size:21px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:#fff;}
+  .plan-price small{font-size:11.5px;font-weight:500;color:var(--muted);}
+
+  .bars{display:flex;align-items:flex-end;gap:3px;height:18px;margin:10px 0 4px;}
+  .bars i{display:block;width:5px;border-radius:2px;background:var(--line);}
+  .bars i.on{background:var(--accent);}
+  .bars i:nth-child(1){height:35%;}
+  .bars i:nth-child(2){height:55%;}
+  .bars i:nth-child(3){height:75%;}
+  .bars i:nth-child(4){height:100%;}
+
+  .addon{
+    background:linear-gradient(135deg, var(--surface), var(--surface-2));
+    border:1.5px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    cursor:pointer;margin-bottom:26px;
+    transition:border-color .15s ease;
+  }
+  .addon.selected{border-color:var(--warm);box-shadow:0 0 0 1px var(--warm);}
+  .addon-left{display:flex;align-items:center;gap:12px;}
+  .addon-icon{
+    width:38px;height:38px;border-radius:10px;
+    background:rgba(255,122,69,.15);color:var(--warm);
+    display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  }
+  .addon-name{font-weight:700;font-size:15px;color:#fff;font-family:'Space Grotesk',sans-serif;}
+  .addon-desc{font-size:12.5px;color:var(--muted);}
+  .addon-price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#fff;white-space:nowrap;}
+  .checkbox{
+    width:22px;height:22px;border-radius:6px;border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s ease;
+  }
+  .addon.selected .checkbox{background:var(--warm);border-color:var(--warm);color:#fff;font-size:13px;}
+
+  form{background:var(--surface);border-radius:var(--radius);padding:22px;border:1.5px solid var(--line);}
+  .field{margin-bottom:14px;}
+  .field label{
+    display:block;font-size:12px;font-weight:600;color:var(--muted);
+    margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;
+  }
+  .field input, .field textarea{
+    width:100%;border:1.5px solid var(--line);border-radius:10px;
+    padding:11px 13px;font-size:15px;font-family:'Inter',sans-serif;
+    color:var(--ink);background:#0B121D;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:#54646D;}
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--accent);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:520px){.row2{grid-template-columns:1fr;}}
+  textarea{resize:vertical;min-height:56px;}
+
+  .error{color:var(--warm);font-size:12.5px;margin-top:8px;display:none;}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#04090F;border-top:1px solid var(--line);color:#fff;padding:14px 20px;}
+  .bar-inner{max-width:760px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .bar-summary{font-size:13px;line-height:1.35;}
+  .bar-summary strong{font-family:'Space Grotesk',sans-serif;font-size:16px;display:block;color:#fff;}
+  .bar-summary .muted{color:var(--muted);}
+  .send-btn{
+    background:var(--accent);color:#04231C;border:none;border-radius:12px;
+    padding:13px 20px;font-weight:700;font-size:14.5px;font-family:'Inter',sans-serif;
+    cursor:pointer;white-space:nowrap;transition:background .15s ease;
+  }
+  .send-btn:hover{background:var(--accent-dark);}
+
+  footer.credit{text-align:center;font-size:11px;color:#4A5A62;margin-top:22px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">yayu<span>net</span></div>
+    <div class="badge-limitada">Oferta limitada</div>
+  </header>
+
+  <h1>Escolha sua <em>velocidade</em></h1>
+  <p class="sub">Selecione o plano, preencha seu endereço e envie o pedido direto pelo WhatsApp — sem burocracia.</p>
+
+  <div class="section-label">Internet fibra óptica</div>
+  <div class="plans" id="plans">
+    <div class="plan-card" data-plan="House Yayu — 100 Mega" data-price="64,99">
+      <div class="plan-house">House Yayu</div>
+      <div class="plan-name">100 Mega</div>
+      <div class="bars"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="plan-price">R$ 64,99 <small>/mês</small></div>
+    </div>
+    <div class="plan-card" data-plan="Yayu Conect — 300 Mega" data-price="79,99">
+      <div class="popular-tag">Mais popular</div>
+      <div class="plan-house">Yayu Conect</div>
+      <div class="plan-name">300 Mega</div>
+      <div class="bars"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <div class="plan-price">R$ 79,99 <small>/mês</small></div>
+    </div>
+    <div class="plan-card" data-plan="Yayu Gamer — 500 Mega" data-price="99,99">
+      <div class="plan-house">Yayu Gamer</div>
+      <div class="plan-name">500 Mega</div>
+      <div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="plan-price">R$ 99,99 <small>/mês</small></div>
+    </div>
+  </div>
+
+  <div class="section-label">Adicional</div>
+  <div class="addon" id="addon" data-plan="YayuTV Full Liberty" data-price="35,99">
+    <div class="addon-left">
+      <div class="addon-icon">📺</div>
+      <div>
+        <div class="addon-name">YayuTV Full Liberty</div>
+        <div class="addon-desc">150+ canais, on-demand e até 3 telas simultâneas</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="addon-price">R$ 35,99</div>
+      <div class="checkbox"></div>
+    </div>
+  </div>
+
+  <div class="section-label">Seus dados</div>
+  <form id="cadastro" onsubmit="return false;">
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" id="nome" placeholder="Ex: Maria da Silva" required>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>WhatsApp para contato</label>
+        <input type="tel" id="telefone" placeholder="(13) 9XXXX-XXXX" required>
+      </div>
+      <div class="field">
+        <label>CPF (opcional)</label>
+        <input type="text" id="cpf" placeholder="000.000.000-00">
+      </div>
+    </div>
+    <div class="field">
+      <label>Endereço (rua e número)</label>
+      <input type="text" id="rua" placeholder="Ex: Av. Marechal Mallet, 123" required>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Bairro</label>
+        <input type="text" id="bairro" placeholder="Ex: Boqueirão" required>
+      </div>
+      <div class="field">
+        <label>Complemento</label>
+        <input type="text" id="complemento" placeholder="Ap, bloco, fundos...">
+      </div>
+    </div>
+    <div class="field">
+      <label>Ponto de referência (ajuda o técnico a chegar)</label>
+      <textarea id="referencia" placeholder="Ex: Perto do mercado São Luiz, portão azul"></textarea>
+    </div>
+    <div class="error" id="error-msg">Selecione um plano e preencha nome, WhatsApp e endereço antes de enviar.</div>
+  </form>
+
+  <footer class="credit">Yayu Telecom · Praia Grande — SP</footer>
+</div>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="bar-summary">
+      <strong id="bar-plan">Nenhum plano selecionado</strong>
+      <span class="muted" id="bar-price">Escolha um plano acima</span>
+    </div>
+    <button class="send-btn" id="send-btn">Enviar pedido →</button>
+  </div>
+</div>
+
+<script>
+  // Número informado por Thiago (DDI 55 + DDD 13 + número)
+  const YAYU_WHATSAPP = "5513988777008";
+
+  let selectedPlan = null;
+  let selectedPrice = null;
+  let addonSelected = false;
+
+  const planCards = document.querySelectorAll('.plan-card');
+  const addon = document.getElementById('addon');
+  const barPlan = document.getElementById('bar-plan');
+  const barPrice = document.getElementById('bar-price');
+  const errorMsg = document.getElementById('error-msg');
+
+  function updateBar(){
+    if(!selectedPlan){
+      barPlan.textContent = 'Nenhum plano selecionado';
+      barPrice.textContent = 'Escolha um plano acima';
+      return;
+    }
+    let total = parseFloat(selectedPrice.replace(',','.'));
+    let label = selectedPlan;
+    if(addonSelected){
+      total += 35.99;
+      label += ' + YayuTV';
+    }
+    barPlan.textContent = label;
+    barPrice.textContent = 'Total: R$ ' + total.toFixed(2).replace('.',',') + '/mês';
+  }
+
+  planCards.forEach(card => {
+    card.addEventListener('click', () => {
+      planCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedPlan = card.dataset.plan;
+      selectedPrice = card.dataset.price;
+      errorMsg.style.display = 'none';
+      updateBar();
+    });
+  });
+
+  addon.addEventListener('click', () => {
+    addonSelected = !addonSelected;
+    addon.classList.toggle('selected', addonSelected);
+    updateBar();
+  });
+
+  document.getElementById('send-btn').addEventListener('click', () => {
+    const nome = document.getElementById('nome').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const rua = document.getElementById('rua').value.trim();
+    const bairro = document.getElementById('bairro').value.trim();
+    const complemento = document.getElementById('complemento').value.trim();
+    const referencia = document.getElementById('referencia').value.trim();
+
+    if(!selectedPlan || !nome || !telefone || !rua || !bairro){
+      errorMsg.style.display = 'block';
+      window.scrollTo({top: document.getElementById('cadastro').offsetTop - 20, behavior:'smooth'});
+      return;
+    }
+
+    let planoTexto = selectedPlan + ' (R$ ' + selectedPrice + '/mês)';
+    if(addonSelected){
+      planoTexto += ' + YayuTV Full Liberty (R$ 35,99/mês)';
+    }
+
+    const linhas = [
+      '📋 *Novo pedido — Yayu*',
+      '',
+      '*Plano:* ' + planoTexto,
+      '',
+      '*Nome:* ' + nome,
+      '*WhatsApp:* ' + telefone,
+      cpf ? '*CPF:* ' + cpf : null,
+      '',
+      '*Endereço:* ' + rua + (complemento ? ', ' + complemento : ''),
+      '*Bairro:* ' + bairro,
+      referencia ? '*Referência:* ' + referencia : null
+    ].filter(Boolean);
+
+    const texto = encodeURIComponent(linhas.join('\n'));
+    const url = 'https://wa.me/' + YAYU_WHATSAPP + '?text=' + texto;
+    window.open(url, '_blank');
+  });
+</script>
+</body>
+</html>
