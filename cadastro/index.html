@@ -1,502 +1,1335 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yayu — Escolha seu plano</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#050910;
-    --surface:rgba(18,28,42,.65);
-    --surface-solid:#0F1826;
-    --ink:#EAF3F2;
-    --muted:#8CA0A8;
-    --line:#233144;
-    --line-soft:rgba(255,255,255,.08);
-    --accent:#22E5B0;
-    --accent-2:#3DA9FC;
-    --accent-dark:#12B891;
-    --warm:#FF7A45;
-    --radius:20px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-    padding-bottom:110px;
-    position:relative;
-    overflow-x:hidden;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayu — Fibra que conecta você ao futuro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+               ROOT — DOPAMINA PALETTE
+               ============================================================ */
+        :root {
+            --bg: #0B0A1A;
+            --surface: rgba(20, 18, 48, 0.70);
+            --surface-solid: #14122E;
+            --ink: #F0EEFF;
+            --muted: #9A94C2;
+            --line: #312E5C;
+            --line-soft: rgba(255, 255, 255, 0.07);
 
-  /* animated fiber-glow backdrop */
-  .glow{
-    position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(650px 450px at 10% -5%, rgba(34,229,176,.26), transparent 60%),
-      radial-gradient(550px 550px at 100% 10%, rgba(61,169,252,.22), transparent 55%),
-      radial-gradient(750px 450px at 50% 110%, rgba(255,122,69,.16), transparent 60%),
-      radial-gradient(500px 500px at 85% 80%, rgba(255,45,149,.12), transparent 55%);
-    animation:glowShift 10s ease-in-out infinite alternate;
-  }
-  @keyframes glowShift{
-    0%{filter:hue-rotate(0deg) brightness(1);}
-    100%{filter:hue-rotate(12deg) brightness(1.12);}
-  }
-  .tech-icons{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-  .tech-icons span{
-    position:absolute;
-    color:var(--accent);
-    opacity:.22;
-    filter:drop-shadow(0 0 14px currentColor);
-    animation:iconFloat 7s ease-in-out infinite;
-  }
-  .tech-icons span svg{width:100%;height:100%;display:block;}
-  .ti-1{top:6%;left:6%;width:90px;height:90px;animation-delay:0s;}
-  .ti-2{top:14%;right:8%;width:70px;height:70px;color:var(--accent-2);animation-delay:1.2s;}
-  .ti-3{top:42%;left:0%;width:64px;height:64px;animation-delay:2.4s;}
-  .ti-4{top:58%;right:4%;width:100px;height:100px;color:var(--accent-2);animation-delay:.6s;}
-  .ti-5{top:78%;left:10%;width:74px;height:74px;animation-delay:1.8s;}
-  .ti-6{top:88%;right:16%;width:60px;height:60px;color:#FF2D95;animation-delay:3s;}
-  .ti-7{top:28%;right:28%;width:50px;height:50px;color:#FF2D95;animation-delay:2s;}
-  @keyframes iconFloat{
-    0%,100%{transform:translateY(0) rotate(0deg);opacity:.14;}
-    50%{transform:translateY(-14px) rotate(4deg);opacity:.28;}
-  }
-  .fiber-lines{
-    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;
-  }
-  .fiber-lines svg{width:100%;height:100%;}
-  .fiber-lines path{
-    stroke:var(--accent);
-    stroke-width:1;
-    fill:none;
-    opacity:.18;
-    stroke-dasharray:6 10;
-    animation:dash 14s linear infinite;
-  }
-  .fiber-lines path:nth-child(2){stroke:var(--accent-2);animation-duration:18s;opacity:.14;}
-  .fiber-lines path:nth-child(3){stroke:var(--accent);animation-duration:22s;opacity:.1;}
-  @keyframes dash{to{stroke-dashoffset:-320;}}
+            /* ——— DOPAMINA CORES ——— */
+            --neon-purple: #B44CFF;
+            --neon-pink: #FF3D9A;
+            --neon-cyan: #00E5FF;
+            --neon-green: #39FF8F;
+            --neon-orange: #FF7A2F;
+            --neon-yellow: #FFE74C;
+            --neon-magenta: #FF2D95;
 
-  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 40px;position:relative;z-index:1;}
+            --gradient-main: linear-gradient(135deg, #B44CFF 0%, #FF3D9A 40%, #FF7A2F 70%, #FFE74C 100%);
+            --gradient-cyan: linear-gradient(135deg, #00E5FF, #39FF8F);
+            --gradient-purple: linear-gradient(135deg, #B44CFF, #FF3D9A);
+            --gradient-warm: linear-gradient(135deg, #FF7A2F, #FFE74C);
 
-  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;}
-  .logo{display:flex;align-items:center;gap:10px;}
-  .logo-mark{
-    width:38px;height:38px;flex-shrink:0;
-    filter:drop-shadow(0 0 8px rgba(34,229,176,.45));
-  }
-  .logo-word{
-    font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:30px;letter-spacing:-.8px;
-    background:linear-gradient(90deg, #fff, var(--accent));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .badge-limitada{
-    font-size:11px;font-weight:700;color:var(--warm);
-    background:rgba(255,122,69,.12);border:1px solid rgba(255,122,69,.25);
-    padding:6px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em;
-    display:flex;align-items:center;gap:6px;
-  }
-  .badge-limitada::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warm);animation:pulse 1.6s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.4);}}
+            --radius: 20px;
+            --shadow-glow: 0 0 40px rgba(180, 76, 255, 0.25), 0 0 80px rgba(255, 61, 154, 0.15);
+            --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
 
-  h1{
-    font-family:'Space Grotesk',sans-serif;font-size:32px;line-height:1.12;
-    margin:0 0 8px;letter-spacing:-.8px;color:#fff;
-  }
-  h1 em{
-    font-style:normal;
-    background:linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .sub{color:var(--muted);font-size:15px;margin:0 0 28px;max-width:56ch;}
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  .section-label{
-    font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:700;color:var(--accent);
-    text-transform:uppercase;letter-spacing:.1em;margin:0 0 12px;display:flex;align-items:center;gap:8px;
-  }
-  .section-label::before{content:'';width:16px;height:2px;background:var(--accent);border-radius:2px;}
+        html {
+            scroll-behavior: smooth;
+        }
 
-  .plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
-  @media(max-width:640px){.plans{grid-template-columns:1fr;}}
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 130px;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-  .plan-card{
-    background:var(--surface);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border:1.5px solid var(--line-soft);
-    border-radius:var(--radius);
-    padding:18px 16px 16px;
-    cursor:pointer;
-    transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
-    position:relative;overflow:hidden;
-  }
-  .plan-card::before{
-    content:'';position:absolute;inset:0;border-radius:var(--radius);padding:1px;
-    background:linear-gradient(135deg, transparent, transparent);
-    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite:xor;mask-composite:exclude;
-    pointer-events:none;transition:background .2s ease;
-  }
-  .plan-card:hover{transform:translateY(-3px);}
-  .plan-card.selected{
-    border-color:transparent;
-    box-shadow:0 12px 28px rgba(34,229,176,.18);
-  }
-  .plan-card.selected::before{
-    background:linear-gradient(135deg, var(--accent), var(--accent-2));
-  }
-  .plan-card.selected::after{
-    content:'✓';position:absolute;top:12px;right:14px;width:20px;height:20px;
-    background:var(--accent);color:#04231C;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;
-  }
-  .popular-tag{
-    position:absolute;top:0;left:0;
-    background:linear-gradient(90deg, var(--accent), var(--accent-2));color:#04231C;
-    font-size:10.5px;font-weight:800;letter-spacing:.05em;
-    padding:5px 12px 5px 14px;border-radius:0 0 10px 0;text-transform:uppercase;
-    display:flex;align-items:center;gap:5px;
-  }
-  .popular-tag::before{content:'🔥';font-size:11px;}
+        /* ============================================================
+               ANIMATED BG — DOPAMINA WAVES + GLOW
+               ============================================================ */
+        .bg-dopamine {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
 
-  .promo-tag{
-    position:absolute;top:0;left:0;
-    background:linear-gradient(90deg, #32BCAD, #1F8A7F);color:#04231C;
-    font-size:10.5px;font-weight:800;letter-spacing:.05em;
-    padding:5px 12px 5px 14px;border-radius:0 0 10px 0;text-transform:uppercase;
-    display:flex;align-items:center;gap:5px;
-  }
-  .promo-tag::before{content:'⚡';font-size:11px;}
+        .bg-dopamine .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: orbFloat 12s ease-in-out infinite alternate;
+        }
 
-  .plan-card.promo{
-    border-color:transparent;
-    box-shadow:0 0 0 1.5px #32BCAD, 0 14px 30px rgba(50,188,173,.2);
-  }
-  .plan-card.promo::before{
-    background:linear-gradient(135deg, #32BCAD, #1F8A7F);
-  }
-  .plan-card.bestseller{
-    border-color:transparent;
-    box-shadow:0 0 0 1.5px var(--accent), 0 16px 34px rgba(34,229,176,.22);
-  }
-  .plan-card.bestseller::before{
-    background:linear-gradient(135deg, var(--accent), var(--accent-2));
-  }
-  @media(max-width:640px){.plan-card.bestseller{transform:scale(1);}}
-  .plan-house{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;margin-top:6px;}
-  .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:10px;color:#fff;}
-  .plan-price{font-size:21px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:#fff;}
-  .plan-price small{font-size:11.5px;font-weight:500;color:var(--muted);}
+        .bg-dopamine .orb:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: #B44CFF;
+            top: -15%;
+            left: -10%;
+            animation-duration: 14s;
+        }
+        .bg-dopamine .orb:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: #FF3D9A;
+            bottom: -10%;
+            right: -10%;
+            animation-duration: 18s;
+            animation-delay: 2s;
+        }
+        .bg-dopamine .orb:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: #00E5FF;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-duration: 16s;
+            animation-delay: 4s;
+            opacity: 0.3;
+        }
+        .bg-dopamine .orb:nth-child(4) {
+            width: 350px;
+            height: 350px;
+            background: #FF7A2F;
+            bottom: 20%;
+            left: 5%;
+            animation-duration: 20s;
+            animation-delay: 1s;
+            opacity: 0.35;
+        }
 
-  .bars{display:flex;align-items:flex-end;gap:3px;height:18px;margin:10px 0 4px;}
-  .bars i{display:block;width:5px;border-radius:2px;background:var(--line);}
-  .bars i.on{background:linear-gradient(180deg, var(--accent-2), var(--accent));}
-  .bars i:nth-child(1){height:35%;} .bars i:nth-child(2){height:55%;}
-  .bars i:nth-child(3){height:75%;} .bars i:nth-child(4){height:100%;}
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 40px) scale(0.9);
+            }
+            100% {
+                transform: translate(30px, -20px) scale(1.05);
+            }
+        }
 
-  .addon{
-    background:var(--surface);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border:1.5px solid var(--line-soft);
-    border-radius:var(--radius);
-    padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
-    cursor:pointer;margin-bottom:26px;transition:border-color .18s ease;
-  }
-  .addon.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent), 0 10px 24px rgba(34,229,176,.15);}
-  .addon-left{display:flex;align-items:center;gap:12px;}
-  .addon-icon{
-    width:40px;height:40px;border-radius:12px;background:rgba(140,160,168,.12);color:var(--muted);
-    display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;
-  }
-  .addon-name{font-weight:700;font-size:15px;color:#fff;font-family:'Space Grotesk',sans-serif;}
-  .addon-desc{font-size:12.5px;color:var(--muted);}
-  .addon-price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#fff;white-space:nowrap;}
-  .checkbox{
-    width:22px;height:22px;border-radius:6px;border:2px solid var(--line);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s ease;
-  }
-  .addon.selected .checkbox{background:var(--accent);border-color:var(--accent);color:#04231C;font-size:13px;}
+        /* floating neon particles */
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
 
-  form{
-    background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-radius:var(--radius);padding:22px;border:1.5px solid var(--line-soft);
-  }
-  .field{margin-bottom:14px;}
-  .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;}
-  .field input, .field textarea{
-    width:100%;border:1.5px solid var(--line);border-radius:10px;
-    padding:11px 13px;font-size:15px;font-family:'Inter',sans-serif;
-    color:var(--ink);background:rgba(5,9,16,.6);
-  }
-  .field input::placeholder, .field textarea::placeholder{color:#54646D;}
-  .field input:focus, .field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,229,176,.12);}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  @media(max-width:520px){.row2{grid-template-columns:1fr;}}
-  textarea{resize:vertical;min-height:56px;}
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 12px var(--neon-cyan);
+            animation: particleDrift 20s linear infinite;
+            opacity: 0.4;
+        }
 
-  .error{color:var(--warm);font-size:12.5px;margin-top:8px;display:none;}
+        .particle:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-duration: 22s;
+            background: var(--neon-purple);
+            box-shadow: 0 0 12px var(--neon-purple);
+        }
+        .particle:nth-child(2) {
+            left: 85%;
+            top: 15%;
+            animation-duration: 18s;
+            animation-delay: 3s;
+            background: var(--neon-pink);
+            box-shadow: 0 0 12px var(--neon-pink);
+        }
+        .particle:nth-child(3) {
+            left: 25%;
+            top: 70%;
+            animation-duration: 24s;
+            animation-delay: 5s;
+            background: var(--neon-orange);
+            box-shadow: 0 0 12px var(--neon-orange);
+        }
+        .particle:nth-child(4) {
+            left: 70%;
+            top: 80%;
+            animation-duration: 20s;
+            animation-delay: 7s;
+            background: var(--neon-green);
+            box-shadow: 0 0 12px var(--neon-green);
+        }
+        .particle:nth-child(5) {
+            left: 50%;
+            top: 40%;
+            animation-duration: 26s;
+            animation-delay: 2s;
+            background: var(--neon-yellow);
+            box-shadow: 0 0 12px var(--neon-yellow);
+        }
+        .particle:nth-child(6) {
+            left: 5%;
+            top: 90%;
+            animation-duration: 19s;
+            animation-delay: 4s;
+            background: var(--neon-magenta);
+            box-shadow: 0 0 12px var(--neon-magenta);
+        }
+        .particle:nth-child(7) {
+            left: 92%;
+            top: 55%;
+            animation-duration: 21s;
+            animation-delay: 6s;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 12px var(--neon-cyan);
+        }
 
-  .trust{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0 28px;}
-  .trust-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);}
-  .trust-item b{color:#fff;font-family:'Space Grotesk',sans-serif;font-size:15px;}
+        @keyframes particleDrift {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translate(60px, -80px) scale(1.6);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-40px, 60px) scale(0.8);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translate(80px, 40px) scale(1.4);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.2;
+            }
+        }
 
-  footer.credit{text-align:center;font-size:11px;color:#4A5A62;margin-top:26px;}
+        /* ============================================================
+               WRAPPER
+               ============================================================ */
+        .wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+            position: relative;
+            z-index: 1;
+        }
 
-  /* bottom summary bar */
-  .bar{
-    position:fixed;left:0;right:0;bottom:0;z-index:5;
-    background:rgba(4,9,15,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-    border-top:1px solid var(--line-soft);color:#fff;padding:14px 20px;
-  }
-  .bar-inner{max-width:760px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:10px;}
-  .bar-summary{font-size:13px;line-height:1.35;text-align:center;}
-  .bar-summary strong{font-family:'Space Grotesk',sans-serif;font-size:16px;display:block;color:#fff;}
-  .bar-summary .muted{color:var(--muted);}
-  .send-btn{
-    background:linear-gradient(90deg, var(--accent), var(--accent-2));
-    color:#04231C;border:none;border-radius:14px;
-    width:100%;padding:18px 22px;font-weight:800;font-size:18px;font-family:'Space Grotesk',sans-serif;
-    letter-spacing:.01em;
-    cursor:pointer;white-space:nowrap;transition:filter .15s ease, transform .15s ease;
-    box-shadow:0 10px 26px rgba(34,229,176,.28);
-  }
-  .send-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
+        /* ============================================================
+               HEADER
+               ============================================================ */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-}
-</style>
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 16px rgba(180, 76, 255, 0.5));
+        }
+
+        .logo-word {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            letter-spacing: -0.8px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .badge-limited {
+            font-size: 10px;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(135deg, var(--neon-orange), var(--neon-pink));
+            padding: 6px 14px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 24px rgba(255, 122, 47, 0.3);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        .badge-limited::before {
+            content: '⚡';
+            font-size: 13px;
+        }
+
+        @keyframes badgePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 24px rgba(255, 122, 47, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 44px rgba(255, 61, 154, 0.5);
+            }
+        }
+
+        /* ============================================================
+               HERO
+               ============================================================ */
+        .hero {
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 38px;
+            line-height: 1.08;
+            margin: 0 0 6px;
+            letter-spacing: -0.8px;
+            color: #fff;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: normal;
+        }
+
+        .hero h1 .highlight-cyan {
+            background: var(--gradient-cyan);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: normal;
+        }
+
+        .hero .sub {
+            color: var(--muted);
+            font-size: 16px;
+            margin: 8px 0 0;
+            max-width: 56ch;
+            line-height: 1.5;
+        }
+
+        .hero .sub strong {
+            color: #fff;
+        }
+
+        /* ============================================================
+               TRUST BAR
+               ============================================================ */
+        .trust {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 22px 0 28px;
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--line-soft);
+            border-radius: 16px;
+            padding: 14px 20px;
+            justify-content: center;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .trust-item .num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .trust-item .icon {
+            font-size: 18px;
+        }
+
+        /* ============================================================
+               SECTION LABEL
+               ============================================================ */
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin: 0 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--muted);
+        }
+
+        .section-label .bar {
+            flex: 1;
+            height: 2px;
+            background: var(--gradient-main);
+            border-radius: 2px;
+            max-width: 60px;
+        }
+
+        .section-label .bar-cyan {
+            background: var(--gradient-cyan);
+        }
+
+        /* ============================================================
+               PLANS
+               ============================================================ */
+        .plans {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        @media (max-width: 660px) {
+            .plans {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .plan-card {
+            background: var(--surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid var(--line-soft);
+            border-radius: var(--radius);
+            padding: 18px 16px 16px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            padding: 1.5px;
+            background: transparent;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(180, 76, 255, 0.3);
+        }
+
+        .plan-card.selected {
+            border-color: transparent;
+            box-shadow: 0 0 0 2px var(--neon-purple), 0 16px 48px rgba(180, 76, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .plan-card.selected::before {
+            background: var(--gradient-main);
+        }
+
+        .plan-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            width: 22px;
+            height: 22px;
+            background: var(--gradient-main);
+            color: #0B0A1A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 0 20px rgba(180, 76, 255, 0.5);
+        }
+
+        /* tags */
+        .tag-popular {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--gradient-main);
+            color: #0B0A1A;
+            font-size: 9.5px;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            padding: 4px 14px 4px 16px;
+            border-radius: 0 0 12px 0;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tag-popular::before {
+            content: '🔥';
+            font-size: 11px;
+        }
+
+        .tag-promo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--gradient-cyan);
+            color: #0B0A1A;
+            font-size: 9.5px;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            padding: 4px 14px 4px 16px;
+            border-radius: 0 0 12px 0;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tag-promo::before {
+            content: '⚡';
+            font-size: 11px;
+        }
+
+        .plan-card.promo-card {
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.15), var(--shadow-card);
+        }
+
+        .plan-card.promo-card::before {
+            background: var(--gradient-cyan);
+        }
+
+        .plan-card.best-card {
+            border-color: rgba(180, 76, 255, 0.25);
+            box-shadow: 0 0 0 1px rgba(180, 76, 255, 0.15), var(--shadow-card);
+        }
+
+        .plan-card.best-card::before {
+            background: var(--gradient-main);
+        }
+
+        .plan-house {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 2px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .plan-price {
+            font-size: 24px;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+        }
+
+        .plan-price small {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        /* speed bars */
+        .speed-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 20px;
+            margin: 10px 0 6px;
+        }
+
+        .speed-bars span {
+            display: block;
+            width: 5px;
+            border-radius: 3px;
+            background: var(--line);
+            transition: background 0.3s ease;
+        }
+
+        .speed-bars span.on {
+            background: var(--gradient-main);
+        }
+
+        .speed-bars span.on-cyan {
+            background: var(--gradient-cyan);
+        }
+
+        .speed-bars span:nth-child(1) {
+            height: 30%;
+        }
+        .speed-bars span:nth-child(2) {
+            height: 50%;
+        }
+        .speed-bars span:nth-child(3) {
+            height: 75%;
+        }
+        .speed-bars span:nth-child(4) {
+            height: 100%;
+        }
+
+        .plan-card .plan-feature {
+            font-size: 11.5px;
+            color: var(--muted);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .plan-card .plan-feature .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            display: inline-block;
+        }
+
+        /* ============================================================
+               ADDON
+               ============================================================ */
+        .addon-wrap {
+            margin-bottom: 24px;
+        }
+
+        .addon {
+            background: var(--surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid var(--line-soft);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: var(--shadow-card);
+        }
+
+        .addon:hover {
+            border-color: rgba(0, 229, 255, 0.2);
+        }
+
+        .addon.selected {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 0 1.5px var(--neon-cyan), 0 12px 36px rgba(0, 229, 255, 0.15);
+        }
+
+        .addon-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .addon-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(0, 229, 255, 0.10);
+            color: var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            transition: 0.3s ease;
+        }
+
+        .addon.selected .addon-icon {
+            background: rgba(0, 229, 255, 0.20);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+        }
+
+        .addon-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .addon-desc {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .addon-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .addon-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .addon-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            border: 2px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            font-size: 13px;
+            color: transparent;
+        }
+
+        .addon.selected .addon-check {
+            background: var(--gradient-cyan);
+            border-color: var(--neon-cyan);
+            color: #0B0A1A;
+        }
+
+        /* ============================================================
+               FORM
+               ============================================================ */
+        .form-wrap {
+            background: var(--surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1.5px solid var(--line-soft);
+            box-shadow: var(--shadow-card);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 520px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1.5px solid var(--line);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            background: rgba(5, 4, 20, 0.6);
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #5A5580;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 0 4px rgba(180, 76, 255, 0.12);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 54px;
+        }
+
+        .error-msg {
+            color: var(--neon-pink);
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+            font-weight: 600;
+            background: rgba(255, 61, 154, 0.08);
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 61, 154, 0.15);
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ============================================================
+               FOOTER
+               ============================================================ */
+        .footer-credit {
+            text-align: center;
+            font-size: 11px;
+            color: #4A4670;
+            margin-top: 28px;
+            letter-spacing: 0.04em;
+        }
+
+        .footer-credit strong {
+            color: var(--muted);
+        }
+
+        /* ============================================================
+               BOTTOM BAR — FIXED
+               ============================================================ */
+        .bottom-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            background: rgba(11, 10, 26, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--line-soft);
+            padding: 14px 20px;
+            box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .bottom-bar-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bottom-summary {
+            font-size: 13px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .bottom-summary .plan-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            color: #fff;
+            display: block;
+        }
+
+        .bottom-summary .price-label {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .bottom-summary .price-label strong {
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn-send {
+            background: var(--gradient-main);
+            color: #0B0A1A;
+            border: none;
+            border-radius: 16px;
+            width: 100%;
+            padding: 18px 22px;
+            font-weight: 800;
+            font-size: 19px;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 40px rgba(180, 76, 255, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-send::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 16px 56px rgba(180, 76, 255, 0.5);
+        }
+
+        .btn-send:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* ============================================================
+               RESPONSIVE TWEAKS
+               ============================================================ */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            .plan-price {
+                font-size: 20px;
+            }
+            .bottom-summary .plan-label {
+                font-size: 15px;
+            }
+            .btn-send {
+                font-size: 17px;
+                padding: 16px 18px;
+            }
+            .addon {
+                flex-wrap: wrap;
+            }
+            .addon-right {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+
+        /* small extra */
+        .glow-text {
+            text-shadow: 0 0 40px rgba(180, 76, 255, 0.15);
+        }
+
+        .badge-whats {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 229, 255, 0.08);
+            color: var(--neon-cyan);
+            padding: 2px 10px 2px 8px;
+            border-radius: 30px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            border: 1px solid rgba(0, 229, 255, 0.12);
+        }
+    </style>
 </head>
 <body>
 
-<div class="glow"></div>
-<div class="tech-icons">
-  <span class="ti-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.5 16.15a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>
-  <span class="ti-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 8.5a15 15 0 0 1 21 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.5 16.15a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>
-  <span class="ti-3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 11-14h-8z"/></svg></span>
-  <span class="ti-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.5 16.15a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>
-  <span class="ti-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>
-  <span class="ti-6"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 11-14h-8z"/></svg></span>
-  <span class="ti-7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 8.5a15 15 0 0 1 21 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>
-</div>
-<div class="fiber-lines">
-  <svg viewBox="0 0 800 1200" preserveAspectRatio="none">
-    <path d="M-50,120 C 200,80 300,300 550,220 S 900,180 900,60"></path>
-    <path d="M-50,500 C 250,460 350,650 600,600 S 950,560 950,700"></path>
-    <path d="M-50,900 C 220,860 340,1050 600,980 S 900,1000 900,1150"></path>
-  </svg>
-</div>
-
-<div class="wrap">
-
-  <header>
-    <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#22E5B0"/>
-            <stop offset="100%" stop-color="#3DA9FC"/>
-          </linearGradient>
-        </defs>
-        <polygon points="24,3 42,13.5 42,34.5 24,45 6,34.5 6,13.5" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
-        <path d="M14 15 L24 25 L24 34" fill="none" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M34 15 L24 25" fill="none" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="14" cy="15" r="2.4" fill="#22E5B0"/>
-        <circle cx="34" cy="15" r="2.4" fill="#3DA9FC"/>
-        <circle cx="24" cy="34" r="2.4" fill="#22E5B0"/>
-      </svg>
-      <div class="logo-word">Yayu</div>
+    <!-- ============================================================
+    DOPAMINA BG
+    ============================================================ -->
+    <div class="bg-dopamine">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
     </div>
-    <div class="badge-limitada">Oferta limitada</div>
-  </header>
 
-  <h1>Conecte-se ao <em>futuro</em></h1>
-  <p class="sub">Fibra óptica ultra-rápida, TV completa e cadastro em 1 minuto. Escolha seu plano e envie direto pelo WhatsApp.</p>
-
-  <div class="trust">
-    <div class="trust-item"><b>500+</b> clientes</div>
-    <div class="trust-item"><b>99%</b> uptime</div>
-    <div class="trust-item"><b>24h</b> instalação</div>
-  </div>
-
-  <div class="section-label">Internet fibra óptica</div>
-  <div class="plans" id="plans">
-    <div class="plan-card promo" data-plan="House Yayu — 100 Mega" data-price="64,99">
-      <div class="promo-tag">Pagto no Pix</div>
-      <div class="plan-house">House Yayu</div>
-      <div class="plan-name">100 Mega</div>
-      <div class="bars"><i class="on"></i><i></i><i></i><i></i></div>
-      <div class="plan-price">R$ 64,99 <small>/mês</small></div>
+    <!-- floating particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
-    <div class="plan-card bestseller" data-plan="Yayu Conect — 300 Mega" data-price="79,99">
-      <div class="popular-tag">Mais vendido</div>
-      <div class="plan-house">Yayu Conect</div>
-      <div class="plan-name">300 Mega</div>
-      <div class="bars"><i class="on"></i><i class="on"></i><i></i><i></i></div>
-      <div class="plan-price">R$ 79,99 <small>/mês</small></div>
+
+    <!-- ============================================================
+    WRAP
+    ============================================================ -->
+    <div class="wrap">
+
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <svg class="logo-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#B44CFF"/>
+                            <stop offset="50%" stop-color="#FF3D9A"/>
+                            <stop offset="100%" stop-color="#FF7A2F"/>
+                        </linearGradient>
+                    </defs>
+                    <polygon points="24,3 42,13.5 42,34.5 24,45 6,34.5 6,13.5" fill="none" stroke="url(#lg)" stroke-width="2.2"/>
+                    <path d="M14 15 L24 25 L24 34" fill="none" stroke="url(#lg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M34 15 L24 25" fill="none" stroke="url(#lg)" stroke-width="3.2" stroke-linecap="round"/>
+                    <circle cx="14" cy="15" r="2.6" fill="#B44CFF"/>
+                    <circle cx="34" cy="15" r="2.6" fill="#FF3D9A"/>
+                    <circle cx="24" cy="34" r="2.6" fill="#FF7A2F"/>
+                </svg>
+                <div class="logo-word">Yayu</div>
+            </div>
+            <div class="badge-limited">Oferta relâmpago</div>
+        </header>
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>
+                Internet que <br>
+                <span class="highlight">acelera</span> sua<br>
+                <span class="highlight-cyan">vida digital</span> 🚀
+            </h1>
+            <p class="sub">
+                <strong>Fibra óptica de verdade</strong> com velocidade real,
+                TV completa e cadastro em menos de 1 minuto.
+                <span class="badge-whats">💬 via WhatsApp</span>
+            </p>
+        </div>
+
+        <!-- TRUST -->
+        <div class="trust">
+            <div class="trust-item">
+                <span class="icon">🏆</span>
+                <span class="num">500+</span> clientes
+            </div>
+            <div class="trust-item">
+                <span class="icon">📶</span>
+                <span class="num">99%</span> uptime
+            </div>
+            <div class="trust-item">
+                <span class="icon">⚡</span>
+                <span class="num">24h</span> instalação
+            </div>
+            <div class="trust-item">
+                <span class="icon">💎</span>
+                <span class="num">Nota 4.9</span> no Reclame
+            </div>
+        </div>
+
+        <!-- PLANS -->
+        <div class="section-label">
+            <span>🌐 Escolha seu plano</span>
+            <span class="bar"></span>
+        </div>
+
+        <div class="plans" id="plans">
+            <!-- 100 Mega — Promo -->
+            <div class="plan-card promo-card" data-plan="House Yayu — 100 Mega" data-price="64,99">
+                <div class="tag-promo">Pix tem desconto</div>
+                <div class="plan-house">House Yayu</div>
+                <div class="plan-name">100 Mega</div>
+                <div class="speed-bars">
+                    <span class="on-cyan"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="plan-price">R$ 64,99 <small>/mês</small></div>
+                <div class="plan-feature"><span class="dot"></span> Ideal para 2–3 pessoas</div>
+            </div>
+
+            <!-- 300 Mega — BESTSELLER -->
+            <div class="plan-card best-card" data-plan="Yayu Conect — 300 Mega" data-price="79,99">
+                <div class="tag-popular">🔥 Mais vendido</div>
+                <div class="plan-house">Yayu Conect</div>
+                <div class="plan-name">300 Mega</div>
+                <div class="speed-bars">
+                    <span class="on"></span>
+                    <span class="on"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="plan-price">R$ 79,99 <small>/mês</small></div>
+                <div class="plan-feature"><span class="dot"></span> Perfeito para famílias</div>
+            </div>
+
+            <!-- 500 Mega — GAMER -->
+            <div class="plan-card" data-plan="Yayu Gamer — 500 Mega" data-price="99,99">
+                <div class="plan-house">Yayu Gamer</div>
+                <div class="plan-name">500 Mega</div>
+                <div class="speed-bars">
+                    <span class="on"></span>
+                    <span class="on"></span>
+                    <span class="on"></span>
+                    <span class="on"></span>
+                </div>
+                <div class="plan-price">R$ 99,99 <small>/mês</small></div>
+                <div class="plan-feature"><span class="dot"></span> 🎮 Ultra baixa latência</div>
+            </div>
+        </div>
+
+        <!-- ADDON -->
+        <div class="addon-wrap">
+            <div class="section-label">
+                <span>📺 Adicione TV</span>
+                <span class="bar bar-cyan"></span>
+            </div>
+            <div class="addon" id="addon" data-plan="YayuTV Full Liberty" data-price="35,99">
+                <div class="addon-left">
+                    <div class="addon-icon">📺</div>
+                    <div>
+                        <div class="addon-name">YayuTV Full Liberty</div>
+                        <div class="addon-desc">+5.000 conteúdos · Canais, filmes, séries</div>
+                    </div>
+                </div>
+                <div class="addon-right">
+                    <div class="addon-price">R$ 35,99</div>
+                    <div class="addon-check">✓</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="section-label">
+            <span>📝 Seus dados</span>
+            <span class="bar"></span>
+        </div>
+
+        <div class="form-wrap" id="form-wrap">
+            <form id="cadastro" onsubmit="return false;">
+                <div class="field">
+                    <label>Nome completo</label>
+                    <input type="text" id="nome" placeholder="Ex: Maria da Silva" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>📱 WhatsApp</label>
+                        <input type="tel" id="telefone" placeholder="(13) 9XXXX-XXXX" required>
+                    </div>
+                    <div class="field">
+                        <label>CPF <span style="color:var(--muted);font-weight:400;text-transform:none;">(opcional)</span></label>
+                        <input type="text" id="cpf" placeholder="000.000.000-00">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>📍 Endereço (rua e número)</label>
+                    <input type="text" id="rua" placeholder="Ex: Av. Marechal Mallet, 123" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>Bairro</label>
+                        <input type="text" id="bairro" placeholder="Ex: Boqueirão" required>
+                    </div>
+                    <div class="field">
+                        <label>Complemento</label>
+                        <input type="text" id="complemento" placeholder="Ap, bloco, fundos...">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>📍 Ponto de referência</label>
+                    <textarea id="referencia" placeholder="Ex: Perto do mercado São Luiz, portão azul"></textarea>
+                </div>
+
+                <div class="error-msg" id="error-msg">
+                    ⚠️ Selecione um plano e preencha nome, WhatsApp e endereço antes de enviar.
+                </div>
+            </form>
+        </div>
+
+        <div class="footer-credit">
+            Yayu Telecom · Praia Grande — SP · <strong>Fibra que conecta</strong>
+        </div>
     </div>
-    <div class="plan-card" data-plan="Yayu Gamer — 500 Mega" data-price="99,99">
-      <div class="plan-house">Yayu Gamer</div>
-      <div class="plan-name">500 Mega</div>
-      <div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-      <div class="plan-price">R$ 99,99 <small>/mês</small></div>
+
+    <!-- ============================================================
+    BOTTOM BAR — FIXED
+    ============================================================ -->
+    <div class="bottom-bar">
+        <div class="bottom-bar-inner">
+            <div class="bottom-summary">
+                <span class="plan-label" id="bar-plan">⚡ Escolha seu plano</span>
+                <span class="price-label" id="bar-price">Toque em um plano acima</span>
+            </div>
+            <button class="btn-send" id="send-btn">📲 Enviar pedido agora →</button>
+        </div>
     </div>
-  </div>
 
-  <div class="section-label">Adicional</div>
-  <div class="addon" id="addon" data-plan="YayuTV Full Liberty" data-price="35,99">
-    <div class="addon-left">
-      <div class="addon-icon">📺</div>
-      <div>
-        <div class="addon-name">YayuTV Full Liberty</div>
-        <div class="addon-desc">+ de 5 mil itens por apenas R$ 35,99 mensais</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:14px;">
-      <div class="addon-price">R$ 35,99</div>
-      <div class="checkbox"></div>
-    </div>
-  </div>
+    <!-- ============================================================
+    SCRIPT
+    ============================================================ -->
+    <script>
+        // ——— CONFIG ———
+        const YAYU_WHATSAPP = "5513988777008";
 
-  <div class="section-label">Seus dados</div>
-  <form id="cadastro" onsubmit="return false;">
-    <div class="field">
-      <label>Nome completo</label>
-      <input type="text" id="nome" placeholder="Ex: Maria da Silva" required>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label>WhatsApp para contato</label>
-        <input type="tel" id="telefone" placeholder="(13) 9XXXX-XXXX" required>
-      </div>
-      <div class="field">
-        <label>CPF (opcional)</label>
-        <input type="text" id="cpf" placeholder="000.000.000-00">
-      </div>
-    </div>
-    <div class="field">
-      <label>Endereço (rua e número)</label>
-      <input type="text" id="rua" placeholder="Ex: Av. Marechal Mallet, 123" required>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label>Bairro</label>
-        <input type="text" id="bairro" placeholder="Ex: Boqueirão" required>
-      </div>
-      <div class="field">
-        <label>Complemento</label>
-        <input type="text" id="complemento" placeholder="Ap, bloco, fundos...">
-      </div>
-    </div>
-    <div class="field">
-      <label>Ponto de referência (ajuda o técnico a chegar)</label>
-      <textarea id="referencia" placeholder="Ex: Perto do mercado São Luiz, portão azul"></textarea>
-    </div>
-    <div class="error" id="error-msg">Selecione um plano e preencha nome, WhatsApp e endereço antes de enviar.</div>
-  </form>
+        // ——— STATE ———
+        let selectedPlan = null;
+        let selectedPrice = null;
+        let addonSelected = false;
 
-  <footer class="credit">Yayu Telecom · Praia Grande — SP</footer>
-</div>
+        // ——— DOM REFS ———
+        const planCards = document.querySelectorAll('.plan-card');
+        const addonEl = document.getElementById('addon');
+        const barPlan = document.getElementById('bar-plan');
+        const barPrice = document.getElementById('bar-price');
+        const errorMsg = document.getElementById('error-msg');
 
-<div class="bar">
-  <div class="bar-inner">
-    <div class="bar-summary">
-      <strong id="bar-plan">Nenhum plano selecionado</strong>
-      <span class="muted" id="bar-price">Escolha um plano acima</span>
-    </div>
-    <button class="send-btn" id="send-btn">Enviar pedido →</button>
-  </div>
-</div>
+        // ——— UPDATE BOTTOM BAR ———
+        function updateBar() {
+            if (!selectedPlan) {
+                barPlan.textContent = '⚡ Escolha seu plano';
+                barPrice.textContent = 'Toque em um plano acima';
+                return;
+            }
 
-<script>
-  // Número de WhatsApp da Yayu
-  const YAYU_WHATSAPP = "5513988777008";
+            let total = parseFloat(selectedPrice.replace(',', '.'));
+            let label = selectedPlan;
 
-  let selectedPlan = null;
-  let selectedPrice = null;
-  let addonSelected = false;
+            if (addonSelected) {
+                total += 35.99;
+                label += ' + YayuTV';
+            }
 
-  const planCards = document.querySelectorAll('.plan-card');
-  const addon = document.getElementById('addon');
-  const barPlan = document.getElementById('bar-plan');
-  const barPrice = document.getElementById('bar-price');
-  const errorMsg = document.getElementById('error-msg');
+            barPlan.textContent = label;
+            barPrice.innerHTML = 'Total: <strong>R$ ' + total.toFixed(2).replace('.', ',') + '</strong> /mês';
+        }
 
-  function updateBar(){
-    if(!selectedPlan){
-      barPlan.textContent = 'Nenhum plano selecionado';
-      barPrice.textContent = 'Escolha um plano acima';
-      return;
-    }
-    let total = parseFloat(selectedPrice.replace(',','.'));
-    let label = selectedPlan;
-    if(addonSelected){
-      total += 35.99;
-      label += ' + YayuTV';
-    }
-    barPlan.textContent = label;
-    barPrice.textContent = 'Total: R$ ' + total.toFixed(2).replace('.',',') + '/mês';
-  }
+        // ——— PLAN SELECTION ———
+        planCards.forEach(card => {
+            card.addEventListener('click', () => {
+                planCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedPlan = card.dataset.plan;
+                selectedPrice = card.dataset.price;
+                errorMsg.classList.remove('show');
+                updateBar();
+            });
+        });
 
-  planCards.forEach(card => {
-    card.addEventListener('click', () => {
-      planCards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      selectedPlan = card.dataset.plan;
-      selectedPrice = card.dataset.price;
-      errorMsg.style.display = 'none';
-      updateBar();
-    });
-  });
+        // ——— ADDON TOGGLE ———
+        addonEl.addEventListener('click', () => {
+            addonSelected = !addonSelected;
+            addonEl.classList.toggle('selected', addonSelected);
+            updateBar();
+        });
 
-  addon.addEventListener('click', () => {
-    addonSelected = !addonSelected;
-    addon.classList.toggle('selected', addonSelected);
-    updateBar();
-  });
+        // ——— SEND ———
+        document.getElementById('send-btn').addEventListener('click', () => {
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const cpf = document.getElementById('cpf').value.trim();
+            const rua = document.getElementById('rua').value.trim();
+            const bairro = document.getElementById('bairro').value.trim();
+            const complemento = document.getElementById('complemento').value.trim();
+            const referencia = document.getElementById('referencia').value.trim();
 
-  document.getElementById('send-btn').addEventListener('click', () => {
-    const nome = document.getElementById('nome').value.trim();
-    const telefone = document.getElementById('telefone').value.trim();
-    const cpf = document.getElementById('cpf').value.trim();
-    const rua = document.getElementById('rua').value.trim();
-    const bairro = document.getElementById('bairro').value.trim();
-    const complemento = document.getElementById('complemento').value.trim();
-    const referencia = document.getElementById('referencia').value.trim();
+            // Validação básica
+            if (!selectedPlan || !nome || !telefone || !rua || !bairro) {
+                errorMsg.classList.add('show');
+                document.getElementById('form-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
 
-    if(!selectedPlan || !nome || !telefone || !rua || !bairro){
-      errorMsg.style.display = 'block';
-      window.scrollTo({top: document.getElementById('cadastro').offsetTop - 20, behavior:'smooth'});
-      return;
-    }
+            // Monta mensagem
+            let planoTexto = selectedPlan + ' (R$ ' + selectedPrice + '/mês)';
+            if (addonSelected) {
+                planoTexto += ' + YayuTV Full Liberty (R$ 35,99/mês)';
+            }
 
-    let planoTexto = selectedPlan + ' (R$ ' + selectedPrice + '/mês)';
-    if(addonSelected){
-      planoTexto += ' + YayuTV Full Liberty (R$ 35,99/mês)';
-    }
+            const linhas = [
+                '📋 *NOVO PEDIDO — YAYU*',
+                '',
+                '🔹 *Plano:* ' + planoTexto,
+                '',
+                '👤 *Nome:* ' + nome,
+                '📱 *WhatsApp:* ' + telefone,
+                cpf ? '🆔 *CPF:* ' + cpf : null,
+                '',
+                '📍 *Endereço:* ' + rua + (complemento ? ', ' + complemento : ''),
+                '🏘️ *Bairro:* ' + bairro,
+                referencia ? '📌 *Referência:* ' + referencia : null,
+                '',
+                '✅ Enviado via site Yayu'
+            ].filter(Boolean);
 
-    const linhas = [
-      '📋 *Novo pedido — Yayu*',
-      '',
-      '*Plano:* ' + planoTexto,
-      '',
-      '*Nome:* ' + nome,
-      '*WhatsApp:* ' + telefone,
-      cpf ? '*CPF:* ' + cpf : null,
-      '',
-      '*Endereço:* ' + rua + (complemento ? ', ' + complemento : ''),
-      '*Bairro:* ' + bairro,
-      referencia ? '*Referência:* ' + referencia : null
-    ].filter(Boolean);
+            const texto = encodeURIComponent(linhas.join('\n'));
+            const url = 'https://wa.me/' + YAYU_WHATSAPP + '?text=' + texto;
+            window.open(url, '_blank');
+        });
 
-    const texto = encodeURIComponent(linhas.join('\n'));
-    const url = 'https://wa.me/' + YAYU_WHATSAPP + '?text=' + texto;
-    window.open(url, '_blank');
-  });
-</script>
+        // ——— AUTO-SELECT FIRST PLAN (opcional) ———
+        // Seleciona o "Mais vendido" por padrão
+        const bestCard = document.querySelector('.plan-card.best-card');
+        if (bestCard) {
+            bestCard.click();
+        } else {
+            // fallback: primeiro card
+            const first = document.querySelector('.plan-card');
+            if (first) first.click();
+        }
+    </script>
+
 </body>
 </html>
