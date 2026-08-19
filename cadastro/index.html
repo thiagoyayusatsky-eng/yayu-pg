@@ -425,13 +425,64 @@
         }
 
         /* ============================================================
-               PLANS
+               TECH TOGGLE (FIBRA / STARLINK)
                ============================================================ */
+        .tech-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--line-soft);
+            border-radius: 16px;
+            padding: 8px;
+            justify-content: center;
+        }
+
+        .tech-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 10px 24px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.02em;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tech-btn.active {
+            background: var(--gradient-main);
+            color: #0B0A1A;
+            box-shadow: 0 4px 20px rgba(180, 76, 255, 0.3);
+        }
+
+        .tech-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        /* ============================================================
+               PLAN CARDS (comuns)
+               ============================================================ */
+        .plans-container {
+            display: block;
+            margin-bottom: 22px;
+        }
+
+        .plans-container.hidden {
+            display: none;
+        }
+
         .plans {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 14px;
-            margin-bottom: 22px;
         }
 
         @media (max-width: 660px) {
@@ -655,6 +706,10 @@
                ============================================================ */
         .addon-wrap {
             margin-bottom: 24px;
+        }
+
+        .addon-wrap.hidden {
+            display: none;
         }
 
         .addon {
@@ -968,9 +1023,12 @@
                 width: 100%;
                 justify-content: flex-end;
             }
+            .tech-btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
         }
 
-        /* small extra */
         .glow-text {
             text-shadow: 0 0 40px rgba(180, 76, 255, 0.15);
         }
@@ -987,6 +1045,37 @@
             font-weight: 700;
             letter-spacing: 0.04em;
             border: 1px solid rgba(0, 229, 255, 0.12);
+        }
+
+        /* ============================================================
+               STARLINK DESCRIPTION
+               ============================================================ */
+        .starlink-desc {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--line-soft);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .starlink-desc strong {
+            color: #fff;
+        }
+
+        .starlink-desc .emoji-big {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .starlink-desc .highlight-cyan {
+            color: var(--neon-cyan);
+            font-weight: 700;
         }
     </style>
 </head>
@@ -1075,80 +1164,158 @@
             </div>
         </div>
 
-        <!-- PLANS -->
-        <div class="section-label">
-            <span>🌐 Escolha seu plano</span>
-            <span class="bar"></span>
+        <!-- ============================================================
+        SELETOR DE TECNOLOGIA (FIBRA / STARLINK)
+        ============================================================ -->
+        <div class="tech-toggle" id="techToggle">
+            <button class="tech-btn active" data-tech="fibra">🌐 Fibra Óptica</button>
+            <button class="tech-btn" data-tech="starlink">🛰️ Starlink</button>
         </div>
 
-        <div class="plans" id="plans">
-            <!-- 100 Mega — Promo -->
-            <div class="plan-card promo-card" data-plan="House Yayu — 100 Mega" data-price="64,99">
-                <div class="tag-promo">Pix tem desconto</div>
-                <div class="plan-house">House Yayu</div>
-                <div class="plan-name">100 Mega</div>
-                <div class="speed-bars">
-                    <span class="on-cyan"></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="plan-price">R$ 64,99 <small>/mês</small></div>
-                <div class="plan-feature"><span class="dot"></span> Ideal para 2–3 pessoas</div>
-            </div>
-
-            <!-- 300 Mega — BESTSELLER -->
-            <div class="plan-card best-card" data-plan="Yayu Conect — 300 Mega" data-price="79,99">
-                <div class="tag-popular">🔥 Mais vendido</div>
-                <div class="plan-house">Yayu Conect</div>
-                <div class="plan-name">300 Mega</div>
-                <div class="speed-bars">
-                    <span class="on"></span>
-                    <span class="on"></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="plan-price">R$ 79,99 <small>/mês</small></div>
-                <div class="plan-feature"><span class="dot"></span> Perfeito para famílias</div>
-            </div>
-
-            <!-- 500 Mega — GAMER -->
-            <div class="plan-card" data-plan="Yayu Gamer — 500 Mega" data-price="99,99">
-                <div class="plan-house">Yayu Gamer</div>
-                <div class="plan-name">500 Mega</div>
-                <div class="speed-bars">
-                    <span class="on"></span>
-                    <span class="on"></span>
-                    <span class="on"></span>
-                    <span class="on"></span>
-                </div>
-                <div class="plan-price">R$ 99,99 <small>/mês</small></div>
-                <div class="plan-feature"><span class="dot"></span> 🎮 Ultra baixa latência</div>
-            </div>
-        </div>
-
-        <!-- ADDON -->
-        <div class="addon-wrap">
+        <!-- ============================================================
+        PLANOS FIBRA
+        ============================================================ -->
+        <div class="plans-container" id="fibraPlans">
             <div class="section-label">
-                <span>📺 Adicione TV</span>
-                <span class="bar bar-cyan"></span>
+                <span>🌐 Escolha seu plano de fibra</span>
+                <span class="bar"></span>
             </div>
-            <div class="addon" id="addon" data-plan="YayuTV Full Liberty" data-price="35,99">
-                <div class="addon-left">
-                    <div class="addon-icon">📺</div>
-                    <div>
-                        <div class="addon-name">YayuTV Full Liberty</div>
-                        <div class="addon-desc">+5.000 conteúdos · Canais, filmes, séries</div>
+
+            <div class="plans">
+                <!-- 100 Mega — Promo -->
+                <div class="plan-card promo-card" data-plan="Fibra 100 Mega" data-price="64,99">
+                    <div class="tag-promo">Pix tem desconto</div>
+                    <div class="plan-house">House Yayu</div>
+                    <div class="plan-name">100 Mega</div>
+                    <div class="speed-bars">
+                        <span class="on-cyan"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="plan-price">R$ 64,99 <small>/mês</small></div>
+                    <div class="plan-feature"><span class="dot"></span> Ideal para 2–3 pessoas</div>
+                </div>
+
+                <!-- 300 Mega — BESTSELLER -->
+                <div class="plan-card best-card" data-plan="Fibra 300 Mega" data-price="79,99">
+                    <div class="tag-popular">🔥 Mais vendido</div>
+                    <div class="plan-house">Yayu Conect</div>
+                    <div class="plan-name">300 Mega</div>
+                    <div class="speed-bars">
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="plan-price">R$ 79,99 <small>/mês</small></div>
+                    <div class="plan-feature"><span class="dot"></span> Perfeito para famílias</div>
+                </div>
+
+                <!-- 500 Mega — GAMER -->
+                <div class="plan-card" data-plan="Fibra 500 Mega" data-price="99,99">
+                    <div class="plan-house">Yayu Gamer</div>
+                    <div class="plan-name">500 Mega</div>
+                    <div class="speed-bars">
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span class="on"></span>
+                    </div>
+                    <div class="plan-price">R$ 99,99 <small>/mês</small></div>
+                    <div class="plan-feature"><span class="dot"></span> 🎮 Ultra baixa latência</div>
+                </div>
+            </div>
+
+            <!-- ADDON TV (só para fibra) -->
+            <div class="addon-wrap" id="addonWrap">
+                <div class="section-label">
+                    <span>📺 Adicione TV</span>
+                    <span class="bar bar-cyan"></span>
+                </div>
+                <div class="addon" id="addon" data-plan="YayuTV Full Liberty" data-price="35,99">
+                    <div class="addon-left">
+                        <div class="addon-icon">📺</div>
+                        <div>
+                            <div class="addon-name">YayuTV Full Liberty</div>
+                            <div class="addon-desc">+5.000 conteúdos · Canais, filmes, séries</div>
+                        </div>
+                    </div>
+                    <div class="addon-right">
+                        <div class="addon-price">R$ 35,99</div>
+                        <div class="addon-check">✓</div>
                     </div>
                 </div>
-                <div class="addon-right">
-                    <div class="addon-price">R$ 35,99</div>
-                    <div class="addon-check">✓</div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        PLANOS STARLINK
+        ============================================================ -->
+        <div class="plans-container hidden" id="starlinkPlans">
+            <div class="section-label">
+                <span>🛰️ Planos Starlink</span>
+                <span class="bar bar-cyan"></span>
+            </div>
+
+            <!-- Descrição do Starlink -->
+            <div class="starlink-desc">
+                <span class="emoji-big">⚡ STARLINK: CONEXÃO QUE VAI ALÉM! 🌎</span>
+                Imagine ter internet de alta performance mesmo em regiões onde a infraestrutura tradicional é limitada. 🛰️<br><br>
+                A Starlink utiliza uma constelação de satélites em órbita baixa da Terra (LEO) para entregar conectividade com baixa latência, estabilidade e ampla cobertura. 🚀<br><br>
+                <strong>🎯 Ideal para:</strong><br>
+                🏡 Residências &nbsp; 💻 Home office &nbsp; 🎮 Jogos online &nbsp; 📺 Streaming &nbsp; 📱 Uso intenso &nbsp; 🌳 Regiões afastadas
+            </div>
+
+            <div class="plans">
+                <!-- 100 Mbps Residencial -->
+                <div class="plan-card" data-plan="Starlink Residencial 100 Mbps" data-price="189,00">
+                    <div class="plan-house">Starlink</div>
+                    <div class="plan-name">Residencial 100 Mbps</div>
+                    <div class="speed-bars">
+                        <span class="on-cyan"></span>
+                        <span class="on-cyan"></span>
+                        <span class="on-cyan"></span>
+                        <span></span>
+                    </div>
+                    <div class="plan-price">R$ 189,00 <small>/mês</small></div>
+                    <div class="plan-feature"><span class="dot"></span> Conectividade estável</div>
+                </div>
+
+                <!-- Residencial Max -->
+                <div class="plan-card best-card" data-plan="Starlink Residencial Max" data-price="249,00">
+                    <div class="tag-popular">🔥 Destaque</div>
+                    <div class="plan-house">Starlink</div>
+                    <div class="plan-name">Residencial Max</div>
+                    <div class="speed-bars">
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span class="on"></span>
+                    </div>
+                    <div class="plan-price">R$ 249,00 <small>/mês</small></div>
+                    <div class="plan-feature"><span class="dot"></span> Máxima performance</div>
+                </div>
+
+                <!-- Residencial Família -->
+                <div class="plan-card" data-plan="Starlink Residencial Família" data-price="423,30">
+                    <div class="plan-house">Starlink</div>
+                    <div class="plan-name">Residencial Família</div>
+                    <div class="speed-bars">
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span class="on"></span>
+                        <span class="on"></span>
+                    </div>
+                    <div class="plan-price">R$ 423,30 <small>/mês</small></div>
+                    <div class="plan-feature"><span class="dot"></span> Para toda a família</div>
                 </div>
             </div>
         </div>
 
-        <!-- FORM -->
+        <!-- ============================================================
+        FORM
+        ============================================================ -->
         <div class="section-label">
             <span>📝 Seus dados</span>
             <span class="bar"></span>
@@ -1225,16 +1392,77 @@
         const YAYU_WHATSAPP = "5513988777008";
 
         // ——— STATE ———
+        let selectedTech = 'fibra'; // 'fibra' ou 'starlink'
         let selectedPlan = null;
         let selectedPrice = null;
         let addonSelected = false;
 
         // ——— DOM REFS ———
+        const techBtns = document.querySelectorAll('.tech-btn');
+        const fibraContainer = document.getElementById('fibraPlans');
+        const starlinkContainer = document.getElementById('starlinkPlans');
+        const addonWrap = document.getElementById('addonWrap');
         const planCards = document.querySelectorAll('.plan-card');
         const addonEl = document.getElementById('addon');
         const barPlan = document.getElementById('bar-plan');
         const barPrice = document.getElementById('bar-price');
         const errorMsg = document.getElementById('error-msg');
+
+        // ——— TOGGLE TECH ———
+        techBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                techBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedTech = btn.dataset.tech;
+
+                // Mostrar/esconder containers
+                if (selectedTech === 'fibra') {
+                    fibraContainer.classList.remove('hidden');
+                    starlinkContainer.classList.add('hidden');
+                    addonWrap.classList.remove('hidden');
+                } else {
+                    fibraContainer.classList.add('hidden');
+                    starlinkContainer.classList.remove('hidden');
+                    addonWrap.classList.add('hidden');
+                    // Desmarcar addon se estiver selecionado
+                    if (addonSelected) {
+                        addonSelected = false;
+                        addonEl.classList.remove('selected');
+                    }
+                }
+
+                // Resetar seleção de plano (para não conflitar)
+                planCards.forEach(c => c.classList.remove('selected'));
+                selectedPlan = null;
+                selectedPrice = null;
+                updateBar();
+                errorMsg.classList.remove('show');
+            });
+        });
+
+        // ——— PLAN SELECTION (funciona para ambos os grupos) ———
+        planCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Apenas cards visíveis devem ser selecionáveis
+                if (card.closest('.plans-container')?.classList.contains('hidden')) return;
+
+                planCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedPlan = card.dataset.plan;
+                selectedPrice = card.dataset.price;
+                errorMsg.classList.remove('show');
+                updateBar();
+            });
+        });
+
+        // ——— ADDON TOGGLE ———
+        addonEl.addEventListener('click', () => {
+            // Só funciona se fibra estiver ativo
+            if (selectedTech !== 'fibra') return;
+            addonSelected = !addonSelected;
+            addonEl.classList.toggle('selected', addonSelected);
+            updateBar();
+        });
 
         // ——— UPDATE BOTTOM BAR ———
         function updateBar() {
@@ -1247,7 +1475,7 @@
             let total = parseFloat(selectedPrice.replace(',', '.'));
             let label = selectedPlan;
 
-            if (addonSelected) {
+            if (selectedTech === 'fibra' && addonSelected) {
                 total += 35.99;
                 label += ' + YayuTV';
             }
@@ -1255,25 +1483,6 @@
             barPlan.textContent = label;
             barPrice.innerHTML = 'Total: <strong>R$ ' + total.toFixed(2).replace('.', ',') + '</strong> /mês';
         }
-
-        // ——— PLAN SELECTION ———
-        planCards.forEach(card => {
-            card.addEventListener('click', () => {
-                planCards.forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedPlan = card.dataset.plan;
-                selectedPrice = card.dataset.price;
-                errorMsg.classList.remove('show');
-                updateBar();
-            });
-        });
-
-        // ——— ADDON TOGGLE ———
-        addonEl.addEventListener('click', () => {
-            addonSelected = !addonSelected;
-            addonEl.classList.toggle('selected', addonSelected);
-            updateBar();
-        });
 
         // ——— SEND ———
         document.getElementById('send-btn').addEventListener('click', () => {
@@ -1285,7 +1494,7 @@
             const complemento = document.getElementById('complemento').value.trim();
             const referencia = document.getElementById('referencia').value.trim();
 
-            // Validação básica
+            // Validação
             if (!selectedPlan || !nome || !telefone || !rua || !bairro) {
                 errorMsg.classList.add('show');
                 document.getElementById('form-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1294,13 +1503,16 @@
 
             // Monta mensagem
             let planoTexto = selectedPlan + ' (R$ ' + selectedPrice + '/mês)';
-            if (addonSelected) {
+            if (selectedTech === 'fibra' && addonSelected) {
                 planoTexto += ' + YayuTV Full Liberty (R$ 35,99/mês)';
             }
+
+            const tecnologia = selectedTech === 'fibra' ? 'Fibra Óptica' : 'Starlink Satélite';
 
             const linhas = [
                 '📋 *NOVO PEDIDO — YAYU*',
                 '',
+                '🔹 *Tecnologia:* ' + tecnologia,
                 '🔹 *Plano:* ' + planoTexto,
                 '',
                 '👤 *Nome:* ' + nome,
@@ -1319,16 +1531,21 @@
             window.open(url, '_blank');
         });
 
-        // ——— AUTO-SELECT FIRST PLAN (opcional) ———
-        // Seleciona o "Mais vendido" por padrão
-        const bestCard = document.querySelector('.plan-card.best-card');
-        if (bestCard) {
-            bestCard.click();
+        // ——— AUTO-SELECT DEFAULT (Fibra + plano mais vendido) ———
+        // Garantir que o estado inicial seja fibra e o melhor plano de fibra selecionado
+        const defaultCard = document.querySelector('#fibraPlans .plan-card.best-card');
+        if (defaultCard) {
+            defaultCard.click();
         } else {
-            // fallback: primeiro card
-            const first = document.querySelector('.plan-card');
-            if (first) first.click();
+            const firstFibra = document.querySelector('#fibraPlans .plan-card');
+            if (firstFibra) firstFibra.click();
         }
+
+        // Forçar tech toggle para fibra (já está ativo por padrão)
+        // Mas garantir que o container de starlink esteja oculto
+        starlinkContainer.classList.add('hidden');
+        fibraContainer.classList.remove('hidden');
+        addonWrap.classList.remove('hidden');
     </script>
 
 </body>
