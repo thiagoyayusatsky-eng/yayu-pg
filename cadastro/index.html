@@ -32,6 +32,7 @@
             --gradient-cyan: linear-gradient(135deg, #00E5FF, #39FF8F);
             --gradient-purple: linear-gradient(135deg, #B44CFF, #FF3D9A);
             --gradient-warm: linear-gradient(135deg, #FF7A2F, #FFE74C);
+            --gradient-starlink: linear-gradient(135deg, #00E5FF, #B44CFF);
 
             --radius: 20px;
             --shadow-glow: 0 0 40px rgba(180, 76, 255, 0.25), 0 0 80px rgba(255, 61, 154, 0.15);
@@ -424,6 +425,10 @@
             background: var(--gradient-cyan);
         }
 
+        .section-label .bar-starlink {
+            background: var(--gradient-starlink);
+        }
+
         /* ============================================================
                TECH TOGGLE (FIBRA / STARLINK)
                ============================================================ */
@@ -597,6 +602,36 @@
             font-size: 11px;
         }
 
+        /* Tag especial Starlink antena */
+        .tag-antena {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--gradient-starlink);
+            color: #0B0A1A;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            padding: 4px 14px 4px 16px;
+            border-radius: 0 0 12px 0;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+            animation: pulseAntena 1.8s ease-in-out infinite;
+        }
+
+        .tag-antena::before {
+            content: '🛰️';
+            font-size: 12px;
+        }
+
+        @keyframes pulseAntena {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+            50% { box-shadow: 0 0 50px rgba(0, 229, 255, 0.6), 0 0 80px rgba(180, 76, 255, 0.3); }
+        }
+
         .plan-card.promo-card {
             border-color: rgba(0, 229, 255, 0.3);
             box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.15), var(--shadow-card);
@@ -669,6 +704,10 @@
 
         .speed-bars span.on-cyan {
             background: var(--gradient-cyan);
+        }
+
+        .speed-bars span.on-starlink {
+            background: var(--gradient-starlink);
         }
 
         .speed-bars span:nth-child(1) {
@@ -1048,34 +1087,143 @@
         }
 
         /* ============================================================
-               STARLINK DESCRIPTION
+               STARLINK DESCRIPTION — NOVA VERSÃO TOP
                ============================================================ */
         .starlink-desc {
-            background: var(--surface);
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(180, 76, 255, 0.06));
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--line-soft);
+            border: 1.5px solid rgba(0, 229, 255, 0.15);
             border-radius: var(--radius);
-            padding: 18px 20px;
-            margin-bottom: 18px;
+            padding: 22px 24px;
+            margin-bottom: 22px;
             color: var(--muted);
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.7;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.05);
         }
 
-        .starlink-desc strong {
-            color: #fff;
+        .starlink-desc::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 229, 255, 0.03), transparent 60%);
+            pointer-events: none;
         }
 
-        .starlink-desc .emoji-big {
-            font-size: 24px;
+        .starlink-desc .big-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            background: var(--gradient-starlink);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             display: block;
             margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .starlink-desc .sub-title {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
         }
 
         .starlink-desc .highlight-cyan {
             color: var(--neon-cyan);
             font-weight: 700;
+        }
+
+        .starlink-desc .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .starlink-desc .tags span {
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.12);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: var(--neon-cyan);
+        }
+
+        /* ============================================================
+               DESTAQUE ANTENA STARLINK (BANNER)
+               ============================================================ */
+        .antena-destaque {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(180, 76, 255, 0.15));
+            border: 2px solid var(--neon-cyan);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 229, 255, 0.15);
+            animation: glowAntena 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowAntena {
+            0% { box-shadow: 0 0 30px rgba(0, 229, 255, 0.1); }
+            100% { box-shadow: 0 0 70px rgba(0, 229, 255, 0.3), 0 0 120px rgba(180, 76, 255, 0.15); }
+        }
+
+        .antena-destaque .antena-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .antena-destaque .antena-texto {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            line-height: 1.1;
+            background: var(--gradient-starlink);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .antena-destaque .antena-preco {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 40px rgba(0, 229, 255, 0.5);
+            display: block;
+            margin: 6px 0;
+        }
+
+        .antena-destaque .antena-desc {
+            color: var(--muted);
+            font-size: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .antena-destaque .antena-badge {
+            display: inline-block;
+            background: var(--neon-orange);
+            color: #0B0A1A;
+            font-weight: 900;
+            font-size: 12px;
+            padding: 4px 18px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 10px;
+            box-shadow: 0 0 30px rgba(255, 122, 47, 0.3);
         }
     </style>
 </head>
@@ -1144,7 +1292,7 @@
             </p>
         </div>
 
-        <!-- TRUST -->
+        <!-- TRUST (sem 24h instalação) -->
         <div class="trust">
             <div class="trust-item">
                 <span class="icon">🏆</span>
@@ -1155,8 +1303,8 @@
                 <span class="num">99%</span> uptime
             </div>
             <div class="trust-item">
-                <span class="icon">⚡</span>
-                <span class="num">24h</span> instalação
+                <span class="icon">🛰️</span>
+                <span class="num">Cobertura</span> nacional
             </div>
             <div class="trust-item">
                 <span class="icon">💎</span>
@@ -1250,21 +1398,41 @@
         </div>
 
         <!-- ============================================================
-        PLANOS STARLINK
+        PLANOS STARLINK — COM DESTAQUE ANTENA
         ============================================================ -->
         <div class="plans-container hidden" id="starlinkPlans">
             <div class="section-label">
                 <span>🛰️ Planos Starlink</span>
-                <span class="bar bar-cyan"></span>
+                <span class="bar bar-starlink"></span>
             </div>
 
-            <!-- Descrição do Starlink -->
+            <!-- Descrição impactante -->
             <div class="starlink-desc">
-                <span class="emoji-big">⚡ STARLINK: CONEXÃO QUE VAI ALÉM! 🌎</span>
-                Imagine ter internet de alta performance mesmo em regiões onde a infraestrutura tradicional é limitada. 🛰️<br><br>
-                A Starlink utiliza uma constelação de satélites em órbita baixa da Terra (LEO) para entregar conectividade com baixa latência, estabilidade e ampla cobertura. 🚀<br><br>
-                <strong>🎯 Ideal para:</strong><br>
-                🏡 Residências &nbsp; 💻 Home office &nbsp; 🎮 Jogos online &nbsp; 📺 Streaming &nbsp; 📱 Uso intenso &nbsp; 🌳 Regiões afastadas
+                <span class="big-title">⚡ STARLINK: CONEXÃO QUE VAI ALÉM!</span>
+                <span class="sub-title">🌎 Internet de alta performance onde a infraestrutura tradicional não chega.</span>
+                <span style="display:block; margin-bottom: 8px;">
+                    🛰️ Satélites em órbita baixa (LEO) garantem <span class="highlight-cyan">baixa latência</span>, 
+                    <span class="highlight-cyan">estabilidade</span> e <span class="highlight-cyan">ampla cobertura</span>.
+                </span>
+                <div class="tags">
+                    <span>🏡 Residências</span>
+                    <span>💻 Home office</span>
+                    <span>🎮 Jogos online</span>
+                    <span>📺 Streaming</span>
+                    <span>📱 Uso intenso</span>
+                    <span>🌳 Regiões afastadas</span>
+                </div>
+            </div>
+
+            <!-- DESTAQUE GIGANTE DA ANTENA POR R$ 99,99 -->
+            <div class="antena-destaque">
+                <span class="antena-icon">🛰️</span>
+                <span class="antena-texto">Kit Antena Starlink</span>
+                <span class="antena-preco">R$ 99,99</span>
+                <span class="antena-desc">
+                    <strong style="color:#fff;">No plano Residencial Max</strong> — você leva o kit completo por apenas <strong style="color:var(--neon-cyan);">R$ 99,99</strong> (parcelável) + mensalidade de <strong style="color:#fff;">R$ 249,00</strong>.
+                </span>
+                <div class="antena-badge">🔥 Oferta exclusiva Yayu</div>
             </div>
 
             <div class="plans">
@@ -1273,18 +1441,18 @@
                     <div class="plan-house">Starlink</div>
                     <div class="plan-name">Residencial 100 Mbps</div>
                     <div class="speed-bars">
-                        <span class="on-cyan"></span>
-                        <span class="on-cyan"></span>
-                        <span class="on-cyan"></span>
+                        <span class="on-starlink"></span>
+                        <span class="on-starlink"></span>
+                        <span class="on-starlink"></span>
                         <span></span>
                     </div>
                     <div class="plan-price">R$ 189,00 <small>/mês</small></div>
                     <div class="plan-feature"><span class="dot"></span> Conectividade estável</div>
                 </div>
 
-                <!-- Residencial Max -->
+                <!-- Residencial Max — com tag antena -->
                 <div class="plan-card best-card" data-plan="Starlink Residencial Max" data-price="249,00">
-                    <div class="tag-popular">🔥 Destaque</div>
+                    <div class="tag-antena">🛰️ Antena por R$ 99,99</div>
                     <div class="plan-house">Starlink</div>
                     <div class="plan-name">Residencial Max</div>
                     <div class="speed-bars">
@@ -1294,7 +1462,7 @@
                         <span class="on"></span>
                     </div>
                     <div class="plan-price">R$ 249,00 <small>/mês</small></div>
-                    <div class="plan-feature"><span class="dot"></span> Máxima performance</div>
+                    <div class="plan-feature"><span class="dot"></span> 🚀 Performance máxima + kit antena</div>
                 </div>
 
                 <!-- Residencial Família -->
@@ -1415,7 +1583,6 @@
                 btn.classList.add('active');
                 selectedTech = btn.dataset.tech;
 
-                // Mostrar/esconder containers
                 if (selectedTech === 'fibra') {
                     fibraContainer.classList.remove('hidden');
                     starlinkContainer.classList.add('hidden');
@@ -1424,14 +1591,12 @@
                     fibraContainer.classList.add('hidden');
                     starlinkContainer.classList.remove('hidden');
                     addonWrap.classList.add('hidden');
-                    // Desmarcar addon se estiver selecionado
                     if (addonSelected) {
                         addonSelected = false;
                         addonEl.classList.remove('selected');
                     }
                 }
 
-                // Resetar seleção de plano (para não conflitar)
                 planCards.forEach(c => c.classList.remove('selected'));
                 selectedPlan = null;
                 selectedPrice = null;
@@ -1440,12 +1605,10 @@
             });
         });
 
-        // ——— PLAN SELECTION (funciona para ambos os grupos) ———
+        // ——— PLAN SELECTION ———
         planCards.forEach(card => {
             card.addEventListener('click', () => {
-                // Apenas cards visíveis devem ser selecionáveis
                 if (card.closest('.plans-container')?.classList.contains('hidden')) return;
-
                 planCards.forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
                 selectedPlan = card.dataset.plan;
@@ -1457,14 +1620,13 @@
 
         // ——— ADDON TOGGLE ———
         addonEl.addEventListener('click', () => {
-            // Só funciona se fibra estiver ativo
             if (selectedTech !== 'fibra') return;
             addonSelected = !addonSelected;
             addonEl.classList.toggle('selected', addonSelected);
             updateBar();
         });
 
-        // ——— UPDATE BOTTOM BAR ———
+        // ——— UPDATE BAR ———
         function updateBar() {
             if (!selectedPlan) {
                 barPlan.textContent = '⚡ Escolha seu plano';
@@ -1494,14 +1656,12 @@
             const complemento = document.getElementById('complemento').value.trim();
             const referencia = document.getElementById('referencia').value.trim();
 
-            // Validação
             if (!selectedPlan || !nome || !telefone || !rua || !bairro) {
                 errorMsg.classList.add('show');
                 document.getElementById('form-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
 
-            // Monta mensagem
             let planoTexto = selectedPlan + ' (R$ ' + selectedPrice + '/mês)';
             if (selectedTech === 'fibra' && addonSelected) {
                 planoTexto += ' + YayuTV Full Liberty (R$ 35,99/mês)';
@@ -1531,18 +1691,15 @@
             window.open(url, '_blank');
         });
 
-        // ——— AUTO-SELECT DEFAULT (Fibra + plano mais vendido) ———
-        // Garantir que o estado inicial seja fibra e o melhor plano de fibra selecionado
+        // ——— AUTO-SELECT DEFAULT (Fibra + melhor plano) ———
         const defaultCard = document.querySelector('#fibraPlans .plan-card.best-card');
         if (defaultCard) {
             defaultCard.click();
         } else {
-            const firstFibra = document.querySelector('#fibraPlans .plan-card');
-            if (firstFibra) firstFibra.click();
+            const first = document.querySelector('#fibraPlans .plan-card');
+            if (first) first.click();
         }
 
-        // Forçar tech toggle para fibra (já está ativo por padrão)
-        // Mas garantir que o container de starlink esteja oculto
         starlinkContainer.classList.add('hidden');
         fibraContainer.classList.remove('hidden');
         addonWrap.classList.remove('hidden');
