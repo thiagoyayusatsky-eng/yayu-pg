@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yayu Fibra Óptica e TV: Conectando você ao que importa.">
-  <title>Yayu | Fibra Óptica e TV · Oferta Exclusiva</title>
+  <meta name="description" content="Yayu Fibra Óptica, TV e Starlink: Conectando você ao que importa.">
+  <title>Yayu | Fibra, TV e Starlink</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MVG068Y0V"></script>
@@ -37,6 +37,7 @@
       --success: #00C853;
       --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
       --gradient-gold: linear-gradient(135deg, #FFD600 0%, #FF6B35 100%);
+      --gradient-starlink: linear-gradient(135deg, #7B2FBE 0%, #00D4FF 100%);
       --glass: rgba(255, 255, 255, 0.05);
       --glass-border: rgba(255, 255, 255, 0.1);
     }
@@ -65,7 +66,7 @@
       width: 100%; height: 100%;
       background-image: url('https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png');
       background-size: cover;
-      background-position: center 25%; /* Corta topo/baixo indesejado */
+      background-position: center 25%;
       opacity: 0.35;
       filter: brightness(1.1) contrast(1.1);
     }
@@ -134,6 +135,14 @@
       transition: color 0.3s;
     }
     .nav-links a:hover { color: var(--secondary); }
+    .nav-links .starlink-link {
+      color: var(--accent);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-links .starlink-link:hover { color: #FFD700; }
     .nav-cta {
       background: var(--gradient-gold);
       color: var(--dark) !important;
@@ -142,7 +151,7 @@
       font-weight: 800;
     }
 
-    /* POPUP TV */
+    /* POPUP TV (mantido) */
     .popup-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -417,7 +426,6 @@
       border: 1px solid var(--glass-border);
       position: relative;
     }
-    /* Gradiente para esconder rodapé da imagem (marca AI) */
     .hero-image::after {
       content: '';
       position: absolute;
@@ -431,7 +439,7 @@
     .hero-image img {
       width: 100%;
       display: block;
-      object-position: center 15%; /* Foca no centro/cima, corta baixo */
+      object-position: center 15%;
       object-fit: cover;
       transform: scale(1.05);
     }
@@ -446,8 +454,6 @@
       z-index: 9998;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-
-    /* Estado Expandido (Card) */
     .register-card {
       background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(5,8,20,0.98) 100%);
       border: 2px solid var(--accent);
@@ -461,8 +467,6 @@
       opacity: 1;
       transform: scale(1);
     }
-
-    /* Estado Minimizado (Ícone Pequeno) */
     .float-register-wrapper.minimized .register-card {
       opacity: 0;
       transform: scale(0.5);
@@ -471,7 +475,6 @@
       bottom: 0;
       left: 0;
     }
-
     .minimized-trigger {
       width: 60px;
       height: 60px;
@@ -490,29 +493,24 @@
       bottom: 0;
       left: 0;
     }
-    
     .minimized-trigger i {
       font-size: 1.8rem;
       color: var(--dark);
     }
-
     .float-register-wrapper.minimized .minimized-trigger {
       opacity: 1;
       transform: scale(1);
       pointer-events: auto;
       animation: float-icon 3s ease-in-out infinite;
     }
-    
     .minimized-trigger:hover {
       transform: scale(1.1) !important;
     }
-
     @keyframes float-icon {
       0%, 100% { transform: translateY(0) scale(1); }
       50% { transform: translateY(-8px) scale(1); }
     }
 
-    /* Conteúdo do Card */
     .register-header {
       display: flex;
       align-items: center;
@@ -546,8 +544,6 @@
       color: var(--gray);
       font-weight: 500;
     }
-    
-    /* Botão Minimizar */
     .btn-minimize {
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -566,7 +562,6 @@
       background: rgba(255, 255, 255, 0.1);
       color: var(--light);
     }
-
     .register-form input,
     .register-form select {
       width: 100%;
@@ -756,7 +751,264 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* PLANOS */
+    /* =========================================
+       NOVA SEÇÃO STARLINK
+       ========================================= */
+    .starlink-section {
+      background: radial-gradient(ellipse at center, #0a0e27 0%, #050814 100%);
+      border-top: 2px solid rgba(123, 47, 190, 0.3);
+      border-bottom: 2px solid rgba(123, 47, 190, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .starlink-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(123,47,190,0.05) 0%, transparent 70%);
+      animation: rotateGlow 30s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .starlink-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .starlink-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient-starlink);
+      color: var(--light);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 30px rgba(123, 47, 190, 0.4);
+    }
+    .starlink-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .starlink-title span {
+      background: var(--gradient-starlink);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .starlink-sub {
+      color: var(--gray);
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+    }
+    .starlink-offer-box {
+      background: var(--glass);
+      border: 2px solid var(--accent);
+      border-radius: 24px;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 40px rgba(255, 214, 0, 0.15);
+    }
+    .starlink-offer-box .offer-price {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .starlink-offer-box .offer-detail {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    .starlink-offer-box .offer-detail strong {
+      color: var(--light);
+    }
+    .starlink-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.5rem;
+      margin: 1.5rem 0;
+      list-style: none;
+    }
+    .starlink-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+    .starlink-features li i {
+      color: var(--secondary);
+      width: 20px;
+    }
+
+    /* Cards de planos Starlink */
+    .starlink-plans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .starlink-plan-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .starlink-plan-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary);
+    }
+    .starlink-plan-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .starlink-plan-card .plan-speed {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    .starlink-plan-card .plan-price {
+      font-size: 1rem;
+      color: var(--gray);
+      margin: 0.5rem 0;
+    }
+    .starlink-plan-card .plan-price strong {
+      color: var(--light);
+      font-size: 1.3rem;
+    }
+    .starlink-plan-card .plan-features-mini {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+    .starlink-plan-card .plan-features-mini li {
+      font-size: 0.85rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0;
+    }
+    .starlink-plan-card .plan-features-mini li i {
+      color: var(--success);
+      font-size: 0.7rem;
+    }
+
+    .starlink-form {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    .starlink-form h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .starlink-form h3 i {
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    .starlink-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .starlink-form input,
+    .starlink-form select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      background: rgba(255,255,255,0.03);
+      color: var(--light);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s;
+      margin-bottom: 1rem;
+    }
+    .starlink-form input:focus,
+    .starlink-form select:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+    }
+    .starlink-form input::placeholder { color: var(--gray); }
+    .starlink-form select option { background: var(--dark); }
+    .starlink-form .btn-starlink {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient-starlink);
+      border: none;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: all 0.3s;
+      box-shadow: 0 8px 30px rgba(123, 47, 190, 0.4);
+    }
+    .starlink-form .btn-starlink:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(123, 47, 190, 0.6);
+    }
+    .starlink-form .btn-client-area {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--glass);
+      border: 2px solid var(--glass-border);
+      border-radius: 12px;
+      font-weight: 700;
+      color: var(--light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: all 0.3s;
+      margin-top: 0.75rem;
+      text-decoration: none;
+    }
+    .starlink-form .btn-client-area:hover {
+      border-color: var(--secondary);
+      background: rgba(255,255,255,0.05);
+    }
+    .starlink-form .terms {
+      font-size: 0.75rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .starlink-form .terms a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    /* PLANOS FIBRA (mantido) */
     .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
     .plan-card {
       background: var(--glass); border: 1px solid var(--glass-border);
@@ -846,11 +1098,13 @@
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .hero-content, .tv-grid, .popup-grid { grid-template-columns: 1fr; }
+      .hero-content, .tv-grid, .popup-grid, .starlink-grid { grid-template-columns: 1fr; }
       .footer-content { grid-template-columns: 1fr 1fr; }
       .carousel-slide img { height: 350px; }
       .float-register-wrapper { bottom: 90px; left: 15px; }
       .register-card { width: 280px; padding: 1.25rem; }
+      .starlink-plans { grid-template-columns: 1fr; }
+      .starlink-form .form-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -862,17 +1116,14 @@
       .float-whatsapp a { padding: 0.9rem 1.5rem; font-size: 0.95rem; }
       .float-whatsapp .phone-number { display: none; }
       .float-whatsapp i { font-size: 1.8rem; }
-      
-      /* Mobile Form Adjustments */
       .float-register-wrapper {
         bottom: 90px;
         left: 15px;
         right: 15px;
         width: auto;
       }
-      .register-card {
-        width: 100%;
-      }
+      .register-card { width: 100%; }
+      .starlink-offer-box { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -885,7 +1136,7 @@
     <canvas id="particles"></canvas>
   </div>
 
-  <!-- Popup TV -->
+  <!-- Popup TV (mantido) -->
   <div class="popup-overlay" id="tvPopup">
     <div class="popup-content">
       <button class="popup-close" onclick="closePopup()">
@@ -947,7 +1198,7 @@
     </div>
   </div>
 
-  <!-- Navigation -->
+  <!-- Navigation (com link Starlink) -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo" onclick="window.scrollTo(0,0)">
@@ -955,8 +1206,9 @@
         <span class="nav-logo-text">YAYU</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#planos">Planos</a></li>
+        <li><a href="#planos">Fibra</a></li>
         <li><a href="#tv">YayuTV</a></li>
+        <li><a href="#starlink" class="starlink-link"><i class="fas fa-satellite"></i> Starlink</a></li>
         <li><a href="#beneficios">Benefícios</a></li>
         <li><a href="https://wa.me/5513988777008" class="nav-cta" target="_blank">
           <i class="fab fa-whatsapp"></i> Contratar
@@ -965,7 +1217,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero (mantido) -->
   <section class="hero">
     <div class="hero-content">
       <div>
@@ -976,7 +1228,7 @@
           Conecte-se ao <span>Futuro</span> com a <span class="gold">Yayu</span>
         </h1>
         <p class="hero-subtitle">
-          Internet fibra óptica ultra-rápida, TV completa e segurança. 
+          Internet fibra óptica ultra-rápida, TV completa e agora Starlink via satélite. 
           Transforme sua casa com quem entende de conexão.
         </p>
         <div class="hero-buttons">
@@ -986,6 +1238,9 @@
           <button class="btn-secondary" onclick="openPopup()">
             <i class="fas fa-tv"></i> Ver TV
           </button>
+          <a href="#starlink" class="btn-secondary" style="border-color: var(--accent);">
+            <i class="fas fa-satellite"></i> Starlink
+          </a>
         </div>
         <div class="hero-stats">
           <div>
@@ -1003,21 +1258,16 @@
         </div>
       </div>
       <div class="hero-image">
-        <!-- Imagem com corte CSS para não mostrar "AI" -->
         <img src="https://i.im.ge/QMT8MlT/Gemini_Generated_Image_j7adcbj7adcbj7ad.png" alt="Yayu Fibra">
       </div>
     </div>
   </section>
 
-  <!-- FLOATING REGISTRATION FORM (MINIMIZÁVEL) -->
+  <!-- FLOATING REGISTER FORM (com opção Starlink) -->
   <div class="float-register-wrapper" id="registerWrapper">
-    
-    <!-- Ícone Minimizado (Aparece quando fechado) -->
     <div class="minimized-trigger" onclick="toggleRegister()" title="Abrir Cadastro Rápido">
       <i class="fas fa-rocket"></i>
     </div>
-
-    <!-- Card do Formulário -->
     <div class="register-card">
       <div class="register-header">
         <div class="header-info">
@@ -1027,7 +1277,6 @@
             <span>Cadastro Rápido</span>
           </div>
         </div>
-        <!-- Botão Minimizar -->
         <button class="btn-minimize" onclick="toggleRegister()" title="Minimizar">
           <i class="fas fa-minus"></i>
         </button>
@@ -1038,11 +1287,13 @@
         <input type="tel" id="regPhone" placeholder="Seu WhatsApp (opcional)" pattern="[0-9\s\-\(\)]+">
         <select id="regPlan" required>
           <option value="" disabled selected>Qual plano te interessa?</option>
-          <option value="100 Mega">📡 100 Mega - R$ 64,99</option>
-          <option value="300 Mega">🚀 300 Mega - R$ 79,99</option>
-          <option value="500 Mega">🎮 500 Mega Gamer - R$ 99,99</option>
+          <option value="100 Mega Fibra">📡 100 Mega Fibra - R$ 64,99</option>
+          <option value="300 Mega Fibra">🚀 300 Mega Fibra - R$ 79,99</option>
+          <option value="500 Mega Fibra">🎮 500 Mega Fibra - R$ 99,99</option>
           <option value="YayuTV">📺 YayuTV - R$ 35,99</option>
-          <option value="Combo">🎁 Combo Fibra + TV</option>
+          <option value="Combo Fibra+TV">🎁 Combo Fibra + TV</option>
+          <option value="Starlink Residencial">🛰️ Starlink Residencial</option>
+          <option value="Starlink Max">🛰️ Starlink Max</option>
           <option value="Outro">💬 Quero mais informações</option>
         </select>
         <button type="submit" class="register-btn">
@@ -1055,7 +1306,125 @@
     </div>
   </div>
 
-  <!-- TV Section -->
+  <!-- ==========================================
+       NOVA SEÇÃO STARLINK
+       ========================================== -->
+  <section class="starlink-section" id="starlink">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" style="color: #B388FF; border-color: #7B2FBE;">
+          <i class="fas fa-satellite"></i> Starlink by Yayu
+        </div>
+        <h2 class="section-title">
+          Internet via Satélite <span style="background: var(--gradient-starlink); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">de Alta Velocidade</span>
+        </h2>
+        <p style="color: var(--gray); max-width: 700px; margin: 0 auto;">
+          Conecte-se em qualquer lugar do Brasil com a tecnologia da SpaceX. 
+          Suporte Yayu em português e instalação facilitada.
+        </p>
+      </div>
+
+      <div class="starlink-grid">
+        <!-- Coluna da esquerda: info e oferta -->
+        <div>
+          <div class="starlink-badge">
+            <i class="fas fa-bolt"></i> OFERTA EXCLUSIVA
+          </div>
+          <h3 class="starlink-title">
+            Kit Starlink por <span>$99,99*</span>
+          </h3>
+          <p class="starlink-sub">
+            Adquira seu kit com desconto imperdível e comece a navegar em alta velocidade 
+            onde a fibra não chega. Instalação simples e suporte Yayu 24/7.
+          </p>
+
+          <div class="starlink-offer-box">
+            <div>
+              <div style="font-size: 0.9rem; color: var(--gray);">Preço promocional do kit</div>
+              <div class="offer-price">$99,99</div>
+              <div style="font-size: 0.75rem; color: var(--gray);">* Em até 12x sem juros</div>
+            </div>
+            <div class="offer-detail">
+              <i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Frete grátis</strong><br>
+              <i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Instalação assistida</strong><br>
+              <i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Suporte em português</strong>
+            </div>
+          </div>
+
+          <ul class="starlink-features">
+            <li><i class="fas fa-check-circle"></i> Baixa latência (20-40ms)</li>
+            <li><i class="fas fa-check-circle"></i> Dados ilimitados</li>
+            <li><i class="fas fa-check-circle"></i> Cobertura nacional</li>
+            <li><i class="fas fa-check-circle"></i> Equipamento moderno</li>
+          </ul>
+
+          <!-- Planos Starlink -->
+          <div class="starlink-plans">
+            <div class="starlink-plan-card">
+              <h4>Residencial</h4>
+              <div class="plan-speed">100 Mbps</div>
+              <div class="plan-price">a partir de <strong>R$ 189</strong>/mês</div>
+              <ul class="plan-features-mini">
+                <li><i class="fas fa-check"></i> Ideal para uso doméstico</li>
+                <li><i class="fas fa-check"></i> Streaming e jogos</li>
+              </ul>
+            </div>
+            <div class="starlink-plan-card" style="border-color: var(--accent);">
+              <h4>Residencial Max</h4>
+              <div class="plan-speed">400+ Mbps</div>
+              <div class="plan-price">a partir de <strong>R$ 249</strong>/mês</div>
+              <ul class="plan-features-mini">
+                <li><i class="fas fa-check"></i> Ultra velocidade</li>
+                <li><i class="fas fa-check"></i> Para famílias e home office</li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="https://wa.me/5513988777008?text=Quero+o+kit+Starlink+por+%2499,99" class="btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem; background: var(--gradient-starlink); box-shadow: 0 8px 30px rgba(123,47,190,0.5);" target="_blank">
+            <i class="fab fa-whatsapp"></i> Garantir meu Kit por $99,99
+          </a>
+        </div>
+
+        <!-- Coluna da direita: Formulário de cadastro -->
+        <div>
+          <div class="starlink-form">
+            <h3><i class="fas fa-user-astronaut"></i> Cadastre-se para Starlink</h3>
+            <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1.5rem;">
+              Preencha seus dados e nossa equipe entrará em contato para finalizar a compra e agendar a instalação.
+            </p>
+            <form id="starlinkForm" onsubmit="sendStarlink(event)">
+              <div class="form-row">
+                <input type="text" id="slName" placeholder="Nome completo *" required>
+                <input type="email" id="slEmail" placeholder="E-mail *" required>
+              </div>
+              <div class="form-row">
+                <input type="tel" id="slPhone" placeholder="WhatsApp *" required>
+                <input type="text" id="slCep" placeholder="CEP *" required pattern="[0-9]{5}-?[0-9]{3}">
+              </div>
+              <select id="slPlan" required>
+                <option value="" disabled selected>Escolha o plano Starlink</option>
+                <option value="Residencial 100 Mbps">Residencial 100 Mbps – R$ 189/mês</option>
+                <option value="Residencial Max 400+ Mbps">Residencial Max – R$ 249/mês</option>
+                <option value="Roaming">Roaming (para viagens)</option>
+              </select>
+              <button type="submit" class="btn-starlink">
+                <i class="fas fa-paper-plane"></i> Quero meu Starlink
+              </button>
+            </form>
+            <a href="#" class="btn-client-area" onclick="alert('Área do cliente Starlink em breve. Enquanto isso, fale com nosso suporte pelo WhatsApp.'); return false;">
+              <i class="fas fa-user-circle"></i> Área do Cliente Starlink
+            </a>
+            <div class="terms">
+              Ao cadastrar, você concorda com nossa <a href="#">Política de Privacidade</a>.
+              Seus dados estão seguros.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TV Section (mantido) -->
   <section class="tv-showcase" id="tv">
     <div class="container">
       <div class="section-header">
@@ -1114,11 +1483,11 @@
     </div>
   </section>
 
-  <!-- Planos -->
+  <!-- Planos Fibra (mantido) -->
   <section id="planos">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag"><i class="fas fa-wifi"></i> Planos de Internet</div>
+        <div class="section-tag"><i class="fas fa-wifi"></i> Planos de Internet Fibra</div>
         <h2 class="section-title">Escolha sua <span>Velocidade</span></h2>
       </div>
       <div class="plans-grid">
@@ -1186,7 +1555,7 @@
     </div>
   </section>
 
-  <!-- Segurança -->
+  <!-- Segurança (mantido) -->
   <section id="seguranca" style="background: var(--glass);">
     <div class="container">
       <div class="section-header">
@@ -1219,7 +1588,7 @@
     </div>
   </section>
 
-  <!-- Benefícios -->
+  <!-- Benefícios (mantido) -->
   <section class="benefits" id="beneficios">
     <div class="container">
       <div class="section-header">
@@ -1251,7 +1620,7 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA (mantido) -->
   <section>
     <div class="container">
       <div class="cta-section">
@@ -1271,13 +1640,13 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (mantido) -->
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
         <img src="https://i.im.ge/QMTg3GX/logoyayu1.png" alt="Yayu">
         <p style="color: var(--gray); line-height: 1.7;">
-          Conectividade que transforma vidas. Internet fibra óptica, TV e segurança.
+          Conectividade que transforma vidas. Internet fibra óptica, TV, segurança e Starlink.
         </p>
         <div class="footer-social">
           <a href="https://www.instagram.com/yayu013pg" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -1287,10 +1656,11 @@
       <div>
         <h4 style="margin-bottom: 1rem;">Planos</h4>
         <ul class="footer-links">
-          <li><a href="#planos">100 Mega</a></li>
-          <li><a href="#planos">300 Mega</a></li>
-          <li><a href="#planos">500 Mega</a></li>
+          <li><a href="#planos">Fibra 100 Mega</a></li>
+          <li><a href="#planos">Fibra 300 Mega</a></li>
+          <li><a href="#planos">Fibra 500 Mega</a></li>
           <li><a href="#tv">YayuTV</a></li>
+          <li><a href="#starlink">Starlink</a></li>
         </ul>
       </div>
       <div>
@@ -1327,7 +1697,7 @@
       wrapper.classList.toggle('minimized');
     }
 
-    // === ENVIO PARA WHATSAPP ===
+    // === ENVIO PARA WHATSAPP (form flutuante) ===
     function sendToWhatsApp(e) {
       e.preventDefault();
       
@@ -1349,9 +1719,38 @@
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/5513988777008?text=${encodedMessage}`, '_blank');
       
-      // Minimiza após enviar para não atrapalhar
       document.getElementById('registerWrapper').classList.add('minimized');
       document.getElementById('quickRegister').reset();
+    }
+
+    // === ENVIO FORMULÁRIO STARLINK ===
+    function sendStarlink(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('slName').value.trim();
+      const email = document.getElementById('slEmail').value.trim();
+      const phone = document.getElementById('slPhone').value.trim();
+      const cep = document.getElementById('slCep').value.trim();
+      const plan = document.getElementById('slPlan').value;
+      
+      if (!name || !email || !phone || !cep || !plan) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
+      
+      const message = `🛰️ *NOVO CADASTRO STARLINK - YAYU*\n\n` +
+                      `👤 *Nome:* ${name}\n` +
+                      `📧 *E-mail:* ${email}\n` +
+                      `📱 *WhatsApp:* ${phone}\n` +
+                      `📍 *CEP:* ${cep}\n` +
+                      `📦 *Plano:* ${plan}\n\n` +
+                      `💬 Quero contratar o Starlink com a Yayu!`;
+      
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/5513988777008?text=${encodedMessage}`, '_blank');
+      
+      document.getElementById('starlinkForm').reset();
+      alert('Cadastro enviado! Em breve nossa equipe entrará em contato.');
     }
 
     // Popup TV
