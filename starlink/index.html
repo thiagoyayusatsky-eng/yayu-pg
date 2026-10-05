@@ -5,244 +5,614 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yayu Starlink | Kit promoção a partir de R$ 99,99</title>
 <meta name="description" content="Revenda Starlink com instalação e suporte de quem entende de internet. Kit Mini, Standard V4 e Flat HP. Fale com a Yayu: (13) 98877-7008.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Figtree:wght@400;500;700;800&display=swap" rel="stylesheet">
+
 <style>
+/* =========================================================
+   YAYU STARLINK — paleta 3 cores + neutros (60/30/10)
+   ========================================================= */
 :root{
-  --night:#08172B; --night2:#0F2440; --ice:#EEF4FB; --white:#fff;
-  --signal:#2F7BFF; --amber:#FFB21F; --slate:#5A6B84; --line:#D6E0EE;
-  --fh:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --space-900:#05081C;
+  --space-800:#0B1130;
+  --space-700:#141B4A;
+
+  --glass:rgba(255,255,255,.07);
+  --glass-2:rgba(255,255,255,.13);
+  --line:rgba(255,255,255,.14);
+
+  --amber:#FFC93C;
+  --amber-2:#FFD966;
+  --amber-ink:#2A1A00;
+
+  --cyan:#46D5FF;
+  --cyan-2:#8FE8FF;
+
+  --coral:#FF3D7F;
+  --coral-2:#FF6B4A;
+
+  --wa:#22C55E;
+
+  --ink:#FFFFFF;
+  --ink-2:#DCE3FF;
+  --ink-3:#98A3CC;
+
+  --fh:"Sora","Bricolage Grotesque",system-ui,sans-serif;
   --fb:"Figtree","Segoe UI",Arial,sans-serif;
-  --wa:#1FB85A;
+
+  --t-h1:clamp(1.35rem,.9rem + 1.6vw,1.9rem);
+  --t-h2:clamp(1.8rem,1.4rem + 2vw,2.6rem);
+  --t-body:clamp(1rem,.97rem + .15vw,1.0625rem);
+  --t-logo3d:clamp(3.6rem,12vw,8rem);
+  --t-price3d:clamp(2.9rem,9vw,5.6rem);
+
+  --radius:22px;
+  --radius-sm:14px;
 }
+
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--fb);color:var(--night);line-height:1.6;font-size:17px;
-  background: var(--night) url("https://i.im.ge/QQOdST8/WhatsApp_Image_2026-09-23_at_14.32.17.jpg") no-repeat center center fixed;
-  background-size: cover;
+  font-family:var(--fb);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:var(--t-body);
+  padding-bottom:110px;
+  background-color:var(--space-900);
+  background-image:url("https://i.im.ge/QQOdST8/WhatsApp_Image_2026-09-23_at_14.32.17.jpg");
+  background-size:cover;
+  background-position:center center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
 }
-/* Overlay escuro global para legibilidade */
 body::before{
-  content:"";position:fixed;inset:0;z-index:0;
-  background: linear-gradient(180deg, rgba(27,11,75,.82) 0%, rgba(27,11,75,.92) 100%);
-  pointer-events:none;
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgba(70,213,255,.18), transparent 60%),
+    radial-gradient(900px 600px at 90% 100%, rgba(255,61,127,.10), transparent 60%),
+    linear-gradient(180deg, rgba(5,8,28,.86) 0%, rgba(5,8,28,.94) 100%);
 }
-/* Garante que todo o conteúdo fique acima do overlay */
-header, .strip, section, footer, .balao{
-  position:relative;z-index:1;
-}
+header, .strip, section, footer, .balao{ position:relative; z-index:1; }
+
 a{color:inherit}
 :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-h1,h2,h3{font-family:var(--fh);line-height:1.08;letter-spacing:-.02em}
-.btn{display:inline-flex;align-items:center;gap:.6em;padding:15px 26px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font:700 1rem var(--fb);transition:transform .15s,background .15s}
+
+h1,h2,h3{
+  font-family:var(--fh);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+h1{font-size:var(--t-h1)}
+h2{font-size:var(--t-h2);font-weight:800}
+h3{font-weight:700}
+
+/* ===== BOTÕES ===== */
+.btn{
+  display:inline-flex; align-items:center; gap:.6em;
+  padding:15px 26px; border-radius:999px;
+  font:700 1rem var(--fb); text-decoration:none;
+  border:0; cursor:pointer;
+  transition:transform .15s, background .15s, box-shadow .15s;
+  will-change:transform;
+}
 .btn:hover{transform:translateY(-2px)}
-.btn-amber{background:var(--amber);color:var(--night)}
-.btn-amber:hover{background:#ffc247}
-.btn-ghost{border:2px solid rgba(255,255,255,.35);color:var(--white)}
-.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-amber{
+  background:var(--amber); color:var(--amber-ink);
+  box-shadow:0 10px 26px rgba(255,201,60,.32);
+}
+.btn-amber:hover{background:var(--amber-2); box-shadow:0 14px 30px rgba(255,201,60,.42)}
+.btn-cyan{
+  background:var(--cyan); color:var(--space-900);
+  box-shadow:0 10px 26px rgba(70,213,255,.28);
+}
+.btn-cyan:hover{background:var(--cyan-2)}
+.btn-ghost{
+  border:2px solid rgba(255,255,255,.35); color:var(--ink);
+  background:transparent;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.6)}
 
-/* link de serviço clicável */
-.svc{color:inherit;text-decoration:none;border-bottom:2px dotted currentColor;font-weight:700;transition:color .15s,border-color .15s}
-.svc:hover{color:var(--coral);border-bottom-color:var(--coral)}
-.kit.hot .svc:hover{color:#FFD23F}
-.result .svc:hover{color:var(--mint)}
+/* ===== LINK DE SERVIÇO ===== */
+.svc{
+  color:inherit; text-decoration:none;
+  border-bottom:2px dotted currentColor;
+  font-weight:700;
+  transition:color .15s, border-color .15s;
+}
+.svc:hover{color:var(--cyan-2); border-bottom-color:var(--cyan-2)}
+.kit.hot .svc:hover{color:var(--amber)}
+.result .svc:hover{color:var(--cyan-2)}
 
-/* topo */
-header{background:rgba(27,11,75,.55);backdrop-filter:blur(6px);color:var(--white)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.logo{font:800 1.7rem var(--fh);text-decoration:none;letter-spacing:-.03em}
-.logo small{font:500 .78rem var(--fb);opacity:.7;margin-left:8px;letter-spacing:0}
-.nav a.tel{font-weight:700;text-decoration:none;opacity:.95}
+/* ===== TOPO / NAV ===== */
+header{
+  background:rgba(5,8,28,.55);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 0;
+}
+.logo{
+  font:800 1.35rem var(--fh); text-decoration:none;
+  letter-spacing:-.03em; color:var(--ink);
+  display:inline-flex; align-items:baseline; gap:8px;
+}
+.logo small{
+  font:500 .78rem var(--fb); opacity:.7;
+  letter-spacing:.02em;
+}
+.nav a.tel{
+  font-weight:700; text-decoration:none;
+  opacity:.95; font-variant-numeric:tabular-nums;
+}
+.nav a.tel:hover{color:var(--cyan-2)}
 
-/* hero */
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;padding:40px 0 84px}
-.hero h1{font-size:clamp(2.3rem,5.4vw,4.2rem);font-weight:800}
-.hero p{margin:22px 0 32px;font-size:1.15rem;max-width:34em;color:#E6DCFF}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
-.orbit{width:100%;max-width:470px;justify-self:center}
-.ring{fill:none;stroke:rgba(255,255,255,.3);stroke-width:1.2;stroke-dasharray:3 7}
-.spin{transform-origin:200px 200px;animation:spin 26s linear infinite}
-.spin.b{animation-duration:38s;animation-direction:reverse}
+/* ===== CARROSSEL — IMAGENS 100% VISÍVEIS (contain) ===== */
+.car{
+  position:relative; width:min(100%,1080px);
+  margin:12px auto 38px;
+  border-radius:28px; overflow:hidden;
+  background:linear-gradient(135deg, var(--space-800) 0%, var(--space-700) 100%);
+  aspect-ratio:16/9;
+  box-shadow:
+    0 0 0 3px var(--amber),
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 55px rgba(70,213,255,.22);
+}
+.car-track{
+  display:flex; height:100%;
+  transition:transform .6s cubic-bezier(.65,0,.35,1);
+}
+.car-slide{
+  flex:0 0 100%; height:100%; position:relative; overflow:hidden;
+}
+
+/* Camada de fundo: a MESMA imagem, desfocada e escurecida, preenchendo as laterais */
+.car-slide::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:var(--bg-img);
+  background-size:cover;
+  background-position:center;
+  filter:blur(28px) brightness(.42) saturate(1.2);
+  transform:scale(1.15);
+  z-index:0;
+}
+
+.car-slide>a{
+  display:block; width:100%; height:100%;
+  position:relative; text-decoration:none;
+  z-index:1;
+}
+.car-slide img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;           /* ← NÃO CORTA MAIS */
+  object-position:center;
+  display:block;
+  transition:transform .7s ease;
+  z-index:1;
+}
+.car-slide:hover img{transform:scale(1.015)}
+
+/* Placeholder caso a imagem falhe */
+.car-slide .ph{
+  position:absolute; inset:0; z-index:0;
+  display:none; place-items:center;
+  font:800 clamp(1.4rem,4vw,2.4rem) var(--fh);
+  color:var(--ink);
+  background:linear-gradient(120deg,var(--coral),var(--space-700));
+}
+
+/* CTA flutuante */
+.car-slide .car-cta{
+  position:absolute; z-index:4; left:28px; bottom:28px;
+  background:var(--wa); color:#fff;
+  padding:12px 20px; border-radius:999px;
+  font:800 .95rem var(--fb);
+  letter-spacing:.04em;
+  box-shadow:0 10px 30px rgba(34,197,94,.5);
+  pointer-events:none;
+}
+
+/* Botões de navegação */
+.car-btn{
+  position:absolute; z-index:5; top:50%; transform:translateY(-50%);
+  width:46px; height:46px; border-radius:50%; border:0;
+  background:rgba(5,8,28,.72); color:#fff;
+  font-size:1.7rem; line-height:1; cursor:pointer;
+  display:grid; place-items:center; padding:0 0 4px;
+  transition:background .15s, transform .15s;
+  backdrop-filter:blur(6px);
+}
+.car-btn:hover{background:var(--cyan); color:var(--space-900)}
+.car-btn.prev{left:12px}
+.car-btn.next{right:12px}
+
+/* Dots */
+.car-dots{
+  position:absolute; z-index:5; left:0; right:0; bottom:12px;
+  display:flex; justify-content:center; gap:8px;
+  flex-wrap:wrap; padding:0 12px;
+}
+.car-dots button{
+  width:11px; height:11px; border-radius:8px; border:0;
+  background:rgba(255,255,255,.55); cursor:pointer; padding:0;
+  transition:width .3s, background .3s;
+  box-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.car-dots button[aria-current="true"]{background:var(--amber); width:30px}
+
+/* ===== HERO ===== */
+.hero{
+  display:grid; grid-template-columns:1.05fr .95fr; gap:30px;
+  align-items:center;
+  padding:40px 0 84px;
+}
+.hero h1{
+  font-weight:800; max-width:24em; margin-bottom:22px;
+  color:var(--ink);
+}
+.hero .cta{display:flex; gap:14px; flex-wrap:wrap}
+
+/* Letras 3D */
+.t3d{
+  position:relative; display:inline-block;
+  font-family:var(--fh); font-weight:800; line-height:1;
+  letter-spacing:-.035em; white-space:nowrap;
+  padding:0 .18em .22em 0;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .18s ease-out;
+}
+.t3d::before{
+  content:attr(data-text);
+  position:absolute; left:0; top:0;
+  z-index:0;
+  padding:inherit;
+  color:var(--shadow-color,#6B3A00);
+  text-shadow:var(--shadow-stack);
+}
+.t3d>span{
+  position:relative; z-index:1;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  background-image:var(--fill);
+}
+.gold{
+  --shadow-color:#5E2400;
+  --shadow-stack:
+    0.03em 0.03em 0 #A35A08,
+    0.06em 0.06em 0 #8A4A05,
+    0.09em 0.09em 0 #6B3A00,
+    0.12em 0.12em 0 #4A2A02,
+    0.16em 0.22em .28em rgba(0,0,0,.6);
+  --fill:linear-gradient(180deg,#FFF6C9 0%,#FFDD6B 32%,#FFC93C 62%,#F5A623 100%);
+}
+.mint{
+  --shadow-color:#0B6B52;
+  --shadow-stack:
+    0.03em 0.03em 0 #0A8B6A,
+    0.06em 0.06em 0 #087A5C,
+    0.09em 0.09em 0 #065440,
+    0.12em 0.12em 0 #03392B,
+    0.16em 0.22em .28em rgba(0,0,0,.6);
+  --fill:linear-gradient(180deg,#E4FFF6 0%,#8FF2D2 35%,#46E5B4 70%,#16B98B 100%);
+}
+.logo3d{font-size:var(--t-logo3d); margin:6px 0 4px}
+.price3d{font-size:var(--t-price3d)}
+
+.promo{margin:6px 0 18px}
+.apartir{font:700 1.05rem var(--fb); color:var(--ink-2); margin-bottom:4px}
+.promo p{margin:10px 0 0; color:var(--ink-2); font-size:1rem}
+
+.tag{
+  display:inline-block;
+  background:var(--amber); color:var(--amber-ink);
+  font:800 .78rem var(--fb);
+  letter-spacing:.08em; text-transform:uppercase;
+  padding:6px 14px; border-radius:999px;
+  margin-bottom:14px;
+}
+
+/* Órbita */
+.orbit{width:100%; max-width:470px; justify-self:center}
+.ring{fill:none; stroke:rgba(255,255,255,.22); stroke-width:1.2; stroke-dasharray:3 7}
+.spin{transform-origin:200px 200px; animation:spin 26s linear infinite}
+.spin.b{animation-duration:38s; animation-direction:reverse}
 .spin.c{animation-duration:54s}
 @keyframes spin{to{transform:rotate(360deg)}}
 .sat{fill:var(--amber)}
-.pulse{transform-origin:200px 200px;animation:pulse 3s ease-out infinite}
-@keyframes pulse{from{opacity:.55;transform:scale(.6)}to{opacity:0;transform:scale(1.5)}}
+.pulse{transform-origin:200px 200px; animation:pulse 3s ease-out infinite}
+@keyframes pulse{
+  from{opacity:.55; transform:scale(.6)}
+  to{opacity:0; transform:scale(1.5)}
+}
 
-/* faixa de prova */
-.strip{background:var(--amber);color:var(--night)}
-.strip ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.strip li{padding:22px 18px;border-left:1px solid rgba(27,11,75,.18);font-size:.95rem;color:#4A3A00}
+/* ===== FAIXA ===== */
+.strip{background:var(--amber); color:var(--amber-ink); border:0}
+.strip ul{
+  list-style:none; padding:0;
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.strip li{
+  padding:22px 18px;
+  border-left:1px solid rgba(42,26,0,.18);
+  font-size:.95rem; color:#4A3A00;
+}
 .strip li:first-child{border-left:0}
-.strip b{display:block;color:var(--night);font:700 1.05rem var(--fh);margin-bottom:2px}
-.strip a{color:#4A3A00;text-decoration:none;display:block}
-.strip a:hover{color:#1B0B4B}
+.strip b{
+  display:block; color:var(--amber-ink);
+  font:800 1.05rem var(--fh); margin-bottom:2px;
+}
+.strip a{color:#4A3A00; text-decoration:none; display:block; transition:color .15s}
+.strip a:hover{color:#000}
 
+/* ===== SEÇÕES ===== */
 section{padding:84px 0}
-.head{max-width:640px;margin-bottom:44px}
-.head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-bottom:12px;color:#fff}
-.head p{color:#D9CCFF}
+.head{max-width:640px; margin-bottom:44px}
+.head h2{margin-bottom:12px; color:var(--ink)}
+.head p{color:var(--ink-2)}
 
-/* diferenciais */
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:34px 40px}
-.grid4 h3{font-size:1.25rem;margin:10px 0 6px;color:#fff}
-.grid4 p{color:#D9CCFF;font-size:.98rem}
-.ico{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.15);display:grid;place-items:center;backdrop-filter:blur(4px)}
-.ico svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.grid4 a.svc{border-bottom-color:#D9CCFF}
-.grid4 a.svc:hover{color:var(--mint);border-bottom-color:var(--mint)}
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:34px 40px;
+}
+.grid4 h3{font-size:1.25rem; margin:10px 0 6px; color:var(--ink)}
+.grid4 p{color:var(--ink-2); font-size:.98rem}
+.ico{
+  width:46px; height:46px; border-radius:14px;
+  background:var(--glass-2);
+  display:grid; place-items:center;
+  border:1px solid var(--line);
+  backdrop-filter:blur(4px);
+}
+.ico svg{
+  width:24px; height:24px;
+  stroke:var(--cyan); fill:none;
+  stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+}
+.grid4 a.svc{border-bottom-color:var(--cyan)}
+.grid4 a.svc:hover{color:var(--cyan-2); border-bottom-color:var(--cyan-2)}
 
-/* equipamentos */
-.eq{background:rgba(255,255,255,.07);backdrop-filter:blur(8px)}
-.kits{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:22px;align-items:stretch}
-.kit{background:rgba(255,255,255,.12);border-radius:22px;padding:30px;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);color:#fff}
-.kit.hot{background:linear-gradient(150deg,rgba(255,77,141,.85) 0%,rgba(255,122,69,.85) 100%);color:#fff;border:0;position:relative;box-shadow:0 18px 44px rgba(255,77,141,.4)}
-.tag{align-self:flex-start;background:var(--amber);color:var(--night);font-weight:700;font-size:.82rem;padding:5px 12px;border-radius:999px;margin-bottom:14px}
-.kit h3{font-size:1.6rem;color:#fff}
-.kit h3 a{color:inherit;text-decoration:none}
-.kit .for{color:#D9CCFF;margin:6px 0 16px}
-.kit.hot .for{color:rgba(255,255,255,.92)}
-.kit ul{padding-left:1.1em;margin-bottom:22px;font-size:.96rem}
-.kit li{margin:4px 0}
+/* ===== EQUIPAMENTOS ===== */
+.eq{
+  background:rgba(255,255,255,.035);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.kits{
+  display:grid;
+  grid-template-columns:1.25fr 1fr 1fr;
+  gap:22px; align-items:stretch;
+}
+.kit{
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px;
+  display:flex; flex-direction:column;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:var(--ink);
+  transition:border-color .2s, transform .2s;
+}
+.kit:hover{border-color:rgba(70,213,255,.4)}
+.kit.hot{
+  background:linear-gradient(150deg,var(--coral) 0%,var(--coral-2) 100%);
+  border:0;
+  position:relative;
+  box-shadow:0 18px 44px rgba(255,61,127,.35);
+}
+.kit.hot .tag{background:#fff; color:var(--coral)}
+.kit h3{font-size:1.6rem; margin-bottom:4px}
+.kit h3 a{color:inherit; text-decoration:none}
+.kit .for{color:var(--ink-2); margin:6px 0 16px; font-size:.98rem}
+.kit.hot .for{color:rgba(255,255,255,.94)}
+.kit ul{padding-left:1.15em; margin-bottom:22px; font-size:.96rem; color:var(--ink-2)}
+.kit.hot ul{color:rgba(255,255,255,.95)}
+.kit li{margin:5px 0}
+.kit:not(.hot) a.svc{border-bottom-color:var(--cyan); color:var(--ink)}
+.kit.hot a.svc{border-bottom-color:rgba(255,255,255,.6); color:#fff}
+.kit.hot a.svc:hover{color:var(--amber); border-bottom-color:var(--amber)}
+
 .price{margin-top:auto}
-.price s{opacity:.6;font-size:.95rem}
-.price strong{display:block;font:800 2.6rem var(--fh);letter-spacing:-.03em;color:var(--amber)}
-.kit .btn{margin-top:14px;justify-content:center}
-.kit:not(.hot) .btn{background:var(--signal);color:var(--white)}
-.kit:not(.hot) .price span{font-weight:700}
+.price s{
+  display:block; text-decoration:none;
+  opacity:.7; font-size:.9rem;
+  font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+.kit.hot .price s{color:rgba(255,255,255,.85)}
+.price strong{
+  display:block;
+  font:800 2.6rem var(--fh);
+  letter-spacing:-.03em;
+  color:var(--amber);
+  font-variant-numeric:tabular-nums;
+  line-height:1.05;
+  margin-top:2px;
+}
+.kit.hot .price strong{color:#fff}
+.price span{font-weight:700; color:var(--ink-2)}
+.kit .btn{margin-top:16px; justify-content:center; width:100%}
+.kit:not(.hot) .btn{background:var(--cyan); color:var(--space-900)}
+.kit:not(.hot) .btn:hover{background:var(--cyan-2)}
 
-/* surpresa: simulador */
-.pick{background:rgba(27,11,75,.65);backdrop-filter:blur(8px);color:var(--white)}
-.pick .head p{color:#D9CCFF}
-.opts{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
-.opt{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.28);padding:13px 22px;border-radius:999px;font:700 1rem var(--fb);cursor:pointer;transition:.15s}
+/* ===== SIMULADOR ===== */
+.pick{
+  background:rgba(11,17,48,.65);
+  backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);
+}
+.opts{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:26px}
+.opt{
+  background:transparent; color:var(--ink);
+  border:2px solid rgba(255,255,255,.28);
+  padding:13px 22px; border-radius:999px;
+  font:700 1rem var(--fb); cursor:pointer;
+  transition:border-color .15s, background .15s, color .15s, box-shadow .15s;
+}
 .opt:hover{border-color:var(--amber)}
-.opt[aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:var(--night);box-shadow:0 0 0 4px rgba(255,210,63,.3)}
-.result{background:rgba(255,255,255,.1);backdrop-filter:blur(6px);border-radius:22px;padding:30px;max-width:720px;min-height:170px}
-.result h3{font-size:1.6rem;margin-bottom:8px;color:var(--mint)}
-.result p{color:#EEE7FF;margin-bottom:20px}
+.opt[aria-pressed="true"]{
+  background:var(--amber); border-color:var(--amber);
+  color:var(--amber-ink);
+  box-shadow:0 0 0 4px rgba(255,201,60,.25);
+}
+.result{
+  background:var(--glass);
+  border:1px solid var(--line);
+  backdrop-filter:blur(6px);
+  border-radius:var(--radius);
+  padding:30px; max-width:720px; min-height:170px;
+}
+.result h3{font-size:1.6rem; margin-bottom:8px; color:var(--cyan)}
+.result p{color:var(--ink-2); margin-bottom:20px}
 
-/* passos */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s}
-.step{padding:0 30px 0 0;position:relative}
-.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--signal);color:var(--white);font:800 1.2rem var(--fh);margin-bottom:16px}
-.step:not(:last-child)::after{content:"";position:absolute;top:22px;left:56px;right:12px;border-top:2px dashed rgba(255,255,255,.25)}
-.step h3{font-size:1.25rem;margin-bottom:6px;color:#fff}
-.step p{color:#D9CCFF;font-size:.98rem}
+/* ===== PASSOS ===== */
+.steps{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:0; counter-reset:s;
+}
+.step{padding:0 30px 0 0; position:relative}
+.step::before{
+  counter-increment:s;
+  content:counter(s);
+  display:grid; place-items:center;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--cyan); color:var(--space-900);
+  font:800 1.2rem var(--fh);
+  margin-bottom:16px;
+}
+.step:nth-child(2)::before{background:var(--amber); color:var(--amber-ink)}
+.step:nth-child(3)::before{background:var(--coral); color:#fff}
+.step:not(:last-child)::after{
+  content:""; position:absolute; top:22px; left:56px; right:12px;
+  border-top:2px dashed rgba(255,255,255,.2);
+}
+.step h3{font-size:1.25rem; margin-bottom:6px; color:var(--ink)}
+.step p{color:var(--ink-2); font-size:.98rem}
 
-/* cta final */
-.final{background:radial-gradient(circle at 15% 20%,rgba(255,210,63,.35),transparent 40%),linear-gradient(120deg,rgba(255,77,141,.9),rgba(108,59,255,.9));color:var(--white);text-align:center}
-.final h2{font-size:clamp(1.9rem,4vw,3rem);max-width:16em;margin:0 auto 14px}
-.final p{max-width:32em;margin:0 auto 28px;opacity:.92}
-footer{background:rgba(27,11,75,.7);backdrop-filter:blur(6px);color:#BBAEE8;padding:34px 0;font-size:.92rem}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
-footer a{color:var(--white);text-decoration:none;font-weight:700}
-footer strong{color:#fff;font-family:var(--fh);font-size:1.1rem;letter-spacing:-.01em}
+/* ===== CTA FINAL ===== */
+.final{
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,201,60,.28), transparent 45%),
+    linear-gradient(120deg, var(--coral) 0%, var(--space-700) 100%);
+  color:#fff; text-align:center;
+  border-top:1px solid var(--line);
+}
+.final h2{
+  font-size:clamp(1.9rem,4vw,3rem);
+  max-width:16em; margin:0 auto 14px;
+  color:#fff;
+}
+.final p{max-width:32em; margin:0 auto 28px; opacity:.94; color:#fff}
+.final a.svc{color:#fff; border-bottom-color:rgba(255,255,255,.6)}
+.final a.svc:hover{color:var(--amber); border-bottom-color:var(--amber)}
 
-/* balão do WhatsApp */
-.balao{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:16px;background:var(--wa);color:var(--white);text-decoration:none;font-weight:700;padding:18px 30px 18px 22px;border-radius:999px;box-shadow:0 14px 40px rgba(31,184,90,.55),0 6px 20px rgba(8,23,43,.4)}
-.balao svg{width:46px;height:46px;fill:var(--white);flex:none}
-.balao::before{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--wa);animation:ping 2.4s ease-out infinite}
-@keyframes ping{from{transform:scale(1);opacity:.7}to{transform:scale(1.35);opacity:0}}
-.balao span{display:flex;flex-direction:column;line-height:1.15}
-.balao small{font:700 .85rem var(--fb);opacity:.95}
-.balao b{font:800 1.6rem var(--fh);letter-spacing:-.01em}
+/* ===== FOOTER ===== */
+footer{
+  background:rgba(5,8,28,.75);
+  backdrop-filter:blur(6px);
+  border-top:1px solid var(--line);
+  color:var(--ink-3);
+  padding:34px 0; font-size:.92rem;
+}
+footer .wrap{
+  display:flex; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; align-items:center;
+}
+footer a{color:var(--ink); text-decoration:none; font-weight:700}
+footer a:hover{color:var(--cyan-2)}
+footer strong{
+  color:#fff; font-family:var(--fh); font-size:1.1rem;
+  letter-spacing:-.01em;
+}
 
+/* ===== BALÃO WHATSAPP ===== */
+.balao{
+  position:fixed;
+  right:18px;
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  z-index:50;
+  display:flex; align-items:center; gap:16px;
+  background:var(--wa); color:#fff;
+  text-decoration:none; font-weight:700;
+  padding:16px 28px 16px 20px;
+  border-radius:999px;
+  box-shadow:
+    0 14px 40px rgba(34,197,94,.5),
+    0 6px 20px rgba(5,8,28,.5);
+  transition:transform .15s;
+}
+.balao:hover{transform:translateY(-2px)}
+.balao svg{width:42px; height:42px; fill:#fff; flex:none}
+.balao::before{
+  content:""; position:absolute; inset:0;
+  border-radius:inherit;
+  border:2px solid var(--wa);
+  animation:ping 2.4s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes ping{
+  from{transform:scale(1); opacity:.7}
+  to{transform:scale(1.35); opacity:0}
+}
+.balao span{display:flex; flex-direction:column; line-height:1.15}
+.balao small{font:700 .82rem var(--fb); opacity:.95; letter-spacing:.02em}
+.balao b{
+  font:800 1.55rem var(--fh);
+  letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;
+}
+
+.conf{
+  position:fixed; width:10px; height:10px;
+  border-radius:3px; pointer-events:none; z-index:99;
+}
+
+/* ===== RESPONSIVO ===== */
 @media(max-width:860px){
-  .hero{grid-template-columns:1fr;padding-bottom:56px}
-  .orbit{max-width:340px;order:-1}
+  .hero{grid-template-columns:1fr; padding-bottom:56px}
+  .orbit{max-width:340px; order:-1; margin:0 auto}
   .strip ul{grid-template-columns:1fr 1fr}
   .strip li:nth-child(3){border-left:0}
+  .strip li:nth-child(odd){border-left:0}
   .kits{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr;gap:28px}
+  .steps{grid-template-columns:1fr; gap:28px}
   .step:not(:last-child)::after{display:none}
   section{padding:60px 0}
-  .balao{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));justify-content:center;padding:16px}
-  .balao span{display:flex}
-  .balao b{font-size:1.5rem}
+  .balao{
+    left:12px; right:12px;
+    bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    justify-content:center; padding:15px 16px;
+  }
+  .balao b{font-size:1.4rem}
+  .car{aspect-ratio:4/3; border-radius:20px}
+  .car-btn{width:40px; height:40px}
+  .car-slide .car-cta{left:16px; bottom:16px; padding:10px 15px; font-size:.8rem}
+  .car-dots{bottom:8px; gap:6px}
+  .car-dots button{width:9px; height:9px}
+  .car-dots button[aria-current="true"]{width:22px}
 }
+
 @media(prefers-reduced-motion:reduce){
   .spin,.pulse,.balao::before{animation:none}
   html{scroll-behavior:auto}
-  .t3d{transition:none}
-  .car-track,.car-dots button{transition:none}
+  .t3d,.car-track,.car-dots button,.btn,.car-slide img{transition:none}
 }
-
-/* ===== PALETA DOPAMINA ===== */
-:root{--night:#1B0B4B;--night2:#2C1478;--ice:#F3EEFF;--signal:#6C3BFF;--amber:#FFD23F;--coral:#FF4D8D;--mint:#19E3B1;--cyan:#22C8FF;--slate:#5B5580;--line:#DDD2FF}
-.btn-amber{box-shadow:0 8px 24px rgba(255,210,63,.35)}
-.btn-amber:hover{background:#ffe066}
-.strip{background:var(--amber);color:var(--night)}
-.strip li{color:#4A3A00;border-left-color:rgba(27,11,75,.18)}
-.strip b{color:var(--night)}
-.strip a{color:#4A3A00}
-.strip a:hover{color:#1B0B4B}
-.ico svg{stroke:#fff}
-.grid4>div:nth-child(1) .ico{background:rgba(255,208,226,.25)}
-.grid4>div:nth-child(2) .ico{background:rgba(255,240,168,.25)}
-.grid4>div:nth-child(3) .ico{background:rgba(182,245,227,.25)}
-.grid4>div:nth-child(4) .ico{background:rgba(217,204,255,.25)}
-.eq{background:rgba(255,255,255,.07)}
-.kit{border:0;box-shadow:0 12px 34px rgba(60,28,176,.1)}
-.kit.hot{background:linear-gradient(150deg,#FF4D8D 0%,#FF7A45 100%);color:#fff;box-shadow:0 18px 44px rgba(255,77,141,.4)}
-.kit.hot .for{color:rgba(255,255,255,.92)}
-.kit.hot .price strong{color:#fff}
-.kit.hot .price s{color:#fff}
-.kit:nth-child(2){border-top:8px solid var(--cyan)}
-.kit:nth-child(3){border-top:8px solid var(--signal)}
-.kit:not(.hot) .btn{background:var(--signal);color:#fff}
-.pick{background:rgba(27,11,75,.65)}
-.result{background:rgba(255,255,255,.1)}
-.result h3{color:var(--mint)}
-.result p{color:#EEE7FF}
-.opt[aria-pressed="true"]{box-shadow:0 0 0 4px rgba(255,210,63,.3)}
-.step:nth-child(1)::before{background:var(--coral)}
-.step:nth-child(2)::before{background:var(--signal)}
-.step:nth-child(3)::before{background:var(--mint);color:var(--night)}
-.step:not(:last-child)::after{border-top-color:rgba(255,255,255,.25)}
-.final{background:radial-gradient(circle at 15% 20%,rgba(255,210,63,.4),transparent 40%),linear-gradient(120deg,#FF4D8D,#6C3BFF)}
-footer{background:rgba(27,11,75,.7);color:#BBAEE8}
-.conf{position:fixed;width:10px;height:10px;border-radius:3px;pointer-events:none;z-index:99}
-
-/* ===== LETRAS 3D ===== */
-.t3d{position:relative;display:inline-block;font-family:var(--fh);font-weight:800;line-height:1;letter-spacing:-.03em;white-space:nowrap;padding:0 .16em .2em 0;transform-style:preserve-3d;will-change:transform;transition:transform .12s ease-out}
-.t3d::before{content:attr(data-text);position:absolute;left:0;top:0;z-index:0;padding:inherit;color:#5E2400}
-.t3d>span{position:relative;z-index:1;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.01em rgba(255,255,255,.6)}
-.gold::before{text-shadow:0.0062em 0.0062em 0 #e9851c,0.0124em 0.0124em 0 #e1801b,0.0186em 0.0186em 0 #da7b1a,0.0248em 0.0248em 0 #d37618,0.0310em 0.0310em 0 #cc7016,0.0372em 0.0372em 0 #c46b15,0.0434em 0.0434em 0 #bd6614,0.0496em 0.0496em 0 #b66112,0.0558em 0.0558em 0 #ae5c10,0.0620em 0.0620em 0 #a7570f,0.0682em 0.0682em 0 #a0520e,0.0744em 0.0744em 0 #984d0c,0.0806em 0.0806em 0 #91480a,0.0868em 0.0868em 0 #8a4309,0.0930em 0.0930em 0 #823e08,0.0992em 0.0992em 0 #7b3806,0.1054em 0.1054em 0 #743304,0.1116em 0.1116em 0 #6d2e03,0.1178em 0.1178em 0 #652902,0.1240em 0.1240em 0 #5e2400,0.174em 0.223em .25em rgba(8,0,40,.55)}
-.gold>span{background-image:linear-gradient(180deg,#FFFBE0 0%,#FFE680 22%,#FFC83A 48%,#FF9A2E 78%,#E8731A 100%)}
-.mint::before{color:#03352A;text-shadow:0.0062em 0.0062em 0 #11a07b,0.0124em 0.0124em 0 #109b76,0.0186em 0.0186em 0 #109572,0.0248em 0.0248em 0 #0f8f6e,0.0310em 0.0310em 0 #0e8a6a,0.0372em 0.0372em 0 #0e8466,0.0434em 0.0434em 0 #0d7e61,0.0496em 0.0496em 0 #0c795d,0.0558em 0.0558em 0 #0b7359,0.0620em 0.0620em 0 #0a6e54,0.0682em 0.0682em 0 #0a6850,0.0744em 0.0744em 0 #09624c,0.0806em 0.0806em 0 #085d48,0.0868em 0.0868em 0 #085744,0.0930em 0.0930em 0 #07513f,0.0992em 0.0992em 0 #064c3b,0.1054em 0.1054em 0 #054637,0.1116em 0.1116em 0 #044032,0.1178em 0.1178em 0 #043b2e,0.1240em 0.1240em 0 #03352a,0.174em 0.223em .25em rgba(8,0,40,.55)}
-.mint>span{background-image:linear-gradient(180deg,#FFFFFF 0%,#D8FFF2 25%,#5CF0C6 55%,#19E3B1 80%,#0FB58C 100%)}
-.logo3d{font-size:clamp(4.2rem,12.5vw,8.6rem);margin:6px 0 4px}
-.promo{margin:6px 0 18px}
-.promo .tag{margin-bottom:6px}
-.apartir{font:700 1.15rem var(--fb);color:#EEE7FF}
-.price3d{font-size:clamp(3.4rem,10vw,6.2rem)}
-.promo p{margin:10px 0 0;color:#EEE7FF;font-size:1rem}
-.hero h1{font-size:clamp(1.35rem,2.6vw,1.9rem);font-weight:800;max-width:24em;margin-bottom:22px;color:#fff}
-.price s{text-decoration:none}
-.logo{font-size:1.3rem}
-body{padding-bottom:110px}
-
-/* ===== CARROSSEL DO TOPO ===== */
-.car{position:relative;width:min(100%,1080px);margin:12px auto 38px;border-radius:28px;overflow:hidden;background:var(--night2);aspect-ratio:16/7;box-shadow:0 0 0 3px var(--amber),0 30px 80px rgba(0,0,0,.55),0 0 55px rgba(108,59,255,.28)}
-.car-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.65,0,.35,1)}
-.car-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden}
-.car-slide>a{display:block;width:100%;height:100%;position:relative;text-decoration:none}
-.car-slide>a::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 50%,rgba(10,3,35,.48) 100%);pointer-events:none}
-.car-slide .car-cta{position:absolute;z-index:4;left:28px;bottom:28px;background:var(--wa);color:#fff;padding:12px 20px;border-radius:999px;font:800 .95rem var(--fb);box-shadow:0 10px 30px rgba(31,184,90,.38);pointer-events:none}
-.car-slide:hover img{transform:scale(1.025)}
-.car-slide img{width:100%;height:100%;object-fit:cover;display:block;image-rendering:auto;transition:transform .7s ease;filter:saturate(1.05) contrast(1.03);position:relative;z-index:1;background:linear-gradient(120deg,#FF4D8D,#6C3BFF)}
-.car-slide .ph{position:absolute;inset:0;z-index:0;display:grid;place-items:center;font:800 clamp(1.4rem,4vw,2.4rem) var(--fh);color:#fff;background:linear-gradient(120deg,#FF4D8D,#6C3BFF)}
-.car-btn{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(27,11,75,.7);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0 0 4px}
-.car-btn:hover{background:var(--coral)}
-.car-btn.prev{left:12px}.car-btn.next{right:12px}
-.car-dots{position:absolute;z-index:3;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px}
-.car-dots button{width:11px;height:11px;border-radius:8px;border:0;background:rgba(255,255,255,.6);cursor:pointer;padding:0;transition:width .3s,background .3s}
-.car-dots button[aria-current="true"]{background:var(--amber);width:30px}
-@media(max-width:860px){.car{margin-bottom:24px;border-radius:20px;aspect-ratio:16/9}.car-btn{width:40px;height:40px}.car-slide .car-cta{left:16px;bottom:18px;padding:10px 15px;font-size:.82rem}}
 </style>
 </head>
 <body>
@@ -250,74 +620,123 @@ body{padding-bottom:110px}
 <header>
   <div class="wrap">
     <div class="nav">
-      <a class="logo" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yayu%20Starlink" target="_blank" rel="noopener">YAYU<small>Revenda Starlink</small></a>
+      <a class="logo" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yayu%20Starlink" target="_blank" rel="noopener">
+        YAYU<small>Revenda Starlink</small>
+      </a>
       <a class="tel" href="tel:+5513988777008">(13) 98877-7008</a>
     </div>
+
+    <!-- CARROSSEL — 8 SLIDES (imagens inteiras, sem corte) -->
     <div class="car" role="region" aria-roledescription="carrossel" aria-label="Destaques Yayu Starlink">
       <div class="car-track">
-        <div class="car-slide">
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6isy/2026-10-05_12-03.png')">
           <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20instala%C3%A7%C3%A3o%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20valores%20e%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6isy/2026-10-05_12-03.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 1" fetchpriority="high" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <img src="https://i.im.ge/QQd6isy/2026-10-05_12-03.png" alt="Starlink Yayu - destaque 1" fetchpriority="high" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
-        <div class="car-slide">
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd60yS/2026-10-05_12-02.png')">
           <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20Starlink%20instalada%20pela%20Yayu%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd60yS/2026-10-05_12-02.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 2" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <img src="https://i.im.ge/QQd60yS/2026-10-05_12-02.png" alt="Starlink Yayu - destaque 2" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
-        <div class="car-slide">
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd65zz/2026-10-05_12-01.png')">
           <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20kit%20Starlink%20no%20site%20da%20Yayu%20e%20tenho%20interesse%20no%20produto." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd65zz/2026-10-05_12-01.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 3" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <img src="https://i.im.ge/QQd65zz/2026-10-05_12-01.png" alt="Starlink Yayu - destaque 3" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
-        <div class="car-slide">
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6jO6/2026-10-05_12-00.png')">
           <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Starlink%20com%20a%20Yayu.%20Quero%20saber%20kit%2C%20valores%20e%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6jO6/2026-10-05_12-00.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 4" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <img src="https://i.im.ge/QQd6jO6/2026-10-05_12-00.png" alt="Starlink Yayu - destaque 4" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6cZq/55949b10-f4aa-47b3-a5ff-bb59a43cf922.jpg')">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd6cZq/55949b10-f4aa-47b3-a5ff-bb59a43cf922.jpg" alt="Starlink Yayu - destaque 5" loading="lazy" decoding="async">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6bmC/f7fde71b-d132-4dc7-84e2-1a10fcccb447.jpg')">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd6bmC/f7fde71b-d132-4dc7-84e2-1a10fcccb447.jpg" alt="Starlink Yayu - destaque 6" loading="lazy" decoding="async">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd68op/b480a423-0e08-4cbe-9998-a34e89f5bf94.jpg')">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd68op/b480a423-0e08-4cbe-9998-a34e89f5bf94.jpg" alt="Starlink Yayu - destaque 7" loading="lazy" decoding="async">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+
+        <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6RhP/11835bf9-d861-487e-84ce-c995b4edc652.jpg')">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd6RhP/11835bf9-d861-487e-84ce-c995b4edc652.jpg" alt="Starlink Yayu - destaque 8" loading="lazy" decoding="async">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+
       </div>
       <button class="car-btn prev" aria-label="Imagem anterior">&#8249;</button>
       <button class="car-btn next" aria-label="Próxima imagem">&#8250;</button>
       <div class="car-dots" role="group" aria-label="Escolher imagem"></div>
     </div>
+
+    <!-- HERO -->
     <div class="hero">
       <div>
         <div class="t3d gold logo3d" data-text="YAYU" role="img" aria-label="Yayu"><span>YAYU</span></div>
+
         <div class="promo">
           <span class="tag">Kit promoção</span>
           <div class="apartir">Starlink Mini a partir de</div>
           <div class="t3d mint price3d" data-text="R$ 99,99" aria-label="R$ 99,99"><span>R$ 99,99</span></div>
+          <p>Instalação e configuração com quem entende de rede.</p>
         </div>
+
         <h1>Internet via satélite com instalação de quem vive de conexão.</h1>
+
         <div class="cta">
           <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20kit%20Starlink%20em%20promo%C3%A7%C3%A3o%20a%20partir%20de%20R%24%2099%2C99" target="_blank" rel="noopener">Quero o kit promoção</a>
           <a class="btn btn-ghost" href="#kits">Ver equipamentos</a>
         </div>
       </div>
+
       <svg class="orbit" viewBox="0 0 400 400" role="img" aria-label="Satélites em órbita enviando sinal para uma antena">
         <circle class="ring" cx="200" cy="200" r="70"/>
         <circle class="ring" cx="200" cy="200" r="125"/>
         <circle class="ring" cx="200" cy="200" r="180"/>
-        <circle class="pulse" cx="200" cy="200" r="70" fill="none" stroke="#19E3B1" stroke-width="3"/>
+        <circle class="pulse" cx="200" cy="200" r="70" fill="none" stroke="#46D5FF" stroke-width="3"/>
         <g class="spin"><circle class="sat" cx="200" cy="130" r="6"/></g>
         <g class="spin b"><circle class="sat" cx="325" cy="200" r="7"/><circle class="sat" cx="75" cy="200" r="5"/></g>
         <g class="spin c"><circle class="sat" cx="200" cy="20" r="6"/><circle class="sat" cx="200" cy="380" r="4"/></g>
-        <circle cx="200" cy="200" r="44" fill="#FF4D8D"/>
+        <circle cx="200" cy="200" r="44" fill="#FF3D7F"/>
         <path d="M178 216c0-16 10-30 26-34M170 226c0-24 16-44 40-48M188 206l22 22" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <circle cx="212" cy="214" r="5" fill="#FFD23F"/>
+        <circle cx="212" cy="214" r="5" fill="#FFC93C"/>
       </svg>
     </div>
   </div>
 </header>
 
+<!-- FAIXA -->
 <div class="strip">
   <div class="wrap">
     <ul>
@@ -329,6 +748,7 @@ body{padding-bottom:110px}
   </div>
 </div>
 
+<!-- DIFERENCIAIS -->
 <section>
   <div class="wrap">
     <div class="head">
@@ -336,14 +756,31 @@ body{padding-bottom:110px}
       <p>Somos <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20servi%C3%A7o%20de%20provedor%20de%20internet" target="_blank" rel="noopener">provedor de internet</a>. Conhecemos <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede%20e%20roteador" target="_blank" rel="noopener">rede, roteador e sinal</a> por dentro, e é isso que colocamos em cada instalação Starlink.</p>
     </div>
     <div class="grid4">
-      <div><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/></svg></div><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20conex%C3%A3o%20confi%C3%A1vel%20Starlink" target="_blank" rel="noopener">Conexão confiável</a></h3><p>Milhares de satélites em órbita levam <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20banda%20larga%20via%20sat%C3%A9lite" target="_blank" rel="noopener">banda larga</a> a lugares que nenhuma operadora alcança.</p></div>
-      <div><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20instalar%20Starlink%20r%C3%A1pido" target="_blank" rel="noopener">Rápido de colocar no ar</a></h3><p>Kit em mãos, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20posicionamento%20de%20antena" target="_blank" rel="noopener">antena posicionada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20Wi-Fi" target="_blank" rel="noopener">Wi-Fi configurado</a> sem enrolação.</p></div>
-      <div><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">Rede bem configurada</a></h3><p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20roteamento" target="_blank" rel="noopener">Roteamento</a> e Wi-Fi ajustados por <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20falar%20com%20profissional%20de%20telecom" target="_blank" rel="noopener">profissional de telecom</a>, para a internet render de verdade.</p></div>
-      <div><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg></div><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20humano" target="_blank" rel="noopener">Suporte humano</a></h3><p>Precisou de ajuda? Você chama a Yayu direto no <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20atendimento%20pelo%20WhatsApp" target="_blank" rel="noopener">WhatsApp</a> e fala com gente.</p></div>
+      <div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/></svg></div>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20conex%C3%A3o%20confi%C3%A1vel%20Starlink" target="_blank" rel="noopener">Conexão confiável</a></h3>
+        <p>Milhares de satélites em órbita levam <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20banda%20larga%20via%20sat%C3%A9lite" target="_blank" rel="noopener">banda larga</a> a lugares que nenhuma operadora alcança.</p>
+      </div>
+      <div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20instalar%20Starlink%20r%C3%A1pido" target="_blank" rel="noopener">Rápido de colocar no ar</a></h3>
+        <p>Kit em mãos, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20posicionamento%20de%20antena" target="_blank" rel="noopener">antena posicionada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20Wi-Fi" target="_blank" rel="noopener">Wi-Fi configurado</a> sem enrolação.</p>
+      </div>
+      <div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">Rede bem configurada</a></h3>
+        <p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20roteamento" target="_blank" rel="noopener">Roteamento</a> e Wi-Fi ajustados por <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20falar%20com%20profissional%20de%20telecom" target="_blank" rel="noopener">profissional de telecom</a>, para a internet render de verdade.</p>
+      </div>
+      <div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg></div>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20humano" target="_blank" rel="noopener">Suporte humano</a></h3>
+        <p>Precisou de ajuda? Você chama a Yayu direto no <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20atendimento%20pelo%20WhatsApp" target="_blank" rel="noopener">WhatsApp</a> e fala com gente.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- EQUIPAMENTOS -->
 <section class="eq" id="kits">
   <div class="wrap">
     <div class="head">
@@ -364,6 +801,7 @@ body{padding-bottom:110px}
         <div class="price"><s>a partir de</s><strong>R$ 99,99</strong></div>
         <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Kit%20Mini%20Starlink%20a%20partir%20de%20R%24%2099%2C99" target="_blank" rel="noopener">Quero o Kit Mini</a>
       </article>
+
       <article class="kit">
         <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Standard%20V4" target="_blank" rel="noopener">Standard V4</a></h3>
         <p class="for">Para <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20casa" target="_blank" rel="noopener">casa</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20ch%C3%A1cara" target="_blank" rel="noopener">chácara</a> ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20empresa" target="_blank" rel="noopener">empresa</a> que precisa de sinal forte e fixo.</p>
@@ -376,6 +814,7 @@ body{padding-bottom:110px}
         <div class="price"><span>Consulte o valor</span></div>
         <a class="btn" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Standard%20V4" target="_blank" rel="noopener">Pedir orçamento</a>
       </article>
+
       <article class="kit">
         <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Flat%20HP" target="_blank" rel="noopener">Flat High Performance</a></h3>
         <p class="for">Para uso exigente: <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20barco" target="_blank" rel="noopener">barcos</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20ferrovia" target="_blank" rel="noopener">ferrovias</a> e grandes operações.</p>
@@ -391,6 +830,7 @@ body{padding-bottom:110px}
   </div>
 </section>
 
+<!-- SIMULADOR -->
 <section class="pick" id="simulador">
   <div class="wrap">
     <div class="head">
@@ -410,21 +850,32 @@ body{padding-bottom:110px}
   </div>
 </section>
 
+<!-- PASSOS -->
 <section>
   <div class="wrap">
     <div class="head"><h2>Como funciona</h2></div>
     <div class="steps">
-      <div class="step"><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20chamar%20a%20Yayu%20para%20falar%20de%20Starlink" target="_blank" rel="noopener">Você chama a Yayu</a></h3><p>Conta onde vai usar e quantas pessoas ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20quantidade%20de%20dispositivos%20conectados" target="_blank" rel="noopener">dispositivos</a> vão se conectar.</p></div>
-      <div class="step"><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20ajuda%20para%20definir%20o%20kit%20Starlink" target="_blank" rel="noopener">Definimos o kit</a></h3><p>Indicamos o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20indica%C3%A7%C3%A3o%20de%20equipamento%20Starlink" target="_blank" rel="noopener">equipamento</a> e o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20planos%20Starlink" target="_blank" rel="noopener">plano</a> certos, sem você pagar por mais do que precisa.</p></div>
-      <div class="step"><h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20colocar%20minha%20conex%C3%A3o%20no%20ar" target="_blank" rel="noopener">Conexão no ar</a></h3><p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20posicionamento%20de%20antena" target="_blank" rel="noopener">Antena posicionada</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">rede configurada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20internet%20funcionando" target="_blank" rel="noopener">internet funcionando</a>.</p></div>
+      <div class="step">
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20chamar%20a%20Yayu%20para%20falar%20de%20Starlink" target="_blank" rel="noopener">Você chama a Yayu</a></h3>
+        <p>Conta onde vai usar e quantas pessoas ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20quantidade%20de%20dispositivos%20conectados" target="_blank" rel="noopener">dispositivos</a> vão se conectar.</p>
+      </div>
+      <div class="step">
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20ajuda%20para%20definir%20o%20kit%20Starlink" target="_blank" rel="noopener">Definimos o kit</a></h3>
+        <p>Indicamos o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20indica%C3%A7%C3%A3o%20de%20equipamento%20Starlink" target="_blank" rel="noopener">equipamento</a> e o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20planos%20Starlink" target="_blank" rel="noopener">plano</a> certos, sem você pagar por mais do que precisa.</p>
+      </div>
+      <div class="step">
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20colocar%20minha%20conex%C3%A3o%20no%20ar" target="_blank" rel="noopener">Conexão no ar</a></h3>
+        <p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20posicionamento%20de%20antena" target="_blank" rel="noopener">Antena posicionada</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">rede configurada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20internet%20funcionando" target="_blank" rel="noopener">internet funcionando</a>.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- CTA FINAL -->
 <section class="final">
   <div class="wrap">
     <h2>Sua internet não precisa esperar a fibra chegar.</h2>
-    <p>Chame a Yayu e receba uma <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20uma%20indica%C3%A7%C3%A3o%20de%20kit%20e%20valores" target="_blank" rel="noopener" style="color:#fff;border-bottom-color:#fff">indicação de kit e valores</a> ainda hoje.</p>
+    <p>Chame a Yayu e receba uma <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20uma%20indica%C3%A7%C3%A3o%20de%20kit%20e%20valores" target="_blank" rel="noopener">indicação de kit e valores</a> ainda hoje.</p>
     <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20com%20a%20Yayu" target="_blank" rel="noopener">(13) 98877-7008</a>
   </div>
 </section>
@@ -436,88 +887,158 @@ body{padding-bottom:110px}
   </div>
 </footer>
 
-<a class="balao" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20Starlink" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp (13) 98877-7008"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.4.6.7-2.3-.2-.3A8 8 0 0 1 12 4z"/><path d="M9 7.5c.3 0 .5 0 .6.4l.7 1.6c.1.2 0 .4-.1.5l-.5.6c.8 1.500 2 2.500 3.500 3.100l.6-.7c.2-.2.4-.2.6-.1l1.600.8c.2.100.3.200.3.400 0 .8-.8 1.500-1.700 1.500-2.800 0-6.300-3.300-6.300-6 0-.9.700-1.600 1.500-1.600z"/></svg><span><small>Chame agora no WhatsApp</small><b>(13) 98877-7008</b></span></a>
+<!-- BALÃO WHATSAPP -->
+<a class="balao" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20Starlink" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp (13) 98877-7008">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.4.6.7-2.3-.2-.3A8 8 0 0 1 12 4z"/>
+    <path d="M9 7.5c.3 0 .5 0 .6.4l.7 1.6c.1.2 0 .4-.1.5l-.5.6c.8 1.5 2 2.5 3.5 3.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .8-.8 1.5-1.7 1.5-2.8 0-6.3-3.3-6.3-6 0-.9.7-1.6 1.5-1.6z"/>
+  </svg>
+  <span>
+    <small>Chame agora no WhatsApp</small>
+    <b>(13) 98877-7008</b>
+  </span>
+</a>
 
 <script>
 (function(){
-  var fone="5513988777008";
-  var d={
-    rural:{t:"Kit Mini ou Standard V4",p:"Sem fibra por perto, a Starlink resolve. O Kit Mini em promoção atende bem sítios e chácaras; para casa grande ou muitos aparelhos, o Standard V4 dá mais alcance de Wi-Fi.",m:"Olá, vou usar Starlink em chácara/sítio. Qual kit vocês indicam?"},
-    casa:{t:"Standard V4",p:"Roteador Wi-Fi 6 com portas de rede e antena fixa: a escolha para casa, comércio ou escritório que precisa de estabilidade no dia a dia.",m:"Olá, quero Starlink para casa/empresa. Podem me passar valores do Standard V4?"},
-    mov:{t:"Kit Mini (ou Flat HP)",p:"Leve, com alimentação 12V e Wi-Fi integrado, o Mini vai junto no barco, trailer ou viagem. Para uso marítimo mais exigente, o Flat HP é o indicado.",m:"Olá, quero Starlink para barco/trailer/viagem. Qual kit vocês indicam?"}
+  "use strict";
+  var fone = "5513988777008";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ============ SIMULADOR ============ */
+  var dados = {
+    rural:{
+      t:"Kit Mini ou Standard V4",
+      p:"Sem fibra por perto, a Starlink resolve. O Kit Mini em promoção atende bem sítios e chácaras; para casa grande ou muitos aparelhos, o Standard V4 dá mais alcance de Wi-Fi.",
+      m:"Olá, vou usar Starlink em chácara/sítio. Qual kit vocês indicam?"
+    },
+    casa:{
+      t:"Standard V4",
+      p:"Roteador Wi-Fi 6 com portas de rede e antena fixa: a escolha para casa, comércio ou escritório que precisa de estabilidade no dia a dia.",
+      m:"Olá, quero Starlink para casa/empresa. Podem me passar valores do Standard V4?"
+    },
+    mov:{
+      t:"Kit Mini (ou Flat HP)",
+      p:"Leve, com alimentação 12V e Wi-Fi integrado, o Mini vai junto no barco, trailer ou viagem. Para uso marítimo mais exigente, o Flat HP é o indicado.",
+      m:"Olá, quero Starlink para barco/trailer/viagem. Qual kit vocês indicam?"
+    }
   };
-  var bt=document.querySelectorAll(".opt"),t=document.getElementById("rt"),p=document.getElementById("rp"),b=document.getElementById("rb");
+  var btns = document.querySelectorAll(".opt");
+  var tEl = document.getElementById("rt");
+  var pEl = document.getElementById("rp");
+  var bEl = document.getElementById("rb");
+
   function show(k){
-    t.textContent=d[k].t;p.textContent=d[k].p;
-    b.href="https://wa.me/"+fone+"?text="+encodeURIComponent(d[k].m);
-    bt.forEach(function(x){x.setAttribute("aria-pressed",x.dataset.k===k)});
+    if(!dados[k]) return;
+    tEl.textContent = dados[k].t;
+    pEl.textContent = dados[k].p;
+    bEl.href = "https://wa.me/" + fone + "?text=" + encodeURIComponent(dados[k].m);
+    btns.forEach(function(x){
+      x.setAttribute("aria-pressed", x.dataset.k === k);
+    });
   }
-  bt.forEach(function(x){x.addEventListener("click",function(){show(x.dataset.k)})});
+  btns.forEach(function(x){
+    x.addEventListener("click", function(){ show(x.dataset.k); });
+  });
   show("rural");
 
-  // confete
-  var cores=["#FF4D8D","#FFD23F","#19E3B1","#22C8FF","#6C3BFF"];
-  function confete(x,y){
-    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  /* ============ CONFETE ============ */
+  var cores = ["#FF3D7F","#FFC93C","#46D5FF","#22C55E","#FF6B4A"];
+  function confete(x, y){
+    if(reduce) return;
     for(var i=0;i<22;i++){
-      var e=document.createElement("i");e.className="conf";
-      e.style.left=x+"px";e.style.top=y+"px";
-      e.style.background=cores[i%cores.length];
-      document.body.appendChild(e);
-      var a=Math.random()*Math.PI*2,r=60+Math.random()*110;
-      e.animate([{transform:"translate(0,0) rotate(0)",opacity:1},
-        {transform:"translate("+Math.cos(a)*r+"px,"+(Math.sin(a)*r+40)+"px) rotate("+(Math.random()*540)+"deg)",opacity:0}],
-        {duration:900+Math.random()*400,easing:"cubic-bezier(.2,.8,.3,1)"}).onfinish=(function(el){return function(){el.remove()}})(e);
+      var el = document.createElement("i");
+      el.className = "conf";
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+      el.style.background = cores[i % cores.length];
+      document.body.appendChild(el);
+      var a = Math.random() * Math.PI * 2;
+      var r = 60 + Math.random() * 110;
+      el.animate(
+        [
+          { transform:"translate(0,0) rotate(0)", opacity:1 },
+          { transform:"translate(" + (Math.cos(a)*r) + "px," + (Math.sin(a)*r+40) + "px) rotate(" + (Math.random()*540) + "deg)", opacity:0 }
+        ],
+        { duration: 900 + Math.random()*400, easing:"cubic-bezier(.2,.8,.3,1)" }
+      ).onfinish = (function(node){ return function(){ node.remove(); }; })(el);
     }
   }
-  document.querySelectorAll(".opt,.kit.hot .btn").forEach(function(el){
-    el.addEventListener("click",function(ev){confete(ev.clientX||innerWidth/2,ev.clientY||innerHeight/2)});
+  document.querySelectorAll(".opt, .kit.hot .btn").forEach(function(el){
+    el.addEventListener("click", function(ev){
+      confete(ev.clientX || window.innerWidth/2, ev.clientY || window.innerHeight/2);
+    });
   });
 
-  // inclinação 3D
-  var h=document.querySelector(".hero"),ls=document.querySelectorAll(".t3d");
-  if(h&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-    h.addEventListener("mousemove",function(e){
-      var r=h.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      ls.forEach(function(l){l.style.transform="perspective(900px) rotateY("+(x*22)+"deg) rotateX("+(-y*16)+"deg)"});
+  /* ============ TILT 3D SUAVE ============ */
+  var hero = document.querySelector(".hero");
+  var letras = document.querySelectorAll(".t3d");
+  if(hero && !reduce){
+    hero.addEventListener("mousemove", function(e){
+      var r = hero.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      letras.forEach(function(l){
+        l.style.transform =
+          "perspective(1000px) rotateY(" + (x * 10) + "deg) rotateX(" + (-y * 7) + "deg)";
+      });
     });
-    h.addEventListener("mouseleave",function(){ls.forEach(function(l){l.style.transform=""})});
+    hero.addEventListener("mouseleave", function(){
+      letras.forEach(function(l){ l.style.transform = ""; });
+    });
   }
 
-  // ===== CARROSSEL =====
-  var car=document.querySelector(".car"),sl=car.querySelectorAll(".car-slide"),tr=car.querySelector(".car-track"),dots=car.querySelector(".car-dots"),cur=0,timer;
-  sl.forEach(function(el,i){
-    var img=el.querySelector("img");
-    // Garantir que o placeholder seja exibido caso a imagem falhe
-    img.onerror=function(){ 
-      console.warn("Falha ao carregar imagem do carrossel:", img.src); 
-      img.style.display='none'; 
-      el.querySelector('.ph').style.display='grid'; 
-    };
-    var d=document.createElement("button");d.setAttribute("aria-label","Ir para imagem "+(i+1));
-    d.addEventListener("click",function(){go(i);play()});dots.appendChild(d);
+  /* ============ CARROSSEL ============ */
+  var car = document.querySelector(".car");
+  if(!car) return;
+  var slides = car.querySelectorAll(".car-slide");
+  var track = car.querySelector(".car-track");
+  var dots = car.querySelector(".car-dots");
+  var cur = 0, timer;
+
+  slides.forEach(function(slide, i){
+    var img = slide.querySelector("img");
+    var ph = slide.querySelector(".ph");
+    if(img && ph){
+      img.addEventListener("error", function(){
+        img.style.display = "none";
+        ph.style.display = "grid";
+      });
+    }
+    var dot = document.createElement("button");
+    dot.setAttribute("aria-label", "Ir para imagem " + (i + 1));
+    dot.addEventListener("click", function(){ go(i); play(); });
+    dots.appendChild(dot);
   });
+
   function go(i){
-    cur=(i+sl.length)%sl.length;
-    tr.style.transform="translateX(-"+cur*100+"%)";
-    dots.querySelectorAll("button").forEach(function(b,k){b.setAttribute("aria-current",k===cur)});
+    cur = (i + slides.length) % slides.length;
+    track.style.transform = "translateX(-" + (cur * 100) + "%)";
+    dots.querySelectorAll("button").forEach(function(b, k){
+      b.setAttribute("aria-current", k === cur ? "true" : "false");
+    });
   }
   function play(){
     clearInterval(timer);
-    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-    timer=setInterval(function(){go(cur+1)},4000);
+    if(reduce) return;
+    timer = setInterval(function(){ go(cur + 1); }, 4000);
   }
-  car.querySelector(".prev").addEventListener("click",function(){go(cur-1);play()});
-  car.querySelector(".next").addEventListener("click",function(){go(cur+1);play()});
-  car.addEventListener("mouseenter",function(){clearInterval(timer)});
-  car.addEventListener("mouseleave",play);
-  var x0=null;
-  car.addEventListener("touchstart",function(e){x0=e.touches[0].clientX},{passive:true});
-  car.addEventListener("touchend",function(e){
-    if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;
-    if(Math.abs(dx)>40){go(cur+(dx<0?1:-1));play()}x0=null;
+  car.querySelector(".prev").addEventListener("click", function(){ go(cur - 1); play(); });
+  car.querySelector(".next").addEventListener("click", function(){ go(cur + 1); play(); });
+  car.addEventListener("mouseenter", function(){ clearInterval(timer); });
+  car.addEventListener("mouseleave", play);
+
+  var x0 = null;
+  car.addEventListener("touchstart", function(e){ x0 = e.touches[0].clientX; }, { passive:true });
+  car.addEventListener("touchend", function(e){
+    if(x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 40){ go(cur + (dx < 0 ? 1 : -1)); play(); }
+    x0 = null;
   });
-  go(0);play();
+
+  go(0);
+  play();
 })();
 </script>
 </body>
