@@ -11,9 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Figtree:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   YAYU STARLINK — paleta 3 cores + neutros (60/30/10)
-   ========================================================= */
 :root{
   --space-900:#05081C;
   --space-800:#0B1130;
@@ -45,11 +42,9 @@
   --t-h1:clamp(1.35rem,.9rem + 1.6vw,1.9rem);
   --t-h2:clamp(1.8rem,1.4rem + 2vw,2.6rem);
   --t-body:clamp(1rem,.97rem + .15vw,1.0625rem);
-  --t-logo3d:clamp(3.6rem,12vw,8rem);
   --t-price3d:clamp(2.9rem,9vw,5.6rem);
 
   --radius:22px;
-  --radius-sm:14px;
 }
 
 *{box-sizing:border-box;margin:0}
@@ -92,6 +87,35 @@ h1{font-size:var(--t-h1)}
 h2{font-size:var(--t-h2);font-weight:800}
 h3{font-weight:700}
 
+/* ===== LOGO IMG — ALTA DEFINIÇÃO ===== */
+.logo-img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+  image-rendering:auto;
+  image-rendering:-webkit-optimize-contrast;
+  -ms-interpolation-mode:bicubic;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+  filter:
+    drop-shadow(0 8px 22px rgba(70,213,255,.45))
+    drop-shadow(0 4px 12px rgba(0,0,0,.6));
+}
+
+.logo-fallback{
+  display:none;
+  font:800 1.6rem var(--fh);
+  letter-spacing:-.03em;
+  background:linear-gradient(180deg,#FFF6C9,#FFC93C 60%,#F5A623);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:0 4px 12px rgba(255,201,60,.35);
+}
+.logo-fallback.on{display:inline-block}
+
 /* ===== BOTÕES ===== */
 .btn{
   display:inline-flex; align-items:center; gap:.6em;
@@ -99,7 +123,6 @@ h3{font-weight:700}
   font:700 1rem var(--fb); text-decoration:none;
   border:0; cursor:pointer;
   transition:transform .15s, background .15s, box-shadow .15s;
-  will-change:transform;
 }
 .btn:hover{transform:translateY(-2px)}
 .btn-amber{
@@ -107,11 +130,6 @@ h3{font-weight:700}
   box-shadow:0 10px 26px rgba(255,201,60,.32);
 }
 .btn-amber:hover{background:var(--amber-2); box-shadow:0 14px 30px rgba(255,201,60,.42)}
-.btn-cyan{
-  background:var(--cyan); color:var(--space-900);
-  box-shadow:0 10px 26px rgba(70,213,255,.28);
-}
-.btn-cyan:hover{background:var(--cyan-2)}
 .btn-ghost{
   border:2px solid rgba(255,255,255,.35); color:var(--ink);
   background:transparent;
@@ -129,7 +147,7 @@ h3{font-weight:700}
 .kit.hot .svc:hover{color:var(--amber)}
 .result .svc:hover{color:var(--cyan-2)}
 
-/* ===== TOPO / NAV ===== */
+/* ===== TOPO ===== */
 header{
   background:rgba(5,8,28,.55);
   backdrop-filter:blur(8px);
@@ -138,24 +156,33 @@ header{
 }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
-  padding:18px 0;
+  padding:16px 0;
+  gap:20px;
+  min-height:96px;
 }
 .logo{
-  font:800 1.35rem var(--fh); text-decoration:none;
-  letter-spacing:-.03em; color:var(--ink);
-  display:inline-flex; align-items:baseline; gap:8px;
+  display:inline-flex; align-items:center;
+  text-decoration:none;
+  flex:0 0 auto;
 }
-.logo small{
-  font:500 .78rem var(--fb); opacity:.7;
-  letter-spacing:.02em;
+.logo .logo-img{
+  height:80px;
+  width:auto;
+  max-width:260px;
+  transition:transform .2s ease;
 }
+.logo:hover .logo-img{transform:scale(1.03)}
+.logo .logo-fallback{font-size:2rem}
+
 .nav a.tel{
   font-weight:700; text-decoration:none;
   opacity:.95; font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+  font-size:1.05rem;
 }
 .nav a.tel:hover{color:var(--cyan-2)}
 
-/* ===== CARROSSEL — IMAGENS 100% VISÍVEIS (contain) ===== */
+/* ===== CARROSSEL ===== */
 .car{
   position:relative; width:min(100%,1080px);
   margin:12px auto 38px;
@@ -174,8 +201,6 @@ header{
 .car-slide{
   flex:0 0 100%; height:100%; position:relative; overflow:hidden;
 }
-
-/* Camada de fundo: a MESMA imagem, desfocada e escurecida, preenchendo as laterais */
 .car-slide::before{
   content:"";
   position:absolute; inset:0;
@@ -186,7 +211,6 @@ header{
   transform:scale(1.15);
   z-index:0;
 }
-
 .car-slide>a{
   display:block; width:100%; height:100%;
   position:relative; text-decoration:none;
@@ -197,15 +221,12 @@ header{
   inset:0;
   width:100%;
   height:100%;
-  object-fit:contain;           /* ← NÃO CORTA MAIS */
+  object-fit:contain;
   object-position:center;
-  display:block;
   transition:transform .7s ease;
   z-index:1;
 }
 .car-slide:hover img{transform:scale(1.015)}
-
-/* Placeholder caso a imagem falhe */
 .car-slide .ph{
   position:absolute; inset:0; z-index:0;
   display:none; place-items:center;
@@ -213,8 +234,6 @@ header{
   color:var(--ink);
   background:linear-gradient(120deg,var(--coral),var(--space-700));
 }
-
-/* CTA flutuante */
 .car-slide .car-cta{
   position:absolute; z-index:4; left:28px; bottom:28px;
   background:var(--wa); color:#fff;
@@ -224,22 +243,18 @@ header{
   box-shadow:0 10px 30px rgba(34,197,94,.5);
   pointer-events:none;
 }
-
-/* Botões de navegação */
 .car-btn{
   position:absolute; z-index:5; top:50%; transform:translateY(-50%);
   width:46px; height:46px; border-radius:50%; border:0;
   background:rgba(5,8,28,.72); color:#fff;
   font-size:1.7rem; line-height:1; cursor:pointer;
   display:grid; place-items:center; padding:0 0 4px;
-  transition:background .15s, transform .15s;
+  transition:background .15s;
   backdrop-filter:blur(6px);
 }
 .car-btn:hover{background:var(--cyan); color:var(--space-900)}
 .car-btn.prev{left:12px}
 .car-btn.next{right:12px}
-
-/* Dots */
 .car-dots{
   position:absolute; z-index:5; left:0; right:0; bottom:12px;
   display:flex; justify-content:center; gap:8px;
@@ -265,54 +280,6 @@ header{
 }
 .hero .cta{display:flex; gap:14px; flex-wrap:wrap}
 
-/* Letras 3D */
-.t3d{
-  position:relative; display:inline-block;
-  font-family:var(--fh); font-weight:800; line-height:1;
-  letter-spacing:-.035em; white-space:nowrap;
-  padding:0 .18em .22em 0;
-  transform-style:preserve-3d;
-  will-change:transform;
-  transition:transform .18s ease-out;
-}
-.t3d::before{
-  content:attr(data-text);
-  position:absolute; left:0; top:0;
-  z-index:0;
-  padding:inherit;
-  color:var(--shadow-color,#6B3A00);
-  text-shadow:var(--shadow-stack);
-}
-.t3d>span{
-  position:relative; z-index:1;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  background-image:var(--fill);
-}
-.gold{
-  --shadow-color:#5E2400;
-  --shadow-stack:
-    0.03em 0.03em 0 #A35A08,
-    0.06em 0.06em 0 #8A4A05,
-    0.09em 0.09em 0 #6B3A00,
-    0.12em 0.12em 0 #4A2A02,
-    0.16em 0.22em .28em rgba(0,0,0,.6);
-  --fill:linear-gradient(180deg,#FFF6C9 0%,#FFDD6B 32%,#FFC93C 62%,#F5A623 100%);
-}
-.mint{
-  --shadow-color:#0B6B52;
-  --shadow-stack:
-    0.03em 0.03em 0 #0A8B6A,
-    0.06em 0.06em 0 #087A5C,
-    0.09em 0.09em 0 #065440,
-    0.12em 0.12em 0 #03392B,
-    0.16em 0.22em .28em rgba(0,0,0,.6);
-  --fill:linear-gradient(180deg,#E4FFF6 0%,#8FF2D2 35%,#46E5B4 70%,#16B98B 100%);
-}
-.logo3d{font-size:var(--t-logo3d); margin:6px 0 4px}
-.price3d{font-size:var(--t-price3d)}
-
 .promo{margin:6px 0 18px}
 .apartir{font:700 1.05rem var(--fb); color:var(--ink-2); margin-bottom:4px}
 .promo p{margin:10px 0 0; color:var(--ink-2); font-size:1rem}
@@ -325,6 +292,41 @@ header{
   padding:6px 14px; border-radius:999px;
   margin-bottom:14px;
 }
+
+/* Letras 3D (só para o preço) */
+.t3d{
+  position:relative; display:inline-block;
+  font-family:var(--fh); font-weight:800; line-height:1;
+  letter-spacing:-.035em; white-space:nowrap;
+  padding:0 .18em .22em 0;
+  transition:transform .18s ease-out;
+}
+.t3d::before{
+  content:attr(data-text);
+  position:absolute; left:0; top:0;
+  z-index:0;
+  padding:inherit;
+  color:var(--shadow-color,#0B6B52);
+  text-shadow:var(--shadow-stack);
+}
+.t3d>span{
+  position:relative; z-index:1;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  background-image:var(--fill);
+}
+.mint{
+  --shadow-color:#0B6B52;
+  --shadow-stack:
+    0.03em 0.03em 0 #0A8B6A,
+    0.06em 0.06em 0 #087A5C,
+    0.09em 0.09em 0 #065440,
+    0.12em 0.12em 0 #03392B,
+    0.16em 0.22em .28em rgba(0,0,0,.6);
+  --fill:linear-gradient(180deg,#E4FFF6 0%,#8FF2D2 35%,#46E5B4 70%,#16B98B 100%);
+}
+.price3d{font-size:var(--t-price3d)}
 
 /* Órbita */
 .orbit{width:100%; max-width:470px; justify-self:center}
@@ -384,8 +386,6 @@ section{padding:84px 0}
   stroke:var(--cyan); fill:none;
   stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
 }
-.grid4 a.svc{border-bottom-color:var(--cyan)}
-.grid4 a.svc:hover{color:var(--cyan-2); border-bottom-color:var(--cyan-2)}
 
 /* ===== EQUIPAMENTOS ===== */
 .eq{
@@ -407,13 +407,12 @@ section{padding:84px 0}
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
   color:var(--ink);
-  transition:border-color .2s, transform .2s;
+  transition:border-color .2s;
 }
 .kit:hover{border-color:rgba(70,213,255,.4)}
 .kit.hot{
   background:linear-gradient(150deg,var(--coral) 0%,var(--coral-2) 100%);
   border:0;
-  position:relative;
   box-shadow:0 18px 44px rgba(255,61,127,.35);
 }
 .kit.hot .tag{background:#fff; color:var(--coral)}
@@ -528,16 +527,28 @@ footer{
   backdrop-filter:blur(6px);
   border-top:1px solid var(--line);
   color:var(--ink-3);
-  padding:34px 0; font-size:.92rem;
+  padding:40px 0 34px;
+  font-size:.92rem;
 }
 footer .wrap{
   display:flex; justify-content:space-between;
-  gap:16px; flex-wrap:wrap; align-items:center;
+  gap:24px; flex-wrap:wrap; align-items:center;
 }
 footer a{color:var(--ink); text-decoration:none; font-weight:700}
 footer a:hover{color:var(--cyan-2)}
-footer strong{
-  color:#fff; font-family:var(--fh); font-size:1.1rem;
+
+.footer-logo{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.footer-logo .logo-img{
+  height:70px;
+  width:auto;
+  max-width:220px;
+}
+.footer-logo .logo-fallback{font-size:1.7rem}
+.footer-logo .info{display:flex; flex-direction:column; line-height:1.3}
+.footer-logo .info strong{
+  color:#fff; font-family:var(--fh); font-size:1.15rem;
   letter-spacing:-.01em;
 }
 
@@ -571,7 +582,7 @@ footer strong{
   to{transform:scale(1.35); opacity:0}
 }
 .balao span{display:flex; flex-direction:column; line-height:1.15}
-.balao small{font:700 .82rem var(--fb); opacity:.95; letter-spacing:.02em}
+.balao small{font:700 .82rem var(--fb); opacity:.95}
 .balao b{
   font:800 1.55rem var(--fh);
   letter-spacing:-.01em;
@@ -585,10 +596,13 @@ footer strong{
 
 /* ===== RESPONSIVO ===== */
 @media(max-width:860px){
+  .nav{min-height:auto;padding:12px 0;gap:12px}
+  .logo .logo-img{height:56px;max-width:180px}
+  .logo .logo-fallback{font-size:1.6rem}
+  .nav a.tel{font-size:.92rem}
   .hero{grid-template-columns:1fr; padding-bottom:56px}
-  .orbit{max-width:340px; order:-1; margin:0 auto}
+  .orbit{max-width:340px; order:2; margin:0 auto}
   .strip ul{grid-template-columns:1fr 1fr}
-  .strip li:nth-child(3){border-left:0}
   .strip li:nth-child(odd){border-left:0}
   .kits{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr; gap:28px}
@@ -606,6 +620,8 @@ footer strong{
   .car-dots{bottom:8px; gap:6px}
   .car-dots button{width:9px; height:9px}
   .car-dots button[aria-current="true"]{width:22px}
+  .footer-logo .logo-img{height:56px;max-width:180px}
+  footer .wrap{flex-direction:column; align-items:flex-start}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -620,75 +636,84 @@ footer strong{
 <header>
   <div class="wrap">
     <div class="nav">
-      <a class="logo" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yayu%20Starlink" target="_blank" rel="noopener">
-        YAYU<small>Revenda Starlink</small>
+      <!-- LOGO NO TOPO — ALTA DEFINIÇÃO -->
+      <a class="logo" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yayu%20Starlink" target="_blank" rel="noopener" aria-label="Yayu Starlink — início">
+        <img
+          class="logo-img"
+          id="logoTopo"
+          src="https://i.im.ge/QQdNGrC/2026-10-05_12-58.png"
+          alt="Yayu — Conectando você ao que realmente importa"
+          width="260" height="80"
+          fetchpriority="high"
+          decoding="async">
+        <span class="logo-fallback" id="fallbackTopo">YAYU</span>
       </a>
       <a class="tel" href="tel:+5513988777008">(13) 98877-7008</a>
     </div>
 
-    <!-- CARROSSEL — 8 SLIDES (imagens inteiras, sem corte) -->
+    <!-- CARROSSEL -->
     <div class="car" role="region" aria-roledescription="carrossel" aria-label="Destaques Yayu Starlink">
       <div class="car-track">
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6isy/2026-10-05_12-03.png')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20instala%C3%A7%C3%A3o%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20valores%20e%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6isy/2026-10-05_12-03.png" alt="Starlink Yayu - destaque 1" fetchpriority="high" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20instala%C3%A7%C3%A3o%20Starlink%20no%20site%20da%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd6isy/2026-10-05_12-03.png" alt="Starlink Yayu 1" fetchpriority="high" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd60yS/2026-10-05_12-02.png')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20Starlink%20instalada%20pela%20Yayu%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd60yS/2026-10-05_12-02.png" alt="Starlink Yayu - destaque 2" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20Starlink%20instalada%20pela%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd60yS/2026-10-05_12-02.png" alt="Starlink Yayu 2" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd65zz/2026-10-05_12-01.png')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20kit%20Starlink%20no%20site%20da%20Yayu%20e%20tenho%20interesse%20no%20produto." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd65zz/2026-10-05_12-01.png" alt="Starlink Yayu - destaque 3" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20kit%20Starlink%20no%20site%20da%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd65zz/2026-10-05_12-01.png" alt="Starlink Yayu 3" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6jO6/2026-10-05_12-00.png')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Starlink%20com%20a%20Yayu.%20Quero%20saber%20kit%2C%20valores%20e%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6jO6/2026-10-05_12-00.png" alt="Starlink Yayu - destaque 4" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Starlink%20com%20a%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd6jO6/2026-10-05_12-00.png" alt="Starlink Yayu 4" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6cZq/55949b10-f4aa-47b3-a5ff-bb59a43cf922.jpg')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6cZq/55949b10-f4aa-47b3-a5ff-bb59a43cf922.jpg" alt="Starlink Yayu - destaque 5" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20no%20site%20da%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd6cZq/55949b10-f4aa-47b3-a5ff-bb59a43cf922.jpg" alt="Starlink Yayu 5" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6bmC/f7fde71b-d132-4dc7-84e2-1a10fcccb447.jpg')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6bmC/f7fde71b-d132-4dc7-84e2-1a10fcccb447.jpg" alt="Starlink Yayu - destaque 6" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20no%20site%20da%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd6bmC/f7fde71b-d132-4dc7-84e2-1a10fcccb447.jpg" alt="Starlink Yayu 6" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd68op/b480a423-0e08-4cbe-9998-a34e89f5bf94.jpg')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd68op/b480a423-0e08-4cbe-9998-a34e89f5bf94.jpg" alt="Starlink Yayu - destaque 7" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20no%20site%20da%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd68op/b480a423-0e08-4cbe-9998-a34e89f5bf94.jpg" alt="Starlink Yayu 7" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
         </div>
 
         <div class="car-slide" style="--bg-img:url('https://i.im.ge/QQd6RhP/11835bf9-d861-487e-84ce-c995b4edc652.jpg')">
-          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
-            <img src="https://i.im.ge/QQd6RhP/11835bf9-d861-487e-84ce-c995b4edc652.jpg" alt="Starlink Yayu - destaque 8" loading="lazy" decoding="async">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20destaque%20no%20site%20da%20Yayu." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp">
+            <img src="https://i.im.ge/QQd6RhP/11835bf9-d861-487e-84ce-c995b4edc652.jpg" alt="Starlink Yayu 8" loading="lazy" decoding="async">
             <span class="ph">Yayu Starlink</span>
             <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
           </a>
@@ -703,8 +728,6 @@ footer strong{
     <!-- HERO -->
     <div class="hero">
       <div>
-        <div class="t3d gold logo3d" data-text="YAYU" role="img" aria-label="Yayu"><span>YAYU</span></div>
-
         <div class="promo">
           <span class="tag">Kit promoção</span>
           <div class="apartir">Starlink Mini a partir de</div>
@@ -715,12 +738,12 @@ footer strong{
         <h1>Internet via satélite com instalação de quem vive de conexão.</h1>
 
         <div class="cta">
-          <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20kit%20Starlink%20em%20promo%C3%A7%C3%A3o%20a%20partir%20de%20R%24%2099%2C99" target="_blank" rel="noopener">Quero o kit promoção</a>
+          <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20kit%20Starlink%20em%20promo%C3%A7%C3%A3o." target="_blank" rel="noopener">Quero o kit promoção</a>
           <a class="btn btn-ghost" href="#kits">Ver equipamentos</a>
         </div>
       </div>
 
-      <svg class="orbit" viewBox="0 0 400 400" role="img" aria-label="Satélites em órbita enviando sinal para uma antena">
+      <svg class="orbit" viewBox="0 0 400 400" role="img" aria-label="Satélites em órbita">
         <circle class="ring" cx="200" cy="200" r="70"/>
         <circle class="ring" cx="200" cy="200" r="125"/>
         <circle class="ring" cx="200" cy="200" r="180"/>
@@ -741,9 +764,9 @@ footer strong{
   <div class="wrap">
     <ul>
       <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20cobertura%20Starlink" target="_blank" rel="noopener"><b>Cobertura total</b>Do campo à cidade</a></li>
-      <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20os%20kits%20originais%20Starlink" target="_blank" rel="noopener"><b>Kits originais</b>Equipamento Starlink</a></li>
-      <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20instala%C3%A7%C3%A3o%20Starlink" target="_blank" rel="noopener"><b>Pronta instalação</b>Configuração inclusa</a></li>
-      <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20falar%20com%20o%20suporte%20da%20Yayu" target="_blank" rel="noopener"><b>Atendimento direto</b>Fale com quem instala</a></li>
+      <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20os%20kits%20originais" target="_blank" rel="noopener"><b>Kits originais</b>Equipamento Starlink</a></li>
+      <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20instala%C3%A7%C3%A3o" target="_blank" rel="noopener"><b>Pronta instalação</b>Configuração inclusa</a></li>
+      <li><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20falar%20com%20o%20suporte" target="_blank" rel="noopener"><b>Atendimento direto</b>Fale com quem instala</a></li>
     </ul>
   </div>
 </div>
@@ -752,29 +775,29 @@ footer strong{
 <section>
   <div class="wrap">
     <div class="head">
-      <h2>Por que contratar a <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20contratar%20a%20Yayu%20Starlink" target="_blank" rel="noopener">Yayu</a></h2>
-      <p>Somos <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20servi%C3%A7o%20de%20provedor%20de%20internet" target="_blank" rel="noopener">provedor de internet</a>. Conhecemos <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede%20e%20roteador" target="_blank" rel="noopener">rede, roteador e sinal</a> por dentro, e é isso que colocamos em cada instalação Starlink.</p>
+      <h2>Por que contratar a <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20contratar%20a%20Yayu" target="_blank" rel="noopener">Yayu</a></h2>
+      <p>Somos <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20servi%C3%A7o" target="_blank" rel="noopener">provedor de internet</a>. Conhecemos <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20rede" target="_blank" rel="noopener">rede, roteador e sinal</a> por dentro, e é isso que colocamos em cada instalação Starlink.</p>
     </div>
     <div class="grid4">
       <div>
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/></svg></div>
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20conex%C3%A3o%20confi%C3%A1vel%20Starlink" target="_blank" rel="noopener">Conexão confiável</a></h3>
-        <p>Milhares de satélites em órbita levam <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20banda%20larga%20via%20sat%C3%A9lite" target="_blank" rel="noopener">banda larga</a> a lugares que nenhuma operadora alcança.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20conex%C3%A3o%20confi%C3%A1vel" target="_blank" rel="noopener">Conexão confiável</a></h3>
+        <p>Milhares de satélites em órbita levam <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20banda%20larga" target="_blank" rel="noopener">banda larga</a> a lugares que nenhuma operadora alcança.</p>
       </div>
       <div>
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20instalar%20Starlink%20r%C3%A1pido" target="_blank" rel="noopener">Rápido de colocar no ar</a></h3>
-        <p>Kit em mãos, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20posicionamento%20de%20antena" target="_blank" rel="noopener">antena posicionada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20Wi-Fi" target="_blank" rel="noopener">Wi-Fi configurado</a> sem enrolação.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20instalar%20Starlink" target="_blank" rel="noopener">Rápido de colocar no ar</a></h3>
+        <p>Kit em mãos, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20posicionamento%20de%20antena" target="_blank" rel="noopener">antena posicionada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20configura%C3%A7%C3%A3o%20de%20Wi-Fi" target="_blank" rel="noopener">Wi-Fi configurado</a> sem enrolação.</p>
       </div>
       <div>
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">Rede bem configurada</a></h3>
-        <p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20roteamento" target="_blank" rel="noopener">Roteamento</a> e Wi-Fi ajustados por <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20falar%20com%20profissional%20de%20telecom" target="_blank" rel="noopener">profissional de telecom</a>, para a internet render de verdade.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">Rede bem configurada</a></h3>
+        <p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20roteamento" target="_blank" rel="noopener">Roteamento</a> e Wi-Fi ajustados por <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20profissional%20de%20telecom" target="_blank" rel="noopener">profissional de telecom</a>, para a internet render de verdade.</p>
       </div>
       <div>
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg></div>
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20preciso%20de%20suporte%20humano" target="_blank" rel="noopener">Suporte humano</a></h3>
-        <p>Precisou de ajuda? Você chama a Yayu direto no <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20atendimento%20pelo%20WhatsApp" target="_blank" rel="noopener">WhatsApp</a> e fala com gente.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20preciso%20de%20suporte" target="_blank" rel="noopener">Suporte humano</a></h3>
+        <p>Precisou de ajuda? Você chama a Yayu direto no <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20atendimento%20WhatsApp" target="_blank" rel="noopener">WhatsApp</a> e fala com gente.</p>
       </div>
     </div>
   </div>
@@ -790,41 +813,41 @@ footer strong{
     <div class="kits">
       <article class="kit hot">
         <span class="tag">Promoção</span>
-        <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Kit%20Mini%20Starlink%20a%20partir%20de%20R%24%2099%2C99" target="_blank" rel="noopener">Kit Mini</a></h3>
-        <p class="for">Compacto, portátil e com <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20Wi-Fi%20integrado%20do%20Kit%20Mini" target="_blank" rel="noopener">Wi-Fi na própria antena</a>.</p>
+        <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Kit%20Mini" target="_blank" rel="noopener">Kit Mini</a></h3>
+        <p class="for">Compacto, portátil e com <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Wi-Fi%20integrado" target="_blank" rel="noopener">Wi-Fi na própria antena</a>.</p>
         <ul>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20roteador%20Wi-Fi%20integrado" target="_blank" rel="noopener">Roteador Wi-Fi integrado</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20fonte%20bivolt%20e%2012V" target="_blank" rel="noopener">Fonte bivolt e alimentação 12V</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20se%20o%20Kit%20Mini%20%C3%A9%20leve%20e%20port%C3%A1til" target="_blank" rel="noopener">Leve: cabe na mochila</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20resist%C3%AAncia%20a%20chuva%20IP67" target="_blank" rel="noopener">Resistente a chuva (IP67)</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20roteador%20Wi-Fi%20integrado" target="_blank" rel="noopener">Roteador Wi-Fi integrado</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20fonte%20bivolt%20e%2012V" target="_blank" rel="noopener">Fonte bivolt e alimentação 12V</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Kit%20Mini%20port%C3%A1til" target="_blank" rel="noopener">Leve: cabe na mochila</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20resist%C3%AAncia%20IP67" target="_blank" rel="noopener">Resistente a chuva (IP67)</a></li>
         </ul>
         <div class="price"><s>a partir de</s><strong>R$ 99,99</strong></div>
-        <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Kit%20Mini%20Starlink%20a%20partir%20de%20R%24%2099%2C99" target="_blank" rel="noopener">Quero o Kit Mini</a>
+        <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Kit%20Mini" target="_blank" rel="noopener">Quero o Kit Mini</a>
       </article>
 
       <article class="kit">
-        <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Standard%20V4" target="_blank" rel="noopener">Standard V4</a></h3>
-        <p class="for">Para <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20casa" target="_blank" rel="noopener">casa</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20ch%C3%A1cara" target="_blank" rel="noopener">chácara</a> ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20empresa" target="_blank" rel="noopener">empresa</a> que precisa de sinal forte e fixo.</p>
+        <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Standard%20V4" target="_blank" rel="noopener">Standard V4</a></h3>
+        <p class="for">Para <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Starlink%20casa" target="_blank" rel="noopener">casa</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Starlink%20ch%C3%A1cara" target="_blank" rel="noopener">chácara</a> ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Starlink%20empresa" target="_blank" rel="noopener">empresa</a> que precisa de sinal forte e fixo.</p>
         <ul>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20a%20antena%20com%20suporte" target="_blank" rel="noopener">Antena com suporte</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20roteador%20Wi-Fi%206" target="_blank" rel="noopener">Roteador Wi-Fi 6 com 2 portas</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20instala%C3%A7%C3%A3o%20do%20Standard%20V4" target="_blank" rel="noopener">Instalação simples</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20resist%C3%AAncia%20a%20chuva%20IP67" target="_blank" rel="noopener">Resistente a chuva (IP67)</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20antena%20com%20suporte" target="_blank" rel="noopener">Antena com suporte</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20roteador%20Wi-Fi%206" target="_blank" rel="noopener">Roteador Wi-Fi 6 com 2 portas</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20instala%C3%A7%C3%A3o%20Standard%20V4" target="_blank" rel="noopener">Instalação simples</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20IP67" target="_blank" rel="noopener">Resistente a chuva (IP67)</a></li>
         </ul>
         <div class="price"><span>Consulte o valor</span></div>
-        <a class="btn" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Standard%20V4" target="_blank" rel="noopener">Pedir orçamento</a>
+        <a class="btn" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Standard%20V4" target="_blank" rel="noopener">Pedir orçamento</a>
       </article>
 
       <article class="kit">
-        <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Flat%20HP" target="_blank" rel="noopener">Flat High Performance</a></h3>
-        <p class="for">Para uso exigente: <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20barco" target="_blank" rel="noopener">barcos</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20para%20ferrovia" target="_blank" rel="noopener">ferrovias</a> e grandes operações.</p>
+        <h3><a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Flat%20HP" target="_blank" rel="noopener">Flat High Performance</a></h3>
+        <p class="for">Para uso exigente: <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Starlink%20barco" target="_blank" rel="noopener">barcos</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20Starlink%20ferrovia" target="_blank" rel="noopener">ferrovias</a> e grandes operações.</p>
         <ul>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20o%20design%20plano%20de%20alto%20desempenho" target="_blank" rel="noopener">Design plano de alto desempenho</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20vis%C3%A3o%20de%20c%C3%A9u%20desobstru%C3%ADda" target="_blank" rel="noopener">Visão de céu desobstruída</a></li>
-          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20m%C3%A1xima%20efici%C3%AAncia" target="_blank" rel="noopener">Máxima eficiência</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20design%20plano" target="_blank" rel="noopener">Design plano de alto desempenho</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vis%C3%A3o%20de%20c%C3%A9u" target="_blank" rel="noopener">Visão de céu desobstruída</a></li>
+          <li><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20efici%C3%AAncia" target="_blank" rel="noopener">Máxima eficiência</a></li>
         </ul>
         <div class="price"><span>Consulte o valor</span></div>
-        <a class="btn" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Starlink%20Flat%20HP" target="_blank" rel="noopener">Pedir orçamento</a>
+        <a class="btn" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20o%20Flat%20HP" target="_blank" rel="noopener">Pedir orçamento</a>
       </article>
     </div>
   </div>
@@ -856,16 +879,16 @@ footer strong{
     <div class="head"><h2>Como funciona</h2></div>
     <div class="steps">
       <div class="step">
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20chamar%20a%20Yayu%20para%20falar%20de%20Starlink" target="_blank" rel="noopener">Você chama a Yayu</a></h3>
-        <p>Conta onde vai usar e quantas pessoas ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20quantidade%20de%20dispositivos%20conectados" target="_blank" rel="noopener">dispositivos</a> vão se conectar.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20chamar%20a%20Yayu" target="_blank" rel="noopener">Você chama a Yayu</a></h3>
+        <p>Conta onde vai usar e quantas pessoas ou <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20dispositivos" target="_blank" rel="noopener">dispositivos</a> vão se conectar.</p>
       </div>
       <div class="step">
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20ajuda%20para%20definir%20o%20kit%20Starlink" target="_blank" rel="noopener">Definimos o kit</a></h3>
-        <p>Indicamos o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20indica%C3%A7%C3%A3o%20de%20equipamento%20Starlink" target="_blank" rel="noopener">equipamento</a> e o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20planos%20Starlink" target="_blank" rel="noopener">plano</a> certos, sem você pagar por mais do que precisa.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20qual%20kit%20Starlink" target="_blank" rel="noopener">Definimos o kit</a></h3>
+        <p>Indicamos o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20equipamento%20Starlink" target="_blank" rel="noopener">equipamento</a> e o <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20planos%20Starlink" target="_blank" rel="noopener">plano</a> certos, sem você pagar por mais do que precisa.</p>
       </div>
       <div class="step">
-        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20colocar%20minha%20conex%C3%A3o%20no%20ar" target="_blank" rel="noopener">Conexão no ar</a></h3>
-        <p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20posicionamento%20de%20antena" target="_blank" rel="noopener">Antena posicionada</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20configura%C3%A7%C3%A3o%20de%20rede" target="_blank" rel="noopener">rede configurada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20internet%20funcionando" target="_blank" rel="noopener">internet funcionando</a>.</p>
+        <h3><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20colocar%20conex%C3%A3o%20no%20ar" target="_blank" rel="noopener">Conexão no ar</a></h3>
+        <p><a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20antena%20posicionada" target="_blank" rel="noopener">Antena posicionada</a>, <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20rede%20configurada" target="_blank" rel="noopener">rede configurada</a> e <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20internet%20funcionando" target="_blank" rel="noopener">internet funcionando</a>.</p>
       </div>
     </div>
   </div>
@@ -875,14 +898,29 @@ footer strong{
 <section class="final">
   <div class="wrap">
     <h2>Sua internet não precisa esperar a fibra chegar.</h2>
-    <p>Chame a Yayu e receba uma <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20uma%20indica%C3%A7%C3%A3o%20de%20kit%20e%20valores" target="_blank" rel="noopener">indicação de kit e valores</a> ainda hoje.</p>
+    <p>Chame a Yayu e receba uma <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20indica%C3%A7%C3%A3o%20de%20kit%20e%20valores" target="_blank" rel="noopener">indicação de kit e valores</a> ainda hoje.</p>
     <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20com%20a%20Yayu" target="_blank" rel="noopener">(13) 98877-7008</a>
   </div>
 </section>
 
+<!-- FOOTER COM LOGO GRANDE -->
 <footer>
   <div class="wrap">
-    <div><strong>Yayu</strong> &middot; <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20revenda%20Starlink%20no%20Brasil" target="_blank" rel="noopener">Revenda Starlink para todo o Brasil</a></div>
+    <div class="footer-logo">
+      <img
+        class="logo-img"
+        id="logoFooter"
+        src="https://i.im.ge/QQdNGrC/2026-10-05_12-58.png"
+        alt="Yayu — Conectando você ao que realmente importa"
+        width="220" height="70"
+        loading="lazy"
+        decoding="async">
+      <span class="logo-fallback" id="fallbackFooter">YAYU</span>
+      <div class="info">
+        <strong>Yayu Starlink</strong>
+        <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20revenda%20Starlink" target="_blank" rel="noopener">Revenda Starlink para todo o Brasil</a>
+      </div>
+    </div>
     <a href="tel:+5513988777008">(13) 98877-7008</a>
   </div>
 </footer>
@@ -904,6 +942,33 @@ footer strong{
   "use strict";
   var fone = "5513988777008";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* =====================================================
+     👇 LOGO JÁ CONFIGURADO — NÃO PRECISA MEXER 👇
+     ===================================================== */
+  var LOGO_URL = "https://i.im.ge/QQdNGrC/2026-10-05_12-58.png";
+
+  // Aplica o logo no topo e rodapé
+  ["logoTopo","logoFooter"].forEach(function(id){
+    var img = document.getElementById(id);
+    if(img && img.src.indexOf("QQdNGrC") === -1){
+      img.src = LOGO_URL;
+    }
+  });
+
+  // Se o logo não carregar, mostra "YAYU" no lugar
+  ["logoTopo","logoFooter"].forEach(function(id){
+    var img = document.getElementById(id);
+    var fallback = document.getElementById(id === "logoTopo" ? "fallbackTopo" : "fallbackFooter");
+    if(!img || !fallback) return;
+    img.addEventListener("error", function(){
+      img.style.display = "none";
+      fallback.classList.add("on");
+    });
+    img.addEventListener("load", function(){
+      fallback.classList.remove("on");
+    });
+  });
 
   /* ============ SIMULADOR ============ */
   var dados = {
@@ -970,7 +1035,7 @@ footer strong{
     });
   });
 
-  /* ============ TILT 3D SUAVE ============ */
+  /* ============ TILT 3D ============ */
   var hero = document.querySelector(".hero");
   var letras = document.querySelectorAll(".t3d");
   if(hero && !reduce){
