@@ -227,19 +227,22 @@ footer{background:rgba(27,11,75,.7);color:#BBAEE8}
 body{padding-bottom:110px}
 
 /* ===== CARROSSEL DO TOPO ===== */
-.car{position:relative;width:min(100%,780px);margin:4px auto 34px;border-radius:22px;overflow:hidden;background:var(--night2);aspect-ratio:626/301;box-shadow:0 0 0 3px var(--amber),0 26px 60px rgba(0,0,0,.45)}
+.car{position:relative;width:min(100%,1080px);margin:12px auto 38px;border-radius:28px;overflow:hidden;background:var(--night2);aspect-ratio:16/7;box-shadow:0 0 0 3px var(--amber),0 30px 80px rgba(0,0,0,.55),0 0 55px rgba(108,59,255,.28)}
 .car-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.65,0,.35,1)}
-.car-slide{flex:0 0 100%;height:100%;position:relative}
-.car-slide img{width:100%;height:100%;object-fit:cover;display:block}
-.car-slide .ph{position:absolute;inset:0;z-index:-0;display:grid;place-items:center;font:800 clamp(1.4rem,4vw,2.4rem) var(--fh);color:#fff;background:linear-gradient(120deg,#FF4D8D,#6C3BFF)}
-.car-slide img{position:relative;z-index:1}
+.car-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden}
+.car-slide>a{display:block;width:100%;height:100%;position:relative;text-decoration:none}
+.car-slide>a::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 50%,rgba(10,3,35,.48) 100%);pointer-events:none}
+.car-slide .car-cta{position:absolute;z-index:4;left:28px;bottom:28px;background:var(--wa);color:#fff;padding:12px 20px;border-radius:999px;font:800 .95rem var(--fb);box-shadow:0 10px 30px rgba(31,184,90,.38);pointer-events:none}
+.car-slide:hover img{transform:scale(1.025)}
+.car-slide img{width:100%;height:100%;object-fit:cover;display:block;image-rendering:auto;transition:transform .7s ease;filter:saturate(1.05) contrast(1.03);position:relative;z-index:1;background:linear-gradient(120deg,#FF4D8D,#6C3BFF)}
+.car-slide .ph{position:absolute;inset:0;z-index:0;display:grid;place-items:center;font:800 clamp(1.4rem,4vw,2.4rem) var(--fh);color:#fff;background:linear-gradient(120deg,#FF4D8D,#6C3BFF)}
 .car-btn{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(27,11,75,.7);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0 0 4px}
 .car-btn:hover{background:var(--coral)}
 .car-btn.prev{left:12px}.car-btn.next{right:12px}
 .car-dots{position:absolute;z-index:3;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px}
 .car-dots button{width:11px;height:11px;border-radius:8px;border:0;background:rgba(255,255,255,.6);cursor:pointer;padding:0;transition:width .3s,background .3s}
 .car-dots button[aria-current="true"]{background:var(--amber);width:30px}
-@media(max-width:860px){.car{margin-bottom:24px}.car-btn{width:38px;height:38px}}
+@media(max-width:860px){.car{margin-bottom:24px;border-radius:20px;aspect-ratio:16/9}.car-btn{width:40px;height:40px}.car-slide .car-cta{left:16px;bottom:18px;padding:10px 15px;font-size:.82rem}}
 </style>
 </head>
 <body>
@@ -252,9 +255,34 @@ body{padding-bottom:110px}
     </div>
     <div class="car" role="region" aria-roledescription="carrossel" aria-label="Destaques Yayu Starlink">
       <div class="car-track">
-        <div class="car-slide"><div class="ph">Imagem 1</div><img alt="Destaque Yayu Starlink 1"></div>
-        <div class="car-slide"><div class="ph">Imagem 2</div><img alt="Destaque Yayu Starlink 2"></div>
-        <div class="car-slide"><div class="ph">Imagem 3</div><img alt="Destaque Yayu Starlink 3"></div>
+        <div class="car-slide">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20instala%C3%A7%C3%A3o%20Starlink%20no%20site%20da%20Yayu%20e%20quero%20saber%20valores%20e%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd6isy/2026-10-05_12-03.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 1" fetchpriority="high" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+        <div class="car-slide">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20a%20Starlink%20instalada%20pela%20Yayu%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd60yS/2026-10-05_12-02.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 2" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+        <div class="car-slide">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vi%20o%20kit%20Starlink%20no%20site%20da%20Yayu%20e%20tenho%20interesse%20no%20produto." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd65zz/2026-10-05_12-01.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 3" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
+        <div class="car-slide">
+          <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20Starlink%20com%20a%20Yayu.%20Quero%20saber%20kit%2C%20valores%20e%20instala%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar com a Yayu no WhatsApp sobre Starlink">
+            <img src="https://i.im.ge/QQd6jO6/2026-10-05_12-00.png" crossorigin="anonymous" alt="Starlink Yayu - destaque 4" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='grid'">
+            <span class="ph">Yayu Starlink</span>
+            <span class="car-cta">💬 TENHO INTERESSE — CHAMAR NO WHATSAPP</span>
+          </a>
+        </div>
       </div>
       <button class="car-btn prev" aria-label="Imagem anterior">&#8249;</button>
       <button class="car-btn next" aria-label="Próxima imagem">&#8250;</button>
@@ -457,15 +485,15 @@ body{padding-bottom:110px}
   }
 
   // ===== CARROSSEL =====
-  var IMAGENS=[
-    "https://i.im.ge/QQOShMJ/2026-09-23_14-23.png",
-    "https://i.im.ge/QQOSiIy/2026-09-23_14-22.png",
-    "https://i.im.ge/QQOSL8a/2026-09-23_14-24.png"
-  ];
   var car=document.querySelector(".car"),sl=car.querySelectorAll(".car-slide"),tr=car.querySelector(".car-track"),dots=car.querySelector(".car-dots"),cur=0,timer;
   sl.forEach(function(el,i){
     var img=el.querySelector("img");
-    if(IMAGENS[i]){img.src=IMAGENS[i];img.onerror=function(){img.style.display="none"}}else{img.style.display="none"}
+    // Garantir que o placeholder seja exibido caso a imagem falhe
+    img.onerror=function(){ 
+      console.warn("Falha ao carregar imagem do carrossel:", img.src); 
+      img.style.display='none'; 
+      el.querySelector('.ph').style.display='grid'; 
+    };
     var d=document.createElement("button");d.setAttribute("aria-label","Ir para imagem "+(i+1));
     d.addEventListener("click",function(){go(i);play()});dots.appendChild(d);
   });
@@ -477,7 +505,7 @@ body{padding-bottom:110px}
   function play(){
     clearInterval(timer);
     if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-    timer=setInterval(function(){go(cur+1)},4500);
+    timer=setInterval(function(){go(cur+1)},4000);
   }
   car.querySelector(".prev").addEventListener("click",function(){go(cur-1);play()});
   car.querySelector(".next").addEventListener("click",function(){go(cur+1);play()});
