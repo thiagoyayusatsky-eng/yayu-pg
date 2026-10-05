@@ -54,7 +54,7 @@ body{
   color:var(--ink);
   line-height:1.6;
   font-size:var(--t-body);
-  padding-bottom:110px;
+  padding-bottom:130px;
   background-color:var(--space-900);
   background-image:url("https://i.im.ge/QQOdST8/WhatsApp_Image_2026-09-23_at_14.32.17.jpg");
   background-size:cover;
@@ -87,21 +87,110 @@ h1{font-size:var(--t-h1)}
 h2{font-size:var(--t-h2);font-weight:800}
 h3{font-weight:700}
 
-/* ===== LOGO IMG — ALTA DEFINIÇÃO ===== */
+/* =====================================================
+   LETRAS 3D — sistema unificado
+   ===================================================== */
+.t3d{
+  position:relative;
+  display:inline-block;
+  font-family:var(--fh);
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-.035em;
+  white-space:nowrap;
+  padding:0 .2em .22em 0;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .18s ease-out;
+}
+.t3d::before{
+  content:attr(data-text);
+  position:absolute; left:0; top:0;
+  z-index:0;
+  padding:inherit;
+  color:var(--shadow-color,#5E2400);
+  text-shadow:var(--shadow-stack);
+}
+.t3d>span{
+  position:relative; z-index:1;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  background-image:var(--fill);
+  -webkit-text-stroke:.008em rgba(255,255,255,.35);
+  paint-order:stroke fill;
+}
+
+/* ---- OURO: telefones, preço destaque ---- */
+.phone3d{
+  --shadow-color:#5E2400;
+  --shadow-stack:
+    0.02em 0.02em 0 #A35A08,
+    0.04em 0.04em 0 #8A4A05,
+    0.06em 0.06em 0 #6B3A00,
+    0.08em 0.08em 0 #4A2A02,
+    0.11em 0.14em .2em rgba(0,0,0,.55);
+  --fill:linear-gradient(180deg,#FFF9D6 0%,#FFE27A 30%,#FFC93C 58%,#F5A623 88%,#E38A0E 100%);
+}
+
+/* ---- PRATA/BRANCO: usado no botão WhatsApp verde ---- */
+.silver3d{
+  --shadow-color:#0A4A28;
+  --shadow-stack:
+    0.02em 0.02em 0 #0A4A28,
+    0.04em 0.04em 0 #083A1F,
+    0.06em 0.06em 0 #062F19,
+    0.09em 0.11em .18em rgba(0,0,0,.4);
+  --fill:linear-gradient(180deg,#FFFFFF 0%,#F4FFF9 45%,#D5F0E1 100%);
+}
+
+/* ---- MENTA: preço promocional ---- */
+.mint{
+  --shadow-color:#0B6B52;
+  --shadow-stack:
+    0.03em 0.03em 0 #0A8B6A,
+    0.06em 0.06em 0 #087A5C,
+    0.09em 0.09em 0 #065440,
+    0.12em 0.12em 0 #03392B,
+    0.16em 0.22em .28em rgba(0,0,0,.6);
+  --fill:linear-gradient(180deg,#E4FFF6 0%,#8FF2D2 35%,#46E5B4 70%,#16B98B 100%);
+}
+
+.price3d{font-size:var(--t-price3d)}
+
+/* ---- Tamanhos dos telefones 3D ---- */
+.phone-nav   {font-size:clamp(.95rem,.8rem + .55vw,1.3rem); letter-spacing:-.02em}
+.phone-foot  {font-size:clamp(1.1rem,.95rem + .7vw,1.55rem); letter-spacing:-.02em}
+.phone-balao {font-size:clamp(1.3rem,1.1rem + .6vw,1.55rem); letter-spacing:-.02em}
+.phone-final {font-size:clamp(1.7rem,1.1rem + 2.8vw,2.9rem); letter-spacing:-.035em}
+
+/* ===== LOGO — cantos redondos + sombra premium ===== */
 .logo-img{
   display:block;
   width:auto;
   height:auto;
   max-width:100%;
   object-fit:contain;
+  border-radius:18px;
   image-rendering:auto;
   image-rendering:-webkit-optimize-contrast;
   -ms-interpolation-mode:bicubic;
   backface-visibility:hidden;
   transform:translateZ(0);
-  filter:
-    drop-shadow(0 8px 22px rgba(70,213,255,.45))
-    drop-shadow(0 4px 12px rgba(0,0,0,.6));
+  box-shadow:
+    0 0 0 2px rgba(70,213,255,.28),
+    0 0 0 4px rgba(5,8,28,.45),
+    0 14px 32px rgba(70,213,255,.32),
+    0 6px 16px rgba(0,0,0,.55);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.logo:hover .logo-img{
+  transform:scale(1.02);
+  box-shadow:
+    0 0 0 2px rgba(70,213,255,.5),
+    0 0 0 4px rgba(5,8,28,.45),
+    0 18px 40px rgba(70,213,255,.45),
+    0 8px 20px rgba(0,0,0,.6);
 }
 
 .logo-fallback{
@@ -156,9 +245,9 @@ header{
 }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
-  padding:16px 0;
+  padding:18px 0;
   gap:20px;
-  min-height:96px;
+  min-height:104px;
 }
 .logo{
   display:inline-flex; align-items:center;
@@ -166,21 +255,20 @@ header{
   flex:0 0 auto;
 }
 .logo .logo-img{
-  height:80px;
+  height:84px;
   width:auto;
-  max-width:260px;
-  transition:transform .2s ease;
+  max-width:280px;
 }
-.logo:hover .logo-img{transform:scale(1.03)}
 .logo .logo-fallback{font-size:2rem}
 
-.nav a.tel{
-  font-weight:700; text-decoration:none;
-  opacity:.95; font-variant-numeric:tabular-nums;
-  white-space:nowrap;
-  font-size:1.05rem;
+/* Telefone no topo — destaque */
+.tel{
+  display:inline-flex; align-items:center;
+  text-decoration:none;
+  padding:8px 4px;
+  transition:transform .2s ease;
 }
-.nav a.tel:hover{color:var(--cyan-2)}
+.tel:hover{transform:translateY(-1px)}
 
 /* ===== CARROSSEL ===== */
 .car{
@@ -217,10 +305,8 @@ header{
   z-index:1;
 }
 .car-slide img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
+  position:absolute; inset:0;
+  width:100%; height:100%;
   object-fit:contain;
   object-position:center;
   transition:transform .7s ease;
@@ -292,41 +378,6 @@ header{
   padding:6px 14px; border-radius:999px;
   margin-bottom:14px;
 }
-
-/* Letras 3D (só para o preço) */
-.t3d{
-  position:relative; display:inline-block;
-  font-family:var(--fh); font-weight:800; line-height:1;
-  letter-spacing:-.035em; white-space:nowrap;
-  padding:0 .18em .22em 0;
-  transition:transform .18s ease-out;
-}
-.t3d::before{
-  content:attr(data-text);
-  position:absolute; left:0; top:0;
-  z-index:0;
-  padding:inherit;
-  color:var(--shadow-color,#0B6B52);
-  text-shadow:var(--shadow-stack);
-}
-.t3d>span{
-  position:relative; z-index:1;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  background-image:var(--fill);
-}
-.mint{
-  --shadow-color:#0B6B52;
-  --shadow-stack:
-    0.03em 0.03em 0 #0A8B6A,
-    0.06em 0.06em 0 #087A5C,
-    0.09em 0.09em 0 #065440,
-    0.12em 0.12em 0 #03392B,
-    0.16em 0.22em .28em rgba(0,0,0,.6);
-  --fill:linear-gradient(180deg,#E4FFF6 0%,#8FF2D2 35%,#46E5B4 70%,#16B98B 100%);
-}
-.price3d{font-size:var(--t-price3d)}
 
 /* Órbita */
 .orbit{width:100%; max-width:470px; justify-self:center}
@@ -511,15 +562,31 @@ section{padding:84px 0}
     linear-gradient(120deg, var(--coral) 0%, var(--space-700) 100%);
   color:#fff; text-align:center;
   border-top:1px solid var(--line);
+  padding:90px 0 96px;
 }
 .final h2{
   font-size:clamp(1.9rem,4vw,3rem);
   max-width:16em; margin:0 auto 14px;
   color:#fff;
 }
-.final p{max-width:32em; margin:0 auto 28px; opacity:.94; color:#fff}
+.final p{max-width:32em; margin:0 auto 30px; opacity:.94; color:#fff}
 .final a.svc{color:#fff; border-bottom-color:rgba(255,255,255,.6)}
 .final a.svc:hover{color:var(--amber); border-bottom-color:var(--amber)}
+
+.final-actions{
+  display:flex; flex-direction:column;
+  align-items:center; gap:26px;
+  margin-top:6px;
+}
+.tel-final{
+  display:inline-block;
+  text-decoration:none;
+  transition:transform .2s ease;
+}
+.tel-final:hover{transform:scale(1.03)}
+.tel-final .phone-final{
+  display:inline-block;
+}
 
 /* ===== FOOTER ===== */
 footer{
@@ -527,30 +594,39 @@ footer{
   backdrop-filter:blur(6px);
   border-top:1px solid var(--line);
   color:var(--ink-3);
-  padding:40px 0 34px;
+  padding:44px 0 40px;
   font-size:.92rem;
 }
 footer .wrap{
   display:flex; justify-content:space-between;
-  gap:24px; flex-wrap:wrap; align-items:center;
+  gap:28px; flex-wrap:wrap; align-items:center;
 }
 footer a{color:var(--ink); text-decoration:none; font-weight:700}
 footer a:hover{color:var(--cyan-2)}
 
 .footer-logo{
-  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
 }
 .footer-logo .logo-img{
-  height:70px;
+  height:76px;
   width:auto;
-  max-width:220px;
+  max-width:240px;
 }
 .footer-logo .logo-fallback{font-size:1.7rem}
-.footer-logo .info{display:flex; flex-direction:column; line-height:1.3}
+.footer-logo .info{display:flex; flex-direction:column; line-height:1.3; gap:2px}
 .footer-logo .info strong{
   color:#fff; font-family:var(--fh); font-size:1.15rem;
   letter-spacing:-.01em;
 }
+.footer-logo .info a{font-size:.92rem; color:var(--ink-2); font-weight:600}
+.footer-logo .info a:hover{color:var(--cyan-2)}
+
+.tel-foot{
+  display:inline-block;
+  text-decoration:none;
+  transition:transform .2s ease;
+}
+.tel-foot:hover{transform:scale(1.03)}
 
 /* ===== BALÃO WHATSAPP ===== */
 .balao{
@@ -561,7 +637,7 @@ footer a:hover{color:var(--cyan-2)}
   display:flex; align-items:center; gap:16px;
   background:var(--wa); color:#fff;
   text-decoration:none; font-weight:700;
-  padding:16px 28px 16px 20px;
+  padding:16px 30px 18px 20px;
   border-radius:999px;
   box-shadow:
     0 14px 40px rgba(34,197,94,.5),
@@ -569,7 +645,7 @@ footer a:hover{color:var(--cyan-2)}
   transition:transform .15s;
 }
 .balao:hover{transform:translateY(-2px)}
-.balao svg{width:42px; height:42px; fill:#fff; flex:none}
+.balao svg{width:46px; height:46px; fill:#fff; flex:none}
 .balao::before{
   content:""; position:absolute; inset:0;
   border-radius:inherit;
@@ -581,12 +657,14 @@ footer a:hover{color:var(--cyan-2)}
   from{transform:scale(1); opacity:.7}
   to{transform:scale(1.35); opacity:0}
 }
-.balao span{display:flex; flex-direction:column; line-height:1.15}
-.balao small{font:700 .82rem var(--fb); opacity:.95}
-.balao b{
-  font:800 1.55rem var(--fh);
-  letter-spacing:-.01em;
-  font-variant-numeric:tabular-nums;
+.balao-text{
+  display:flex; flex-direction:column;
+  line-height:1.1; gap:3px;
+}
+.balao-text small{
+  font:700 .82rem var(--fb);
+  opacity:.95; letter-spacing:.02em;
+  color:#fff;
 }
 
 .conf{
@@ -596,10 +674,11 @@ footer a:hover{color:var(--cyan-2)}
 
 /* ===== RESPONSIVO ===== */
 @media(max-width:860px){
+  body{padding-bottom:150px}
   .nav{min-height:auto;padding:12px 0;gap:12px}
-  .logo .logo-img{height:56px;max-width:180px}
+  .logo .logo-img{height:60px;max-width:190px;border-radius:14px}
   .logo .logo-fallback{font-size:1.6rem}
-  .nav a.tel{font-size:.92rem}
+  .tel{padding:6px 2px}
   .hero{grid-template-columns:1fr; padding-bottom:56px}
   .orbit{max-width:340px; order:2; margin:0 auto}
   .strip ul{grid-template-columns:1fr 1fr}
@@ -608,20 +687,22 @@ footer a:hover{color:var(--cyan-2)}
   .steps{grid-template-columns:1fr; gap:28px}
   .step:not(:last-child)::after{display:none}
   section{padding:60px 0}
+  .final{padding:64px 0 70px}
   .balao{
     left:12px; right:12px;
     bottom:calc(12px + env(safe-area-inset-bottom,0px));
-    justify-content:center; padding:15px 16px;
+    justify-content:center; padding:14px 16px;
   }
-  .balao b{font-size:1.4rem}
+  .balao svg{width:40px;height:40px}
   .car{aspect-ratio:4/3; border-radius:20px}
   .car-btn{width:40px; height:40px}
   .car-slide .car-cta{left:16px; bottom:16px; padding:10px 15px; font-size:.8rem}
   .car-dots{bottom:8px; gap:6px}
   .car-dots button{width:9px; height:9px}
   .car-dots button[aria-current="true"]{width:22px}
-  .footer-logo .logo-img{height:56px;max-width:180px}
-  footer .wrap{flex-direction:column; align-items:flex-start}
+  .footer-logo .logo-img{height:60px;max-width:190px;border-radius:14px}
+  footer .wrap{flex-direction:column; align-items:flex-start; gap:20px}
+  .phone-final{font-size:clamp(1.6rem,7vw,2.2rem)}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -636,19 +717,25 @@ footer a:hover{color:var(--cyan-2)}
 <header>
   <div class="wrap">
     <div class="nav">
-      <!-- LOGO NO TOPO — ALTA DEFINIÇÃO -->
+      <!-- LOGO NO TOPO — CANTOS REDONDOS + ALTA DEFINIÇÃO -->
       <a class="logo" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yayu%20Starlink" target="_blank" rel="noopener" aria-label="Yayu Starlink — início">
         <img
           class="logo-img"
           id="logoTopo"
           src="https://i.im.ge/QQdNGrC/2026-10-05_12-58.png"
           alt="Yayu — Conectando você ao que realmente importa"
-          width="260" height="80"
+          width="280" height="84"
           fetchpriority="high"
           decoding="async">
         <span class="logo-fallback" id="fallbackTopo">YAYU</span>
       </a>
-      <a class="tel" href="tel:+5513988777008">(13) 98877-7008</a>
+
+      <!-- TELEFONE 3D DOURADO NO TOPO -->
+      <a class="tel" href="tel:+5513988777008" aria-label="Ligar para (13) 98877-7008">
+        <span class="t3d phone3d phone-nav" data-text="(13) 98877-7008">
+          <span aria-hidden="true">(13) 98877-7008</span>
+        </span>
+      </a>
     </div>
 
     <!-- CARROSSEL -->
@@ -894,16 +981,26 @@ footer a:hover{color:var(--cyan-2)}
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- CTA FINAL com telefone 3D GIGANTE -->
 <section class="final">
   <div class="wrap">
     <h2>Sua internet não precisa esperar a fibra chegar.</h2>
     <p>Chame a Yayu e receba uma <a class="svc" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20indica%C3%A7%C3%A3o%20de%20kit%20e%20valores" target="_blank" rel="noopener">indicação de kit e valores</a> ainda hoje.</p>
-    <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20com%20a%20Yayu" target="_blank" rel="noopener">(13) 98877-7008</a>
+
+    <div class="final-actions">
+      <a class="tel-final" href="tel:+5513988777008" aria-label="Ligar para (13) 98877-7008">
+        <span class="t3d phone3d phone-final" data-text="(13) 98877-7008">
+          <span aria-hidden="true">(13) 98877-7008</span>
+        </span>
+      </a>
+      <a class="btn btn-amber" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20Starlink%20com%20a%20Yayu" target="_blank" rel="noopener">
+        💬 Chamar no WhatsApp
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER COM LOGO GRANDE -->
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="footer-logo">
@@ -912,7 +1009,7 @@ footer a:hover{color:var(--cyan-2)}
         id="logoFooter"
         src="https://i.im.ge/QQdNGrC/2026-10-05_12-58.png"
         alt="Yayu — Conectando você ao que realmente importa"
-        width="220" height="70"
+        width="240" height="76"
         loading="lazy"
         decoding="async">
       <span class="logo-fallback" id="fallbackFooter">YAYU</span>
@@ -921,19 +1018,27 @@ footer a:hover{color:var(--cyan-2)}
         <a href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20revenda%20Starlink" target="_blank" rel="noopener">Revenda Starlink para todo o Brasil</a>
       </div>
     </div>
-    <a href="tel:+5513988777008">(13) 98877-7008</a>
+
+    <!-- TELEFONE 3D DOURADO NO FOOTER -->
+    <a class="tel-foot" href="tel:+5513988777008" aria-label="Ligar para (13) 98877-7008">
+      <span class="t3d phone3d phone-foot" data-text="(13) 98877-7008">
+        <span aria-hidden="true">(13) 98877-7008</span>
+      </span>
+    </a>
   </div>
 </footer>
 
-<!-- BALÃO WHATSAPP -->
+<!-- BALÃO WHATSAPP COM NÚMERO 3D PRATA -->
 <a class="balao" href="https://wa.me/5513988777008?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20quero%20Starlink" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp (13) 98877-7008">
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.4.6.7-2.3-.2-.3A8 8 0 0 1 12 4z"/>
     <path d="M9 7.5c.3 0 .5 0 .6.4l.7 1.6c.1.2 0 .4-.1.5l-.5.6c.8 1.5 2 2.5 3.5 3.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.4 0 .8-.8 1.5-1.7 1.5-2.8 0-6.3-3.3-6.3-6 0-.9.7-1.6 1.5-1.6z"/>
   </svg>
-  <span>
+  <span class="balao-text">
     <small>Chame agora no WhatsApp</small>
-    <b>(13) 98877-7008</b>
+    <span class="t3d silver3d phone-balao" data-text="(13) 98877-7008">
+      <span aria-hidden="true">(13) 98877-7008</span>
+    </span>
   </span>
 </a>
 
@@ -943,12 +1048,9 @@ footer a:hover{color:var(--cyan-2)}
   var fone = "5513988777008";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* =====================================================
-     👇 LOGO JÁ CONFIGURADO — NÃO PRECISA MEXER 👇
-     ===================================================== */
+  /* LOGO_URL — já configurado */
   var LOGO_URL = "https://i.im.ge/QQdNGrC/2026-10-05_12-58.png";
 
-  // Aplica o logo no topo e rodapé
   ["logoTopo","logoFooter"].forEach(function(id){
     var img = document.getElementById(id);
     if(img && img.src.indexOf("QQdNGrC") === -1){
@@ -956,7 +1058,6 @@ footer a:hover{color:var(--cyan-2)}
     }
   });
 
-  // Se o logo não carregar, mostra "YAYU" no lugar
   ["logoTopo","logoFooter"].forEach(function(id){
     var img = document.getElementById(id);
     var fallback = document.getElementById(id === "logoTopo" ? "fallbackTopo" : "fallbackFooter");
@@ -1035,9 +1136,9 @@ footer a:hover{color:var(--cyan-2)}
     });
   });
 
-  /* ============ TILT 3D ============ */
+  /* ============ TILT 3D — telefones do hero + preço ============ */
   var hero = document.querySelector(".hero");
-  var letras = document.querySelectorAll(".t3d");
+  var letras = document.querySelectorAll(".hero .t3d");
   if(hero && !reduce){
     hero.addEventListener("mousemove", function(e){
       var r = hero.getBoundingClientRect();
@@ -1045,11 +1146,59 @@ footer a:hover{color:var(--cyan-2)}
       var y = (e.clientY - r.top) / r.height - .5;
       letras.forEach(function(l){
         l.style.transform =
-          "perspective(1000px) rotateY(" + (x * 10) + "deg) rotateX(" + (-y * 7) + "deg)";
+          "perspective(1000px) rotateY(" + (x * 8) + "deg) rotateX(" + (-y * 6) + "deg)";
       });
     });
     hero.addEventListener("mouseleave", function(){
       letras.forEach(function(l){ l.style.transform = ""; });
+    });
+  }
+
+  /* Tilt suave no telefone do topo */
+  var telNav = document.querySelector(".tel .t3d");
+  var telNavLink = document.querySelector(".tel");
+  if(telNav && telNavLink && !reduce){
+    telNavLink.addEventListener("mousemove", function(e){
+      var r = telNavLink.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      telNav.style.transform =
+        "perspective(700px) rotateY(" + (x * 12) + "deg) rotateX(" + (-y * 8) + "deg)";
+    });
+    telNavLink.addEventListener("mouseleave", function(){
+      telNav.style.transform = "";
+    });
+  }
+
+  /* Tilt no telefone do rodapé */
+  var telFoot = document.querySelector(".tel-foot .t3d");
+  var telFootLink = document.querySelector(".tel-foot");
+  if(telFoot && telFootLink && !reduce){
+    telFootLink.addEventListener("mousemove", function(e){
+      var r = telFootLink.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      telFoot.style.transform =
+        "perspective(700px) rotateY(" + (x * 12) + "deg) rotateX(" + (-y * 8) + "deg)";
+    });
+    telFootLink.addEventListener("mouseleave", function(){
+      telFoot.style.transform = "";
+    });
+  }
+
+  /* Tilt no telefone final */
+  var telFinal = document.querySelector(".tel-final .t3d");
+  var telFinalLink = document.querySelector(".tel-final");
+  if(telFinal && telFinalLink && !reduce){
+    telFinalLink.addEventListener("mousemove", function(e){
+      var r = telFinalLink.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      telFinal.style.transform =
+        "perspective(900px) rotateY(" + (x * 10) + "deg) rotateX(" + (-y * 7) + "deg)";
+    });
+    telFinalLink.addEventListener("mouseleave", function(){
+      telFinal.style.transform = "";
     });
   }
 
