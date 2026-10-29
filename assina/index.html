@@ -4,706 +4,2135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>YAYU + Unni Fibra | Consulte seu Bairro</title>
+<title>YAYU + Unni Fibra | Consulte sua cobertura</title>
 
 <style>
+
+:root{
+    --blue:#00b7ff;
+    --blue2:#0066ff;
+    --green:#25d366;
+    --lime:#8cff00;
+    --yellow:#ffd500;
+    --orange:#ff7a00;
+    --dark:#020817;
+    --card:#06152d;
+    --white:#ffffff;
+    --muted:#9eb3ce;
+}
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    min-height:100vh;
-    background:
-        radial-gradient(circle at top,#074b9b 0%,#021d4a 35%,#020817 75%);
-    color:#fff;
-    padding:25px 15px;
+html{
+    scroll-behavior:smooth;
 }
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at 15% 15%,rgba(0,183,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 35%,rgba(140,255,0,.10),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(0,102,255,.20),transparent 40%),
+        #020817;
+}
+
+/* ==========================================
+   FUNDO TECNOLÓGICO
+========================================== */
+
+.network{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.network::before{
+    content:"";
+    position:absolute;
+    inset:-50%;
+
+    background-image:
+        linear-gradient(rgba(0,183,255,.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,183,255,.06) 1px,transparent 1px);
+
+    background-size:55px 55px;
+
+    transform:perspective(500px) rotateX(60deg);
+
+    animation:gridMove 10s linear infinite;
+}
+
+@keyframes gridMove{
+    from{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(0);
+    }
+
+    to{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            translateY(55px);
+    }
+}
+
+.orb{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.18;
+    z-index:-2;
+}
+
+.orb1{
+    width:300px;
+    height:300px;
+    background:#00b7ff;
+    top:10%;
+    left:-100px;
+
+    animation:float1 8s ease-in-out infinite;
+}
+
+.orb2{
+    width:300px;
+    height:300px;
+    background:#3cff00;
+    right:-100px;
+    top:40%;
+
+    animation:float2 10s ease-in-out infinite;
+}
+
+@keyframes float1{
+    50%{
+        transform:translate(80px,80px);
+    }
+}
+
+@keyframes float2{
+    50%{
+        transform:translate(-80px,-80px);
+    }
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
 
 .container{
-    max-width:520px;
+    max-width:600px;
     margin:auto;
+    padding:25px 16px 45px;
 }
 
-/* TOPO */
+/* ==========================================
+   HERO
+========================================== */
 
-.topo{
+.hero{
     text-align:center;
-    margin-bottom:25px;
+    padding:20px 5px 25px;
 }
 
 .logo{
-    font-size:36px;
+    font-size:39px;
     font-weight:900;
-    letter-spacing:-1px;
+    letter-spacing:-2px;
+
+    text-shadow:
+        0 0 25px rgba(0,183,255,.45);
 }
 
-.logo .mais{
+.logo-yayu{
     color:#fff;
 }
 
-.logo .unni{
-    color:#48ff70;
+.logo-plus{
+    color:var(--orange);
+    margin:0 5px;
 }
 
-.topo h1{
-    margin-top:18px;
-    font-size:30px;
-    line-height:1.1;
+.logo-unni{
+    background:
+        linear-gradient(
+            90deg,
+            #42ff72,
+            #00d5ff
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
-.destaque{
-    color:#ffd500;
+.fusion{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    margin-top:13px;
+
+    padding:7px 14px;
+
+    border:
+        1px solid rgba(0,183,255,.5);
+
+    border-radius:30px;
+
+    background:
+        rgba(0,70,150,.25);
+
+    font-size:12px;
+    font-weight:800;
+
+    box-shadow:
+        0 0 20px rgba(0,183,255,.15);
 }
 
-.topo p{
-    margin-top:12px;
-    color:#cbd8ef;
+.hero h1{
+    margin-top:20px;
+    font-size:32px;
+    line-height:1.05;
+}
+
+.hero h1 span{
+    color:var(--yellow);
+}
+
+.hero p{
+    color:#c3d3e7;
+    line-height:1.55;
+
+    margin:13px auto 0;
+
+    max-width:480px;
+}
+
+/* ==========================================
+   WIFI ANIMADO
+========================================== */
+
+.wifi-box{
+    width:100px;
+    height:80px;
+
+    position:relative;
+
+    margin:22px auto 5px;
+}
+
+.wave{
+    position:absolute;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    border:4px solid var(--blue);
+
+    border-left-color:transparent;
+    border-right-color:transparent;
+    border-bottom-color:transparent;
+
+    border-radius:50%;
+
+    opacity:0;
+
+    animation:
+        wifiPulse 2s infinite;
+}
+
+.w1{
+    width:35px;
+    height:35px;
+    top:42px;
+}
+
+.w2{
+    width:65px;
+    height:65px;
+    top:25px;
+
+    animation-delay:.3s;
+}
+
+.w3{
+    width:95px;
+    height:95px;
+    top:8px;
+
+    animation-delay:.6s;
+}
+
+.dot{
+    position:absolute;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:var(--blue);
+
+    bottom:0;
+    left:44px;
+
+    box-shadow:
+        0 0 18px var(--blue);
+}
+
+@keyframes wifiPulse{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translateX(-50%)
+            scale(.7);
+    }
+
+    40%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+            translateX(-50%)
+            scale(1.1);
+    }
+}
+
+/* ==========================================
+   BENEFÍCIOS
+========================================== */
+
+.benefits{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin:
+        15px 0 25px;
+}
+
+.benefit{
+    padding:14px 8px;
+
+    border:
+        1px solid
+        rgba(0,183,255,.25);
+
+    border-radius:14px;
+
+    background:
+        rgba(5,24,52,.78);
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.2);
+}
+
+.benefit .icon{
+    font-size:25px;
+    margin-bottom:6px;
+}
+
+.benefit strong{
+    display:block;
+    font-size:12px;
+}
+
+.benefit small{
+    display:block;
+
+    color:var(--muted);
+
+    margin-top:4px;
+
+    font-size:10px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card{
+    position:relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7,27,58,.97),
+            rgba(2,12,30,.98)
+        );
+
+    border:
+        1px solid
+        rgba(0,183,255,.6);
+
+    border-radius:25px;
+
+    padding:27px 22px;
+
+    box-shadow:
+        0 0 25px rgba(0,153,255,.18),
+        0 30px 80px rgba(0,0,0,.5);
+
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:var(--blue);
+
+    filter:blur(100px);
+
+    opacity:.10;
+
+    right:-70px;
+    top:-70px;
+}
+
+.card-title{
+    position:relative;
+    text-align:center;
+}
+
+.card-title h2{
+    font-size:27px;
+}
+
+.card-title h2 span{
+    color:var(--yellow);
+}
+
+.card-title p{
+    color:var(--muted);
+
+    font-size:14px;
+
+    margin-top:8px;
+
     line-height:1.5;
 }
 
-.badge{
-    display:inline-block;
-    margin-top:15px;
-    padding:9px 16px;
-    border:1px solid #15c8ff;
-    border-radius:30px;
-    background:#062c61;
-    color:#fff;
-    font-weight:bold;
-    box-shadow:0 0 12px rgba(0,200,255,.25);
+/* ==========================================
+   COBERTURA
+========================================== */
+
+.coverage{
+    position:relative;
+
+    margin:22px 0;
+
+    padding:15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,130,255,.16),
+            rgba(0,255,110,.10)
+        );
+
+    border:
+        1px solid
+        rgba(0,213,255,.35);
+
+    border-radius:14px;
 }
 
-/* CARD */
-
-.card{
-    background:rgba(2,12,34,.96);
-    border:1px solid #0e9cff;
-    box-shadow:
-        0 0 15px rgba(0,153,255,.35),
-        0 0 35px rgba(0,90,255,.15);
-    border-radius:20px;
-    padding:25px;
+.coverage strong{
+    color:var(--yellow);
 }
 
-.card h2{
-    text-align:center;
-    font-size:25px;
-    margin-bottom:8px;
-}
+.coverage small{
+    display:block;
 
-.card .sub{
-    text-align:center;
-    color:#aabbd6;
-    margin-bottom:22px;
-    font-size:14px;
+    color:#bcd0e8;
+
+    margin-top:5px;
+
     line-height:1.4;
 }
 
-/* FORMULÁRIO */
+/* ==========================================
+   CAMPOS
+========================================== */
 
-label.titulo{
-    display:block;
-    font-size:14px;
-    font-weight:bold;
-    margin:16px 0 7px;
+.field{
+    margin-top:17px;
 }
 
-input[type="text"],
-input[type="tel"],
+.field label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.input-wrap{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size:18px;
+
+    z-index:2;
+}
+
+input,
 select{
     width:100%;
-    padding:15px;
-    border-radius:10px;
-    border:1px solid #294a74;
-    background:#071a35;
-    color:#fff;
+
+    padding:
+        15px 15px 15px 45px;
+
+    border-radius:12px;
+
+    border:
+        1px solid #294d76;
+
+    background:#06162e;
+
+    color:white;
+
+    font-size:15px;
+
     outline:none;
-    font-size:16px;
+
+    transition:.25s;
+}
+
+select{
+    cursor:pointer;
 }
 
 input:focus,
 select:focus{
-    border-color:#00d5ff;
-    box-shadow:0 0 8px rgba(0,213,255,.4);
+
+    border-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0,183,255,.08),
+
+        0 0 18px
+        rgba(0,183,255,.18);
+
+    background:#071c3b;
 }
 
 input::placeholder{
-    color:#7589a6;
+    color:#6e87a5;
 }
 
-/* PLANOS */
+/* ==========================================
+   INSTALAÇÃO GRÁTIS
+========================================== */
+
+.instalacao-gratis{
+
+    position:relative;
+
+    margin:
+        28px 0 25px;
+
+    padding:
+        21px 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:15px;
+
+    text-align:center;
+
+    border:
+        2px solid #35ff6c;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,90,40,.95),
+            rgba(5,35,25,.98)
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(53,255,108,.25),
+
+        inset 0 0 25px
+        rgba(53,255,108,.06);
+
+    overflow:hidden;
+
+    animation:
+        gratisPulse
+        2.5s infinite;
+}
+
+.instalacao-gratis::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:50%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transform:
+        skewX(-25deg);
+
+    animation:
+        gratisLight
+        3s infinite;
+}
+
+.gratis-icon{
+
+    font-size:45px;
+
+    position:relative;
+
+    z-index:2;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255,213,0,.5)
+        );
+}
+
+.gratis-texto{
+
+    position:relative;
+
+    z-index:2;
+}
+
+.gratis-badge{
+
+    display:inline-block;
+
+    background:#ffd500;
+
+    color:#111;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    margin-bottom:7px;
+}
+
+.gratis-texto h3{
+
+    font-size:14px;
+
+    color:#fff;
+}
+
+.gratis-preco{
+
+    margin:5px 0;
+
+    font-size:37px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    color:#8cff00;
+
+    text-shadow:
+        0 0 15px
+        rgba(140,255,0,.5);
+}
+
+.gratis-texto strong{
+
+    display:block;
+
+    color:#ffd500;
+
+    font-size:18px;
+}
+
+.gratis-texto p{
+
+    margin-top:6px;
+
+    color:#d6ffe1;
+
+    font-size:12px;
+
+    line-height:1.4;
+}
+
+@keyframes gratisPulse{
+
+    0%,100%{
+
+        box-shadow:
+            0 0 15px
+            rgba(53,255,108,.20);
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 32px
+            rgba(53,255,108,.50);
+    }
+}
+
+@keyframes gratisLight{
+
+    0%{
+        left:-100%;
+    }
+
+    60%,100%{
+        left:160%;
+    }
+}
+
+/* ==========================================
+   PLANOS
+========================================== */
+
+.plan-title{
+
+    margin:
+        25px 0 12px;
+
+    font-size:17px;
+
+    font-weight:900;
+}
 
 .planos{
-    margin-top:10px;
+
+    display:grid;
+
+    gap:12px;
 }
 
 .plano{
-    display:block;
-    margin:12px 0;
+
     cursor:pointer;
+
+    position:relative;
 }
 
 .plano input{
+
     display:none;
 }
 
 .plano-box{
-    border:2px solid #244c77;
-    padding:16px;
-    border-radius:14px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    transition:.2s;
-    background:#07162e;
-}
 
-.plano:hover .plano-box{
-    border-color:#00bfff;
-}
+    position:relative;
 
-.plano input:checked + .plano-box{
-    border-color:#33ff64;
-    background:#07371d;
-    box-shadow:
-        0 0 12px rgba(51,255,100,.35),
-        inset 0 0 12px rgba(51,255,100,.08);
-}
-
-.velocidade{
-    font-size:21px;
-    font-weight:900;
-}
-
-.preco{
-    font-size:20px;
-    font-weight:900;
-    color:#ffdf00;
-}
-
-.recomendado{
-    font-size:10px;
-    color:#00ff73;
-    font-weight:bold;
-    display:block;
-    margin-top:4px;
-}
-
-/* BOTÃO */
-
-button{
-    width:100%;
-    margin-top:25px;
     padding:18px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#19d353,#08a83c);
-    color:#fff;
-    font-size:18px;
+
+    border:
+        2px solid #23496f;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071b38,
+            #051329
+        );
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    transition:.25s;
+
+    overflow:hidden;
+}
+
+.plano-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-100%;
+    top:0;
+
+    width:60%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    transform:
+        skewX(-25deg);
+
+    transition:.6s;
+}
+
+.plano:hover
+.plano-box::before{
+
+    left:150%;
+}
+
+.plano:hover
+.plano-box{
+
+    transform:
+        translateY(-2px);
+
+    border-color:#00aaff;
+}
+
+.plano input:checked
++ .plano-box{
+
+    border-color:#35ff6c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #07361c,
+            #05251b
+        );
+
+    box-shadow:
+        0 0 22px
+        rgba(53,255,108,.20);
+}
+
+.speed{
+
+    font-size:24px;
+
     font-weight:900;
+}
+
+.speed small{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:#9eb3ce;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+.price{
+
+    text-align:right;
+}
+
+.price small{
+
+    display:block;
+
+    color:#8fa5c1;
+
+    font-size:10px;
+}
+
+.price strong{
+
+    font-size:23px;
+
+    color:var(--yellow);
+}
+
+.popular{
+
+    position:absolute;
+
+    right:12px;
+
+    top:-9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff9700,
+            #ffd500
+        );
+
+    color:#111;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    padding:
+        5px 10px;
+
+    border-radius:20px;
+
+    z-index:5;
+
+    box-shadow:
+        0 3px 10px
+        rgba(255,180,0,.3);
+}
+
+/* ==========================================
+   BOTÃO WHATSAPP
+========================================== */
+
+.submit{
+
+    width:100%;
+
+    margin-top:27px;
+
+    padding:18px;
+
+    border:0;
+
+    border-radius:15px;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:900;
+
     cursor:pointer;
-    box-shadow:0 0 18px rgba(20,201,76,.40);
-    transition:.2s;
+
+    background:
+        linear-gradient(
+            135deg,
+            #20dc5d,
+            #079b39
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(37,211,102,.30);
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
 }
 
-button:hover{
-    transform:scale(1.02);
-    box-shadow:0 0 25px rgba(20,201,76,.60);
+.submit::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:50%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.25),
+            transparent
+        );
+
+    transform:
+        skewX(-25deg);
+
+    animation:
+        buttonLight
+        3s infinite;
 }
 
-/* AVISOS */
+@keyframes buttonLight{
 
-.aviso{
+    0%{
+        left:-100%;
+    }
+
+    50%,100%{
+        left:160%;
+    }
+}
+
+.submit:hover{
+
+    transform:
+        translateY(-2px)
+        scale(1.01);
+
+    box-shadow:
+        0 0 35px
+        rgba(37,211,102,.50);
+}
+
+.submit span{
+
+    font-size:20px;
+}
+
+/* ==========================================
+   ONLINE
+========================================== */
+
+.online{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-top:18px;
+
+    color:#a9bdd5;
+
     font-size:11px;
-    color:#8fa4c1;
+}
+
+.online-dot{
+
+    width:8px;
+
+    height:8px;
+
+    background:#33ff69;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 12px #33ff69;
+
+    animation:
+        online 1.5s infinite;
+}
+
+@keyframes online{
+
+    50%{
+        opacity:.35;
+    }
+}
+
+.secure{
+
     margin-top:16px;
+
     text-align:center;
+
+    color:#8399b7;
+
+    font-size:10px;
+
     line-height:1.5;
 }
 
-.rodape{
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer{
+
     text-align:center;
-    margin-top:25px;
-    color:#9fb0ca;
-    font-size:13px;
-    line-height:1.5;
+
+    padding:
+        28px 10px 0;
+
+    color:#8195af;
+
+    font-size:12px;
 }
 
-.rodape strong{
-    color:#fff;
+.footer strong{
+
+    color:white;
 }
 
-.chamada{
-    background:#071b38;
-    border-left:4px solid #ffd500;
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:20px;
-    font-size:13px;
-    line-height:1.5;
+.footer-slogan{
+
+    color:var(--yellow);
+
+    margin-top:7px;
+
+    font-weight:bold;
+}
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media(max-width:450px){
+
+    .logo{
+        font-size:32px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .benefit{
+        padding:12px 4px;
+    }
+
+    .benefit strong{
+        font-size:10px;
+    }
+
+    .card{
+        padding:
+            23px 17px;
+    }
+
+    .speed{
+        font-size:20px;
+    }
+
+    .price strong{
+        font-size:20px;
+    }
+
+    .instalacao-gratis{
+        flex-direction:column;
+        gap:7px;
+    }
+
+    .gratis-icon{
+        font-size:37px;
+    }
 }
 
 </style>
 </head>
 
+
 <body>
+
+
+<!-- FUNDO -->
+
+<div class="network"></div>
+
+<div class="orb orb1"></div>
+
+<div class="orb orb2"></div>
+
 
 <div class="container">
 
-    <!-- CABEÇALHO -->
 
-    <div class="topo">
+<!-- ==========================================
+     CABEÇALHO
+========================================== -->
 
-        <div class="logo">
-            YAYU <span class="mais">+</span>
-            <span class="unni">Unni Fibra</span>
-        </div>
+<section class="hero">
 
-        <h1>
-            📍 Consulte a disponibilidade
-            <span class="destaque">no seu bairro!</span>
-        </h1>
 
-        <p>
-            Mais bairros, mais velocidade e uma conexão
-            ainda mais forte em Praia Grande. 🚀
-        </p>
+<div class="logo">
 
-        <div class="badge">
-            ⚡ INTERNET 100% FIBRA ÓPTICA
-        </div>
+<span class="logo-yayu">
+YAYU
+</span>
 
-    </div>
+<span class="logo-plus">
++
+</span>
 
-
-    <!-- FORMULÁRIO -->
-
-    <div class="card">
-
-        <h2>🚀 Quero contratar!</h2>
-
-        <div class="sub">
-            Preencha seus dados e escolha o plano desejado.
-            Nossa equipe verificará a disponibilidade no seu endereço.
-        </div>
-
-        <div class="chamada">
-            📍 <strong>Seu bairro pode estar na nossa nova área de cobertura!</strong><br>
-            Faça seu cadastro para consultar.
-        </div>
-
-
-        <form id="cadastro">
-
-            <!-- NOME -->
-
-            <label class="titulo">
-                👤 Nome completo
-            </label>
-
-            <input
-                type="text"
-                id="nome"
-                placeholder="Digite seu nome completo"
-                required
-            >
-
-
-            <!-- CPF -->
-
-            <label class="titulo">
-                🪪 CPF
-            </label>
-
-            <input
-                type="text"
-                id="cpf"
-                placeholder="000.000.000-00"
-                maxlength="14"
-                required
-            >
-
-
-            <!-- TELEFONE -->
-
-            <label class="titulo">
-                📱 Seu WhatsApp
-            </label>
-
-            <input
-                type="tel"
-                id="telefone"
-                placeholder="(13) 99999-9999"
-                required
-            >
-
-
-            <!-- BAIRRO -->
-
-            <label class="titulo">
-                📍 Bairro
-            </label>
-
-            <select id="bairro" required>
-
-                <option value="">
-                    Selecione seu bairro
-                </option>
-
-                <option>Militar</option>
-                <option>Xixová</option>
-                <option>Canto do Forte</option>
-                <option>Sítio do Campo</option>
-                <option>Boqueirão</option>
-                <option>Guilhermina</option>
-                <option>Glória</option>
-                <option>Vila Sônia</option>
-                <option>Aviação</option>
-                <option>Antártica</option>
-                <option>Tupi</option>
-                <option>Tupiry</option>
-                <option>Ocian</option>
-                <option>Quietude</option>
-                <option>Anhanguera</option>
-                <option>Santo Antônio</option>
-                <option>Andaraguá</option>
-                <option>Mirim</option>
-                <option>Nova Mirim</option>
-                <option>Maracanã</option>
-                <option>Ribeirópolis</option>
-                <option>Esmeralda</option>
-                <option>Samambaia</option>
-                <option>Melvi</option>
-                <option>Caiçara</option>
-                <option>Imperador</option>
-                <option>Real</option>
-                <option>Princesa</option>
-                <option>Flórida</option>
-                <option>Cidade da Criança</option>
-                <option>Solemar</option>
-                <option>Outro bairro</option>
-
-            </select>
-
-
-            <!-- REFERÊNCIA -->
-
-            <label class="titulo">
-                🏠 Ponto de referência
-            </label>
-
-            <input
-                type="text"
-                id="referencia"
-                placeholder="Ex.: próximo ao mercado, escola, farmácia..."
-                required
-            >
-
-
-            <!-- PLANOS -->
-
-            <label class="titulo">
-                🚀 Escolha seu plano
-            </label>
-
-            <div class="planos">
-
-
-                <!-- 150 MEGA -->
-
-                <label class="plano">
-
-                    <input
-                        type="radio"
-                        name="plano"
-                        value="150 MEGAS - R$ 69,99"
-                        required
-                    >
-
-                    <div class="plano-box">
-
-                        <div>
-                            <span class="velocidade">
-                                150 MEGAS
-                            </span>
-                        </div>
-
-                        <span class="preco">
-                            R$ 69,99
-                        </span>
-
-                    </div>
-
-                </label>
-
-
-                <!-- 300 MEGA -->
-
-                <label class="plano">
-
-                    <input
-                        type="radio"
-                        name="plano"
-                        value="300 MEGAS - R$ 79,99"
-                    >
-
-                    <div class="plano-box">
-
-                        <div>
-                            <span class="velocidade">
-                                300 MEGAS
-                            </span>
-
-                            <span class="recomendado">
-                                ⭐ MAIS ESCOLHIDO
-                            </span>
-                        </div>
-
-                        <span class="preco">
-                            R$ 79,99
-                        </span>
-
-                    </div>
-
-                </label>
-
-
-                <!-- 600 MEGA -->
-
-                <label class="plano">
-
-                    <input
-                        type="radio"
-                        name="plano"
-                        value="600 MEGAS - R$ 99,99"
-                    >
-
-                    <div class="plano-box">
-
-                        <div>
-                            <span class="velocidade">
-                                600 MEGAS
-                            </span>
-
-                            <span class="recomendado">
-                                🔥 MÁXIMA VELOCIDADE
-                            </span>
-                        </div>
-
-                        <span class="preco">
-                            R$ 99,99
-                        </span>
-
-                    </div>
-
-                </label>
-
-            </div>
-
-
-            <!-- BOTÃO -->
-
-            <button type="submit">
-                🟢 CONSULTAR PELO WHATSAPP
-            </button>
-
-
-            <div class="aviso">
-                🔒 Seus dados serão utilizados exclusivamente
-                para atendimento e consulta de disponibilidade
-                dos serviços YAYU + Unni Fibra.
-            </div>
-
-        </form>
-
-    </div>
-
-
-    <!-- RODAPÉ -->
-
-    <div class="rodape">
-
-        <strong>
-            💙 YAYU + 💚 Unni Fibra
-        </strong>
-
-        <br>
-
-        Mais bairros • Mais velocidade • Mais conexão 🚀
-
-    </div>
+<span class="logo-unni">
+Unni Fibra
+</span>
 
 </div>
 
 
+<div class="fusion">
+
+🔗 UMA NOVA FASE DA NOSSA REDE
+
+</div>
+
+
+<!-- WIFI -->
+
+<div class="wifi-box">
+
+<div class="wave w3"></div>
+
+<div class="wave w2"></div>
+
+<div class="wave w1"></div>
+
+<div class="dot"></div>
+
+</div>
+
+
+<h1>
+
+Sua internet está prestes a ficar
+
+<span>
+ainda melhor.
+</span>
+
+</h1>
+
+
+<p>
+
+Consulte agora se a
+
+<strong>
+YAYU + Unni Fibra
+</strong>
+
+já está disponível no seu endereço.
+
+</p>
+
+
+</section>
+
+
+
+<!-- ==========================================
+     BENEFÍCIOS
+========================================== -->
+
+<div class="benefits">
+
+
+<div class="benefit">
+
+<div class="icon">
+🚀
+</div>
+
+<strong>
+Alta velocidade
+</strong>
+
+<small>
+Fibra de verdade
+</small>
+
+</div>
+
+
+
+<div class="benefit">
+
+<div class="icon">
+📶
+</div>
+
+<strong>
+Wi-Fi rápido
+</strong>
+
+<small>
+Mais conexão
+</small>
+
+</div>
+
+
+
+<div class="benefit">
+
+<div class="icon">
+🛡️
+</div>
+
+<strong>
+Mais estabilidade
+</strong>
+
+<small>
+Sem travamentos
+</small>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ==========================================
+     CARD
+========================================== -->
+
+<div class="card">
+
+
+<div class="card-title">
+
+<h2>
+
+📍 Consulte seu
+
+<span>
+bairro
+</span>
+
+</h2>
+
+
+<p>
+
+Faça seu pré-cadastro e nossa equipe
+verifica a disponibilidade da fibra
+no seu endereço.
+
+</p>
+
+</div>
+
+
+
+<!-- COBERTURA -->
+
+<div class="coverage">
+
+🚨
+
+<strong>
+NOVAS ÁREAS DE ATENDIMENTO!
+</strong>
+
+<small>
+
+Estamos ampliando nossa cobertura
+em Praia Grande.
+
+Seu bairro pode já estar conectado
+à nossa rede.
+
+</small>
+
+</div>
+
+
+
+<form id="cadastro">
+
+
+<!-- ==========================================
+     NOME
+========================================== -->
+
+<div class="field">
+
+<label>
+Nome completo
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+👤
+</span>
+
+<input
+id="nome"
+type="text"
+placeholder="Digite seu nome completo"
+required
+>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     CPF
+========================================== -->
+
+<div class="field">
+
+<label>
+CPF
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+🪪
+</span>
+
+<input
+id="cpf"
+type="text"
+placeholder="000.000.000-00"
+maxlength="14"
+inputmode="numeric"
+required
+>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     WHATSAPP
+========================================== -->
+
+<div class="field">
+
+<label>
+Seu WhatsApp
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+📱
+</span>
+
+<input
+id="telefone"
+type="tel"
+placeholder="(13) 99999-9999"
+maxlength="15"
+required
+>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     BAIRRO
+========================================== -->
+
+<div class="field">
+
+<label>
+Seu bairro
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+📍
+</span>
+
+
+<select
+id="bairro"
+required
+>
+
+<option value="">
+Selecione seu bairro
+</option>
+
+<option>Militar</option>
+<option>Xixová</option>
+<option>Canto do Forte</option>
+<option>Sítio do Campo</option>
+<option>Boqueirão</option>
+<option>Guilhermina</option>
+<option>Glória</option>
+<option>Vila Sônia</option>
+<option>Aviação</option>
+<option>Antártica</option>
+<option>Tupi</option>
+<option>Tupiry</option>
+<option>Ocian</option>
+<option>Quietude</option>
+<option>Anhanguera</option>
+<option>Santo Antônio</option>
+<option>Andaraguá</option>
+<option>Mirim</option>
+<option>Nova Mirim</option>
+<option>Maracanã</option>
+<option>Ribeirópolis</option>
+<option>Esmeralda</option>
+<option>Samambaia</option>
+<option>Melvi</option>
+<option>Caiçara</option>
+<option>Imperador</option>
+<option>Real</option>
+<option>Princesa</option>
+<option>Flórida</option>
+<option>Cidade da Criança</option>
+<option>Solemar</option>
+
+<option>
+Outro bairro
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     REFERÊNCIA
+========================================== -->
+
+<div class="field">
+
+<label>
+Ponto de referência
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+🏠
+</span>
+
+<input
+id="referencia"
+type="text"
+placeholder="Ex.: próximo ao mercado, escola..."
+required
+>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     INSTALAÇÃO GRÁTIS
+========================================== -->
+
+<div class="instalacao-gratis">
+
+
+<div class="gratis-icon">
+
+🎁
+
+</div>
+
+
+<div class="gratis-texto">
+
+
+<span class="gratis-badge">
+
+🔥 OFERTA ESPECIAL
+
+</span>
+
+
+<h3>
+
+💰 TAXA DE ADESÃO / INSTALAÇÃO
+
+</h3>
+
+
+<div class="gratis-preco">
+
+R$ 0,00
+
+</div>
+
+
+<strong>
+
+INSTALAÇÃO GRATUITA! 😍
+
+</strong>
+
+
+<p>
+
+Isso mesmo: você não paga
+taxa de instalação!
+
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     PLANOS
+========================================== -->
+
+<div class="plan-title">
+
+🚀 Qual plano você deseja?
+
+</div>
+
+
+<div class="planos">
+
+
+
+<!-- 150 MEGAS -->
+
+<label class="plano">
+
+
+<input
+type="radio"
+name="plano"
+value="150 MEGAS - R$ 69,99"
+required
+>
+
+
+<div class="plano-box">
+
+
+<div class="speed">
+
+150 MEGAS
+
+<small>
+
+Ideal para navegar,
+assistir vídeos e redes sociais
+
+</small>
+
+</div>
+
+
+<div class="price">
+
+<small>
+POR MÊS
+</small>
+
+<strong>
+R$ 69,99
+</strong>
+
+</div>
+
+
+</div>
+
+</label>
+
+
+
+<!-- 300 MEGAS -->
+
+<label class="plano">
+
+
+<div class="popular">
+
+⭐ MAIS ESCOLHIDO
+
+</div>
+
+
+<input
+type="radio"
+name="plano"
+value="300 MEGAS - R$ 79,99"
+>
+
+
+<div class="plano-box">
+
+
+<div class="speed">
+
+300 MEGAS
+
+<small>
+
+Streaming, jogos
+e home office
+
+</small>
+
+</div>
+
+
+<div class="price">
+
+<small>
+POR MÊS
+</small>
+
+<strong>
+R$ 79,99
+</strong>
+
+</div>
+
+
+</div>
+
+</label>
+
+
+
+<!-- 600 MEGAS -->
+
+<label class="plano">
+
+
+<input
+type="radio"
+name="plano"
+value="600 MEGAS - R$ 99,99"
+>
+
+
+<div class="plano-box">
+
+
+<div class="speed">
+
+600 MEGAS
+
+<small>
+
+🔥 Alta performance
+para toda a casa
+
+</small>
+
+</div>
+
+
+<div class="price">
+
+<small>
+POR MÊS
+</small>
+
+<strong>
+R$ 99,99
+</strong>
+
+</div>
+
+
+</div>
+
+</label>
+
+
+</div>
+
+
+
+<!-- ==========================================
+     BOTÃO
+========================================== -->
+
+<button
+class="submit"
+type="submit"
+>
+
+<span>
+💬
+</span>
+
+CONSULTAR DISPONIBILIDADE
+
+</button>
+
+
+
+<div class="online">
+
+<div class="online-dot"></div>
+
+Atendimento YAYU disponível
+pelo WhatsApp
+
+</div>
+
+
+
+<div class="secure">
+
+🔒 Seus dados serão utilizados
+para consulta de cobertura
+e atendimento comercial da
+YAYU + Unni Fibra.
+
+</div>
+
+
+</form>
+
+</div>
+
+
+
+<!-- ==========================================
+     RODAPÉ
+========================================== -->
+
+<div class="footer">
+
+<strong>
+
+💙 YAYU + 💚 UNNI FIBRA
+
+</strong>
+
+
+<div class="footer-slogan">
+
+Mais bairros • Mais velocidade •
+Mais conexão 🚀
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
 <script>
 
-/* ================================
-   MÁSCARA DO CPF
-================================ */
+/* ==========================================
+   MÁSCARA CPF
+========================================== */
 
-const campoCpf = document.getElementById("cpf");
+const cpf =
+document.getElementById("cpf");
 
-campoCpf.addEventListener("input", function(){
 
-    let valor = this.value.replace(/\D/g,"");
+cpf.addEventListener(
+"input",
+function(){
 
-    valor = valor.substring(0,11);
+let valor =
+this.value.replace(/\D/g,"");
 
-    valor = valor.replace(
-        /(\d{3})(\d)/,
-        "$1.$2"
-    );
+valor =
+valor.substring(0,11);
 
-    valor = valor.replace(
-        /(\d{3})(\d)/,
-        "$1.$2"
-    );
 
-    valor = valor.replace(
-        /(\d{3})(\d{1,2})$/,
-        "$1-$2"
-    );
+valor =
+valor.replace(
+/(\d{3})(\d)/,
+"$1.$2"
+);
 
-    this.value = valor;
+
+valor =
+valor.replace(
+/(\d{3})(\d)/,
+"$1.$2"
+);
+
+
+valor =
+valor.replace(
+/(\d{3})(\d{1,2})$/,
+"$1-$2"
+);
+
+
+this.value = valor;
 
 });
 
 
-/* ================================
+
+/* ==========================================
    MÁSCARA TELEFONE
-================================ */
+========================================== */
 
 const telefone =
 document.getElementById("telefone");
 
-telefone.addEventListener("input", function(){
 
-    let valor =
-        this.value.replace(/\D/g,"");
+telefone.addEventListener(
+"input",
+function(){
 
-    valor = valor.substring(0,11);
+let valor =
+this.value.replace(/\D/g,"");
 
-    if(valor.length > 10){
+valor =
+valor.substring(0,11);
 
-        valor = valor.replace(
-            /(\d{2})(\d{5})(\d{4})/,
-            "($1) $2-$3"
-        );
 
-    }else{
+if(valor.length > 10){
 
-        valor = valor.replace(
-            /(\d{2})(\d{4})(\d{4})/,
-            "($1) $2-$3"
-        );
+valor =
+valor.replace(
+/(\d{2})(\d{5})(\d{4})/,
+"($1) $2-$3"
+);
 
-    }
+}else{
 
-    this.value = valor;
+valor =
+valor.replace(
+/(\d{2})(\d{4})(\d{4})/,
+"($1) $2-$3"
+);
+
+}
+
+
+this.value = valor;
 
 });
 
 
-/* ================================
-   ENVIO PARA WHATSAPP YAYU
-================================ */
+
+/* ==========================================
+   ENVIO PARA WHATSAPP
+========================================== */
 
 document
 .getElementById("cadastro")
-.addEventListener("submit", function(event){
+.addEventListener(
+"submit",
+function(event){
 
-    event.preventDefault();
-
-
-    const nome =
-        document.getElementById("nome").value.trim();
-
-    const cpf =
-        document.getElementById("cpf").value.trim();
-
-    const telefoneCliente =
-        document.getElementById("telefone").value.trim();
-
-    const bairro =
-        document.getElementById("bairro").value;
-
-    const referencia =
-        document.getElementById("referencia").value.trim();
-
-    const planoSelecionado =
-        document.querySelector(
-            'input[name="plano"]:checked'
-        );
+event.preventDefault();
 
 
-    if(!planoSelecionado){
 
-        alert(
-            "Por favor, escolha um plano."
-        );
-
-        return;
-    }
+const nome =
+document
+.getElementById("nome")
+.value
+.trim();
 
 
-    const plano =
-        planoSelecionado.value;
+
+const cpfCliente =
+document
+.getElementById("cpf")
+.value
+.trim();
 
 
-    /* MENSAGEM QUE CHEGARÁ NO WHATSAPP */
 
-    const mensagem =
-`🚀 *NOVO CADASTRO - YAYU + UNNI FIBRA*
+const telefoneCliente =
+document
+.getElementById("telefone")
+.value
+.trim();
 
-👤 *Nome:* ${nome}
-🪪 *CPF:* ${cpf}
-📱 *WhatsApp:* ${telefoneCliente}
 
-📍 *Bairro:* ${bairro}
-🏠 *Referência:* ${referencia}
 
-━━━━━━━━━━━━━━━━
+const bairro =
+document
+.getElementById("bairro")
+.value;
 
-📡 *PLANO ESCOLHIDO*
 
-🔥 *${plano}*
 
-━━━━━━━━━━━━━━━━
+const referencia =
+document
+.getElementById("referencia")
+.value
+.trim();
 
-📍 Gostaria de consultar a disponibilidade da fibra no meu endereço.
 
-✅ Tenho interesse na contratação.
+
+const plano =
+document.querySelector(
+'input[name="plano"]:checked'
+);
+
+
+
+if(!plano){
+
+alert(
+"🚀 Escolha o plano desejado."
+);
+
+return;
+
+}
+
+
+
+/* ==========================================
+   MENSAGEM WHATSAPP
+========================================== */
+
+const mensagem =
+
+`🚀 *NOVO INTERESSADO*
+*YAYU + UNNI FIBRA*
+
+━━━━━━━━━━━━━━━━━━
+
+👤 *DADOS DO CLIENTE*
+
+*Nome:* ${nome}
+*CPF:* ${cpfCliente}
+*WhatsApp:* ${telefoneCliente}
+
+━━━━━━━━━━━━━━━━━━
+
+📍 *LOCALIZAÇÃO*
+
+*Bairro:* ${bairro}
+*Referência:* ${referencia}
+
+━━━━━━━━━━━━━━━━━━
+
+📡 *PLANO DE INTERESSE*
+
+🔥 *${plano.value}*
+
+━━━━━━━━━━━━━━━━━━
+
+🎁 *OFERTA*
+
+💰 Taxa de adesão / instalação:
+*GRÁTIS - R$ 0,00*
+
+━━━━━━━━━━━━━━━━━━
+
+📍 Gostaria de verificar a disponibilidade da fibra no meu endereço.
+
+✅ Tenho interesse em contratar.
 
 _Aguardo atendimento da equipe YAYU + Unni Fibra._`;
 
 
-    /* WHATSAPP DA YAYU */
 
-    const whatsappYayu =
-        "5513988777008";
+/* ==========================================
+   WHATSAPP YAYU
+========================================== */
 
-
-    /* CRIA O LINK */
-
-    const url =
-        "https://api.whatsapp.com/send/?phone=" +
-        whatsappYayu +
-        "&text=" +
-        encodeURIComponent(mensagem) +
-        "&type=phone_number&app_absent=0";
+const whatsapp =
+"5513988777008";
 
 
-    /* ABRE WHATSAPP */
 
-    window.location.href = url;
+const url =
+
+"https://api.whatsapp.com/send/?phone="
+
++ whatsapp
+
++ "&text="
+
++ encodeURIComponent(mensagem)
+
++ "&type=phone_number&app_absent=0";
+
+
+
+window.location.href =
+url;
+
 
 });
 
 </script>
+
 
 </body>
 </html>
