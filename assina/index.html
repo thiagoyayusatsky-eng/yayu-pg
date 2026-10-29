@@ -42,9 +42,9 @@ body{
         #020817;
 }
 
-/* =========================================
+/* ============================
    FUNDO TECNOLÓGICO
-========================================= */
+============================ */
 
 .network{
     position:fixed;
@@ -69,8 +69,7 @@ body{
         perspective(500px)
         rotateX(60deg);
 
-    animation:
-        gridMove 10s linear infinite;
+    animation:gridMove 10s linear infinite;
 }
 
 @keyframes gridMove{
@@ -129,9 +128,9 @@ body{
     }
 }
 
-/* =========================================
+/* ============================
    CONTAINER
-========================================= */
+============================ */
 
 .container{
     max-width:620px;
@@ -139,9 +138,9 @@ body{
     padding:25px 16px 45px;
 }
 
-/* =========================================
+/* ============================
    CABEÇALHO
-========================================= */
+============================ */
 
 .hero{
     text-align:center;
@@ -186,11 +185,13 @@ body{
 
     padding:7px 14px;
 
-    border:1px solid rgba(0,183,255,.5);
+    border:
+        1px solid rgba(0,183,255,.5);
 
     border-radius:30px;
 
-    background:rgba(0,70,150,.25);
+    background:
+        rgba(0,70,150,.25);
 
     font-size:11px;
     font-weight:900;
@@ -199,9 +200,9 @@ body{
         0 0 20px rgba(0,183,255,.15);
 }
 
-/* =========================================
+/* ============================
    WIFI
-========================================= */
+============================ */
 
 .wifi-box{
     width:100px;
@@ -290,9 +291,9 @@ body{
 
 }
 
-/* =========================================
-   TEXTO HERO
-========================================= */
+/* ============================
+   HERO
+============================ */
 
 .hero h1{
     margin-top:15px;
@@ -313,9 +314,9 @@ body{
     line-height:1.5;
 }
 
-/* =========================================
-   SUPER OFERTA 300 MEGA
-========================================= */
+/* ============================
+   OFERTA PRINCIPAL
+============================ */
 
 .super-oferta{
     position:relative;
@@ -348,8 +349,7 @@ body{
 
     overflow:hidden;
 
-    animation:
-        ofertaPulse 2.5s infinite;
+    animation:ofertaPulse 2.5s infinite;
 }
 
 .super-oferta::before{
@@ -373,8 +373,7 @@ body{
 
     transform:skewX(-25deg);
 
-    animation:
-        shine 3s infinite;
+    animation:shine 3s infinite;
 }
 
 @keyframes shine{
@@ -488,9 +487,9 @@ body{
     line-height:1.5;
 }
 
-/* =========================================
+/* ============================
    BENEFÍCIOS
-========================================= */
+============================ */
 
 .benefits{
     display:grid;
@@ -540,9 +539,9 @@ body{
     font-size:9px;
 }
 
-/* =========================================
-   FORMULÁRIO
-========================================= */
+/* ============================
+   CARD
+============================ */
 
 .card{
     position:relative;
@@ -588,9 +587,9 @@ body{
     line-height:1.5;
 }
 
-/* =========================================
+/* ============================
    COBERTURA
-========================================= */
+============================ */
 
 .coverage{
     margin:22px 0;
@@ -624,9 +623,9 @@ body{
     line-height:1.4;
 }
 
-/* =========================================
+/* ============================
    CAMPOS
-========================================= */
+============================ */
 
 .field{
     margin-top:17px;
@@ -638,7 +637,6 @@ body{
     margin-bottom:7px;
 
     font-size:13px;
-
     font-weight:800;
 }
 
@@ -693,9 +691,63 @@ input::placeholder{
     color:#6e87a5;
 }
 
-/* =========================================
+/* ============================
+   BLOCO ENDEREÇO
+============================ */
+
+.endereco-box{
+    margin-top:23px;
+
+    padding:17px;
+
+    border:
+        1px solid rgba(0,183,255,.30);
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,80,160,.13),
+            rgba(0,180,255,.05)
+        );
+}
+
+.endereco-title{
+    margin-bottom:3px;
+
+    color:var(--yellow);
+
+    font-size:16px;
+    font-weight:900;
+}
+
+.endereco-subtitle{
+    margin-bottom:10px;
+
+    color:#9eb3ce;
+
+    font-size:11px;
+
+    line-height:1.4;
+}
+
+.rua-numero{
+    display:grid;
+
+    grid-template-columns:
+        1fr 120px;
+
+    gap:10px;
+}
+
+.rua-numero .field{
+    margin-top:12px;
+}
+
+/* ============================
    INSTALAÇÃO GRÁTIS
-========================================= */
+============================ */
 
 .instalacao-gratis{
     position:relative;
@@ -775,6 +827,7 @@ input::placeholder{
 
 .gratis-content h3{
     margin-top:8px;
+
     font-size:14px;
 }
 
@@ -827,9 +880,9 @@ input::placeholder{
 
 }
 
-/* =========================================
+/* ============================
    PLANOS
-========================================= */
+============================ */
 
 .plan-title{
     margin:25px 0 6px;
@@ -841,13 +894,13 @@ input::placeholder{
 }
 
 .plan-subtitle{
+    margin-bottom:17px;
+
     text-align:center;
 
     color:#9eb3ce;
 
     font-size:12px;
-
-    margin-bottom:17px;
 }
 
 .planos{
@@ -857,13 +910,17 @@ input::placeholder{
 
 .plano{
     position:relative;
+
     display:block;
+
     cursor:pointer;
 }
 
 .plano input{
     position:absolute;
+
     opacity:0;
+
     pointer-events:none;
 }
 
@@ -897,11 +954,7 @@ input::placeholder{
 
     overflow:hidden;
 
-    transition:
-        transform .25s,
-        border-color .25s,
-        box-shadow .25s,
-        background .25s;
+    transition:.25s;
 }
 
 .plano-box::before{
@@ -956,20 +1009,8 @@ input::placeholder{
         0 0 30px rgba(53,255,108,.28);
 }
 
-/* 300 mega destaque */
-
 .plano-destaque .plano-box{
     border-color:var(--yellow);
-
-    background:
-        linear-gradient(
-            135deg,
-            #09295c,
-            #05162f
-        );
-
-    box-shadow:
-        0 0 25px rgba(255,213,0,.16);
 }
 
 .recomendado{
@@ -995,16 +1036,12 @@ input::placeholder{
 
     font-size:9px;
     font-weight:900;
-
-    box-shadow:
-        0 4px 12px rgba(255,170,0,.30);
 }
 
 .numero-plano{
     display:inline-flex;
 
     align-items:center;
-
     justify-content:center;
 
     width:25px;
@@ -1020,14 +1057,6 @@ input::placeholder{
     color:#6be0ff;
 
     font-size:12px;
-}
-
-.plano input:checked +
-.plano-box .numero-plano{
-    background:
-        rgba(53,255,108,.15);
-
-    color:#65ff8b;
 }
 
 .speed{
@@ -1082,9 +1111,9 @@ input::placeholder{
     font-size:9px;
 }
 
-/* =========================================
-   RESUMO DO PLANO
-========================================= */
+/* ============================
+   RESUMO
+============================ */
 
 .resumo-plano{
     margin-top:18px;
@@ -1110,12 +1139,13 @@ input::placeholder{
 
 .resumo-plano strong{
     color:var(--yellow);
+
     font-size:15px;
 }
 
-/* =========================================
-   BOTÃO WHATSAPP
-========================================= */
+/* ============================
+   BOTÃO
+============================ */
 
 .submit{
     position:relative;
@@ -1199,15 +1229,14 @@ input::placeholder{
         0 0 40px rgba(37,211,102,.55);
 }
 
-/* =========================================
+/* ============================
    ONLINE
-========================================= */
+============================ */
 
 .online{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     gap:7px;
@@ -1254,9 +1283,9 @@ input::placeholder{
     line-height:1.5;
 }
 
-/* =========================================
-   RODAPÉ
-========================================= */
+/* ============================
+   FOOTER
+============================ */
 
 .footer{
     text-align:center;
@@ -1280,9 +1309,9 @@ input::placeholder{
     font-weight:bold;
 }
 
-/* =========================================
-   RESPONSIVO
-========================================= */
+/* ============================
+   CELULAR
+============================ */
 
 @media(max-width:450px){
 
@@ -1306,6 +1335,10 @@ input::placeholder{
         padding:23px 16px;
     }
 
+    .rua-numero{
+        grid-template-columns:1fr 95px;
+    }
+
     .plano-box{
         padding:18px 13px;
     }
@@ -1327,23 +1360,18 @@ input::placeholder{
 </style>
 </head>
 
-
 <body>
 
 
 <div class="network"></div>
-
 <div class="orb orb1"></div>
-
 <div class="orb orb2"></div>
 
 
 <div class="container">
 
 
-<!-- =========================================
-     CABEÇALHO
-========================================= -->
+<!-- CABEÇALHO -->
 
 <section class="hero">
 
@@ -1375,9 +1403,7 @@ Unni Fibra
 <div class="wifi-box">
 
 <div class="wave w3"></div>
-
 <div class="wave w2"></div>
-
 <div class="wave w1"></div>
 
 <div class="dot"></div>
@@ -1410,9 +1436,7 @@ no seu endereço.
 
 
 
-<!-- =========================================
-     OFERTA PRINCIPAL
-========================================= -->
+<!-- OFERTA -->
 
 <div class="super-oferta">
 
@@ -1460,9 +1484,7 @@ trabalho e muito mais.
 
 
 
-<!-- =========================================
-     BENEFÍCIOS
-========================================= -->
+<!-- BENEFÍCIOS -->
 
 <div class="benefits">
 
@@ -1522,9 +1544,7 @@ R$ 0,00
 
 
 
-<!-- =========================================
-     FORMULÁRIO
-========================================= -->
+<!-- FORMULÁRIO -->
 
 <div class="card">
 
@@ -1536,7 +1556,7 @@ R$ 0,00
 📍 Consulte seu
 
 <span>
-bairro
+endereço
 </span>
 
 </h2>
@@ -1544,9 +1564,9 @@ bairro
 
 <p>
 
-Preencha seus dados, escolha o plano
-e consulte a disponibilidade da fibra
-no seu endereço.
+Preencha seus dados e informe seu
+endereço para verificarmos a disponibilidade
+da fibra na sua rua.
 
 </p>
 
@@ -1567,8 +1587,8 @@ NOVAS ÁREAS DE ATENDIMENTO!
 Estamos ampliando nossa cobertura
 em Praia Grande.
 
-Seu bairro pode já estar conectado
-à YAYU + Unni Fibra.
+Informe seu bairro, rua e número
+para consultar a disponibilidade.
 
 </small>
 
@@ -1663,18 +1683,41 @@ required
 
 
 
+<!-- ============================
+     ENDEREÇO
+============================ -->
+
+<div class="endereco-box">
+
+
+<div class="endereco-title">
+
+📍 Endereço para instalação
+
+</div>
+
+
+<div class="endereco-subtitle">
+
+Informe corretamente para verificarmos
+se a fibra já está disponível no local.
+
+</div>
+
+
+
 <!-- BAIRRO -->
 
 <div class="field">
 
 <label>
-📍 Seu bairro
+🏘️ Bairro
 </label>
 
 <div class="input-wrap">
 
 <span class="input-icon">
-📍
+🏘️
 </span>
 
 
@@ -1715,12 +1758,72 @@ Selecione seu bairro
 <option>Flórida</option>
 <option>Cidade da Criança</option>
 <option>Solemar</option>
-<option>Outro bairro</option>
+
+<option>
+Outro bairro
+</option>
 
 </select>
 
+</div>
 
 </div>
+
+
+
+<!-- RUA + NÚMERO -->
+
+<div class="rua-numero">
+
+
+<div class="field">
+
+<label>
+🛣️ Rua / Avenida
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+🛣️
+</span>
+
+<input
+id="rua"
+type="text"
+placeholder="Nome da rua ou avenida"
+required
+>
+
+</div>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+🔢 Número
+</label>
+
+<div class="input-wrap">
+
+<span class="input-icon">
+🏠
+</span>
+
+<input
+id="numero"
+type="text"
+placeholder="Nº"
+required
+>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -1731,13 +1834,13 @@ Selecione seu bairro
 <div class="field">
 
 <label>
-🏠 Ponto de referência
+📌 Ponto de referência
 </label>
 
 <div class="input-wrap">
 
 <span class="input-icon">
-🏠
+📌
 </span>
 
 <input
@@ -1752,10 +1855,11 @@ required
 </div>
 
 
+</div>
 
-<!-- =========================================
-     INSTALAÇÃO GRÁTIS
-========================================= -->
+
+
+<!-- INSTALAÇÃO GRÁTIS -->
 
 <div class="instalacao-gratis">
 
@@ -1805,9 +1909,7 @@ taxa de instalação!
 
 
 
-<!-- =========================================
-     PLANOS
-========================================= -->
+<!-- PLANOS -->
 
 <div class="plan-title">
 
@@ -1827,9 +1929,7 @@ Toque no plano desejado para selecionar.
 <div class="planos">
 
 
-<!-- =========================================
-     300 MEGAS
-========================================= -->
+<!-- 300 -->
 
 <label class="plano plano-destaque">
 
@@ -1863,9 +1963,8 @@ required
 
 <small>
 
-Ótimo para streaming,
-redes sociais, estudos
-e uso diário.
+Streaming, redes sociais,
+estudos e uso diário.
 
 </small>
 
@@ -1895,9 +1994,7 @@ R$ 69,99
 
 
 
-<!-- =========================================
-     400 MEGAS
-========================================= -->
+<!-- 400 -->
 
 <label class="plano">
 
@@ -1954,9 +2051,7 @@ R$ 79,90
 
 
 
-<!-- =========================================
-     500 MEGAS
-========================================= -->
+<!-- 500 -->
 
 <label class="plano">
 
@@ -1982,8 +2077,8 @@ value="500 MEGAS - R$ 89,90/mês"
 <small>
 
 Alta velocidade para
-jogos, vídeos e uma casa
-com muitos dispositivos.
+jogos, vídeos e vários
+dispositivos conectados.
 
 </small>
 
@@ -2013,9 +2108,7 @@ R$ 89,90
 
 
 
-<!-- =========================================
-     600 MEGAS
-========================================= -->
+<!-- 600 -->
 
 <label class="plano">
 
@@ -2075,7 +2168,7 @@ R$ 99,90
 
 
 
-<!-- RESUMO DINÂMICO -->
+<!-- RESUMO -->
 
 <div
 class="resumo-plano"
@@ -2098,9 +2191,7 @@ id="resumoPlano"
 
 
 
-<!-- =========================================
-     BOTÃO
-========================================= -->
+<!-- BOTÃO -->
 
 <button
 class="submit"
@@ -2140,9 +2231,7 @@ YAYU + Unni Fibra.
 
 
 
-<!-- =========================================
-     RODAPÉ
-========================================= -->
+<!-- FOOTER -->
 
 <div class="footer">
 
@@ -2172,9 +2261,9 @@ YAYU + Unni Fibra.
 
 <script>
 
-/* =========================================
-   CPF
-========================================= */
+/* ============================
+   MÁSCARA CPF
+============================ */
 
 const cpf =
 document.getElementById("cpf");
@@ -2218,9 +2307,9 @@ function(){
 });
 
 
-/* =========================================
-   TELEFONE
-========================================= */
+/* ============================
+   MÁSCARA TELEFONE
+============================ */
 
 const telefone =
 document.getElementById("telefone");
@@ -2262,9 +2351,9 @@ function(){
 });
 
 
-/* =========================================
-   ATUALIZA PLANO ESCOLHIDO
-========================================= */
+/* ============================
+   PLANOS
+============================ */
 
 const planos =
 document.querySelectorAll(
@@ -2309,9 +2398,7 @@ planos.forEach(function(plano){
             🎁 Instalação grátis`;
 
 
-            if(
-                valor.includes("300 MEGAS")
-            ){
+            if(valor.includes("300 MEGAS")){
 
                 botaoEnviar.innerHTML =
                 "💬 QUERO 300 MEGAS POR R$ 69,99";
@@ -2319,9 +2406,7 @@ planos.forEach(function(plano){
             }
 
 
-            if(
-                valor.includes("400 MEGAS")
-            ){
+            if(valor.includes("400 MEGAS")){
 
                 botaoEnviar.innerHTML =
                 "💬 QUERO 400 MEGAS POR R$ 79,90";
@@ -2329,9 +2414,7 @@ planos.forEach(function(plano){
             }
 
 
-            if(
-                valor.includes("500 MEGAS")
-            ){
+            if(valor.includes("500 MEGAS")){
 
                 botaoEnviar.innerHTML =
                 "💬 QUERO 500 MEGAS POR R$ 89,90";
@@ -2339,9 +2422,7 @@ planos.forEach(function(plano){
             }
 
 
-            if(
-                valor.includes("600 MEGAS")
-            ){
+            if(valor.includes("600 MEGAS")){
 
                 botaoEnviar.innerHTML =
                 "💬 QUERO 600 MEGAS POR R$ 99,90";
@@ -2354,9 +2435,9 @@ planos.forEach(function(plano){
 });
 
 
-/* =========================================
+/* ============================
    ENVIO WHATSAPP
-========================================= */
+============================ */
 
 document
 .getElementById("cadastro")
@@ -2394,6 +2475,20 @@ function(event){
     .value;
 
 
+    const rua =
+    document
+    .getElementById("rua")
+    .value
+    .trim();
+
+
+    const numero =
+    document
+    .getElementById("numero")
+    .value
+    .trim();
+
+
     const referencia =
     document
     .getElementById("referencia")
@@ -2414,6 +2509,7 @@ function(event){
         );
 
         return;
+
     }
 
 
@@ -2421,9 +2517,9 @@ function(event){
     planoSelecionado.value;
 
 
-    /* =====================================
+    /* ============================
        MENSAGEM WHATSAPP
-    ===================================== */
+    ============================ */
 
     const mensagem =
 
@@ -2440,10 +2536,12 @@ function(event){
 
 ━━━━━━━━━━━━━━━━━━
 
-📍 *LOCALIZAÇÃO*
+📍 *ENDEREÇO PARA INSTALAÇÃO*
 
 *Bairro:* ${bairro}
-*Referência:* ${referencia}
+*Rua / Avenida:* ${rua}
+*Número:* ${numero}
+*Ponto de referência:* ${referencia}
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -2460,16 +2558,16 @@ function(event){
 
 ━━━━━━━━━━━━━━━━━━
 
-📍 Gostaria de consultar a disponibilidade da fibra no meu endereço.
+📍 Gostaria de verificar a disponibilidade da fibra neste endereço.
 
 ✅ Tenho interesse em contratar o plano selecionado.
 
 _Aguardo atendimento da equipe YAYU + Unni Fibra._`;
 
 
-    /* =====================================
+    /* ============================
        WHATSAPP YAYU
-    ===================================== */
+    ============================ */
 
     const whatsapp =
     "5513988777008";
