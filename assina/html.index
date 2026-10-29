@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YAYU + Unni Fibra | Consulte seu Bairro</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top,#063a86 0%,#021d4a 35%,#020817 75%);
+    color:#fff;
+    padding:25px 15px;
+}
+
+.container{
+    max-width:520px;
+    margin:auto;
+}
+
+.topo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:#45ff69;
+}
+
+.topo h1{
+    margin-top:18px;
+    font-size:29px;
+    line-height:1.05;
+}
+
+.destaque{
+    color:#ffd500;
+}
+
+.topo p{
+    margin-top:12px;
+    color:#cbd8ef;
+    line-height:1.5;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 15px;
+    border:1px solid #15c8ff;
+    border-radius:30px;
+    background:#062c61;
+    color:#fff;
+    font-weight:bold;
+}
+
+.card{
+    background:rgba(2,12,34,.95);
+    border:1px solid #0e9cff;
+    box-shadow:
+        0 0 15px rgba(0,153,255,.35),
+        0 0 35px rgba(0,90,255,.15);
+    border-radius:20px;
+    padding:25px;
+}
+
+.card h2{
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.card .sub{
+    text-align:center;
+    color:#aabbd6;
+    margin-bottom:22px;
+    font-size:14px;
+}
+
+label{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    margin:15px 0 7px;
+}
+
+input,
+select{
+    width:100%;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #294a74;
+    background:#071a35;
+    color:#fff;
+    outline:none;
+    font-size:16px;
+}
+
+input:focus,
+select:focus{
+    border-color:#00d5ff;
+    box-shadow:0 0 8px rgba(0,213,255,.4);
+}
+
+.planos{
+    margin-top:8px;
+}
+
+.plano{
+    display:block;
+    margin:10px 0;
+    cursor:pointer;
+}
+
+.plano input{
+    display:none;
+}
+
+.plano-box{
+    border:2px solid #244c77;
+    padding:15px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.2s;
+}
+
+.plano input:checked + .plano-box{
+    border-color:#33ff64;
+    background:#07371d;
+    box-shadow:0 0 15px rgba(51,255,100,.25);
+}
+
+.velocidade{
+    font-size:21px;
+    font-weight:900;
+}
+
+.preco{
+    font-size:19px;
+    font-weight:bold;
+    color:#ffdf00;
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:17px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#14c94c,#05a83a);
+    color:#fff;
+    font-size:18px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 0 18px rgba(20,201,76,.35);
+}
+
+button:hover{
+    transform:scale(1.01);
+}
+
+.aviso{
+    font-size:11px;
+    color:#8fa4c1;
+    margin-top:16px;
+    text-align:center;
+    line-height:1.4;
+}
+
+.rodape{
+    text-align:center;
+    margin-top:25px;
+    color:#9fb0ca;
+    font-size:13px;
+}
+
+.rodape strong{
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="topo">
+
+        <div class="logo">
+            YAYU <span>+</span> Unni Fibra
+        </div>
+
+        <h1>
+            📍 Consulte a disponibilidade
+            <span class="destaque">no seu bairro!</span>
+        </h1>
+
+        <p>
+            Mais bairros, mais velocidade e mais conexão
+            para Praia Grande.
+        </p>
+
+        <div class="badge">
+            ⚡ Internet 100% Fibra Óptica
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Quero contratar 🚀</h2>
+
+        <div class="sub">
+            Preencha seus dados para consultar a disponibilidade.
+        </div>
+
+        <form id="cadastro">
+
+            <label>👤 Nome completo</label>
+            <input
+                type="text"
+                id="nome"
+                placeholder="Digite seu nome"
+                required
+            >
+
+            <label>🪪 CPF</label>
+            <input
+                type="text"
+                id="cpf"
+                placeholder="000.000.000-00"
+                maxlength="14"
+                required
+            >
+
+            <label>📍 Bairro</label>
+
+            <select id="bairro" required>
+
+                <option value="">Selecione seu bairro</option>
+
+                <option>Canto do Forte</option>
+                <option>Boqueirão</option>
+                <option>Guilhermina</option>
+                <option>Aviação</option>
+                <option>Tupi</option>
+                <option>Ocian</option>
+                <option>Mirim</option>
+
+                <option>Tude Bastos</option>
+                <option>Sítio do Campo</option>
+                <option>Glória</option>
+                <option>Vila Sônia</option>
+                <option>Tupiry</option>
+                <option>Caiçara</option>
+                <option>Quietude</option>
+                <option>Anhanguera</option>
+
+                <option>Outro bairro</option>
+
+            </select>
+
+            <label>🏠 Ponto de referência</label>
+
+            <input
+                type="text"
+                id="referencia"
+                placeholder="Ex.: próximo ao mercado, escola..."
+                required
+            >
+
+
+            <label>🚀 Escolha seu plano</label>
+
+            <div class="planos">
+
+                <label class="plano">
+                    <input
+                        type="radio"
+                        name="plano"
+                        value="100 MEGAS - R$ 65,00"
+                        required
+                    >
+
+                    <div class="plano-box">
+                        <span class="velocidade">
+                            100 MEGAS
+                        </span>
+
+                        <span class="preco">
+                            R$ 65,00
+                        </span>
+                    </div>
+                </label>
+
+
+                <label class="plano">
+                    <input
+                        type="radio"
+                        name="plano"
+                        value="300 MEGAS - R$ 79,99"
+                    >
+
+                    <div class="plano-box">
+                        <span class="velocidade">
+                            300 MEGAS
+                        </span>
+
+                        <span class="preco">
+                            R$ 79,99
+                        </span>
+                    </div>
+                </label>
+
+
+                <label class="plano">
+                    <input
+                        type="radio"
+                        name="plano"
+                        value="600 MEGAS - R$ 99,99"
+                    >
+
+                    <div class="plano-box">
+                        <span class="velocidade">
+                            600 MEGAS
+                        </span>
+
+                        <span class="preco">
+                            R$ 99,99
+                        </span>
+                    </div>
+                </label>
+
+            </div>
+
+
+            <button type="submit">
+                🟢 CONSULTAR PELO WHATSAPP
+            </button>
+
+
+            <div class="aviso">
+                🔒 Seus dados serão utilizados para atendimento
+                e consulta de disponibilidade do serviço.
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="rodape">
+
+        <strong>YAYU + Unni Fibra</strong><br><br>
+
+        Mais bairros • Mais conexões • Mais você
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* MÁSCARA CPF */
+
+const cpf = document.getElementById("cpf");
+
+cpf.addEventListener("input", function(){
+
+    let valor = this.value.replace(/\D/g,"");
+
+    valor = valor.replace(/(\d{3})(\d)/,"$1.$2");
+    valor = valor.replace(/(\d{3})(\d)/,"$1.$2");
+    valor = valor.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+
+    this.value = valor;
+
+});
+
+
+/* ENVIO PARA WHATSAPP */
+
+document
+.getElementById("cadastro")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const nome =
+        document.getElementById("nome").value;
+
+    const cpf =
+        document.getElementById("cpf").value;
+
+    const bairro =
+        document.getElementById("bairro").value;
+
+    const referencia =
+        document.getElementById("referencia").value;
+
+    const planoSelecionado =
+        document.querySelector(
+            'input[name="plano"]:checked'
+        );
+
+    if(!planoSelecionado){
+        alert("Escolha um plano.");
+        return;
+    }
+
+    const plano = planoSelecionado.value;
+
+
+    const mensagem =
+`🚀 *NOVO INTERESSADO - YAYU + UNNI FIBRA*
+
+👤 *Nome:* ${nome}
+🪪 *CPF:* ${cpf}
+
+📍 *Bairro:* ${bairro}
+🏠 *Referência:* ${referencia}
+
+📡 *Plano escolhido:*
+*${plano}*
+
+📌 Gostaria de consultar a disponibilidade da fibra neste endereço.
+
+_Aguardo atendimento da equipe YAYU._`;
+
+
+    /*
+       WHATSAPP YAYU
+       55 = Brasil
+       13 = DDD
+       988777008 = número
+    */
+
+    const telefone = "5513988777008";
+
+    const url =
+        "https://wa.me/" +
+        telefone +
+        "?text=" +
+        encodeURIComponent(mensagem);
+
+    window.open(url, "_blank");
+
+});
+
+</script>
+
+</body>
+</html>
