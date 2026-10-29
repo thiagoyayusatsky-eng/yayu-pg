@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>YAYU + Unni Fibra | Consulte sua cobertura</title>
+<title>YAYU + Unni Fibra | 300 Mega por R$ 69,99</title>
 
 <style>
-
 :root{
     --blue:#00b7ff;
     --blue2:#0066ff;
@@ -16,8 +15,6 @@
     --yellow:#ffd500;
     --orange:#ff7a00;
     --dark:#020817;
-    --card:#06152d;
-    --white:#ffffff;
     --muted:#9eb3ce;
 }
 
@@ -38,15 +35,15 @@ body{
     overflow-x:hidden;
 
     background:
-        radial-gradient(circle at 15% 15%,rgba(0,183,255,.18),transparent 30%),
-        radial-gradient(circle at 90% 35%,rgba(140,255,0,.10),transparent 30%),
+        radial-gradient(circle at 15% 10%,rgba(0,183,255,.22),transparent 30%),
+        radial-gradient(circle at 90% 35%,rgba(140,255,0,.12),transparent 30%),
         radial-gradient(circle at 50% 100%,rgba(0,102,255,.20),transparent 40%),
         #020817;
 }
 
-/* ==========================================
-   FUNDO TECNOLÓGICO
-========================================== */
+/* =========================
+   FUNDO DE REDE
+========================= */
 
 .network{
     position:fixed;
@@ -91,28 +88,26 @@ body{
 .orb{
     position:fixed;
     border-radius:50%;
-    filter:blur(80px);
-    opacity:.18;
+    filter:blur(90px);
+    opacity:.20;
     z-index:-2;
 }
 
 .orb1{
-    width:300px;
-    height:300px;
+    width:320px;
+    height:320px;
     background:#00b7ff;
-    top:10%;
-    left:-100px;
-
+    top:5%;
+    left:-120px;
     animation:float1 8s ease-in-out infinite;
 }
 
 .orb2{
-    width:300px;
-    height:300px;
+    width:320px;
+    height:320px;
     background:#3cff00;
-    right:-100px;
-    top:40%;
-
+    right:-120px;
+    top:45%;
     animation:float2 10s ease-in-out infinite;
 }
 
@@ -128,9 +123,9 @@ body{
     }
 }
 
-/* ==========================================
+/* =========================
    CONTAINER
-========================================== */
+========================= */
 
 .container{
     max-width:600px;
@@ -138,13 +133,13 @@ body{
     padding:25px 16px 45px;
 }
 
-/* ==========================================
-   HERO
-========================================== */
+/* =========================
+   CABEÇALHO
+========================= */
 
 .hero{
     text-align:center;
-    padding:20px 5px 25px;
+    padding:20px 5px 15px;
 }
 
 .logo{
@@ -162,7 +157,6 @@ body{
 
 .logo-plus{
     color:var(--orange);
-    margin:0 5px;
 }
 
 .logo-unni{
@@ -179,11 +173,9 @@ body{
 }
 
 .fusion{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
+    display:inline-block;
 
-    margin-top:13px;
+    margin-top:12px;
 
     padding:7px 14px;
 
@@ -195,52 +187,26 @@ body{
     background:
         rgba(0,70,150,.25);
 
-    font-size:12px;
-    font-weight:800;
-
-    box-shadow:
-        0 0 20px rgba(0,183,255,.15);
+    font-size:11px;
+    font-weight:900;
 }
 
-.hero h1{
-    margin-top:20px;
-    font-size:32px;
-    line-height:1.05;
-}
-
-.hero h1 span{
-    color:var(--yellow);
-}
-
-.hero p{
-    color:#c3d3e7;
-    line-height:1.55;
-
-    margin:13px auto 0;
-
-    max-width:480px;
-}
-
-/* ==========================================
+/* =========================
    WIFI ANIMADO
-========================================== */
+========================= */
 
 .wifi-box{
     width:100px;
     height:80px;
-
     position:relative;
-
-    margin:22px auto 5px;
+    margin:20px auto 5px;
 }
 
 .wave{
     position:absolute;
-
     left:50%;
 
-    transform:
-        translateX(-50%);
+    transform:translateX(-50%);
 
     border:4px solid var(--blue);
 
@@ -252,8 +218,7 @@ body{
 
     opacity:0;
 
-    animation:
-        wifiPulse 2s infinite;
+    animation:wifiPulse 2s infinite;
 }
 
 .w1{
@@ -266,7 +231,6 @@ body{
     width:65px;
     height:65px;
     top:25px;
-
     animation-delay:.3s;
 }
 
@@ -274,7 +238,6 @@ body{
     width:95px;
     height:95px;
     top:8px;
-
     animation-delay:.6s;
 }
 
@@ -284,22 +247,21 @@ body{
     width:12px;
     height:12px;
 
-    border-radius:50%;
-
     background:var(--blue);
+
+    border-radius:50%;
 
     bottom:0;
     left:44px;
 
     box-shadow:
-        0 0 18px var(--blue);
+        0 0 20px var(--blue);
 }
 
 @keyframes wifiPulse{
 
     0%{
         opacity:0;
-
         transform:
             translateX(-50%)
             scale(.7);
@@ -311,16 +273,215 @@ body{
 
     100%{
         opacity:0;
-
         transform:
             translateX(-50%)
             scale(1.1);
     }
 }
 
-/* ==========================================
+/* =========================
+   TEXTO PRINCIPAL
+========================= */
+
+.hero h1{
+    margin-top:15px;
+
+    font-size:31px;
+
+    line-height:1.08;
+}
+
+.hero h1 span{
+    color:var(--yellow);
+}
+
+.hero p{
+    max-width:480px;
+
+    margin:12px auto 0;
+
+    color:#c3d3e7;
+
+    line-height:1.5;
+}
+
+/* =========================
+   SUPER OFERTA
+========================= */
+
+.super-oferta{
+    position:relative;
+
+    margin:25px 0;
+
+    padding:25px 16px;
+
+    text-align:center;
+
+    border:2px solid var(--yellow);
+
+    border-radius:22px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(0,183,255,.25),
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            #082653,
+            #04142d
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,213,0,.22),
+        0 0 45px rgba(0,183,255,.15);
+
+    overflow:hidden;
+
+    animation:ofertaPulse 2.5s infinite;
+}
+
+.super-oferta::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:50%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.20),
+            transparent
+        );
+
+    transform:skewX(-25deg);
+
+    animation:shine 3s infinite;
+}
+
+@keyframes shine{
+    0%{
+        left:-100%;
+    }
+
+    60%,100%{
+        left:160%;
+    }
+}
+
+@keyframes ofertaPulse{
+
+    0%,100%{
+        box-shadow:
+            0 0 20px rgba(255,213,0,.20),
+            0 0 35px rgba(0,183,255,.15);
+    }
+
+    50%{
+        box-shadow:
+            0 0 38px rgba(255,213,0,.40),
+            0 0 60px rgba(0,183,255,.25);
+    }
+}
+
+.oferta-badge{
+    position:relative;
+
+    display:inline-block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #ffd500
+        );
+
+    color:#111;
+
+    padding:7px 15px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    margin-bottom:10px;
+}
+
+.super-oferta h2{
+    position:relative;
+
+    font-size:42px;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 20px rgba(0,183,255,.45);
+}
+
+.super-oferta h2 span{
+    color:var(--lime);
+}
+
+.por-apenas{
+    position:relative;
+
+    margin-top:7px;
+
+    color:#bcd0e8;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.preco-oferta{
+    position:relative;
+
+    margin-top:4px;
+
+    color:var(--yellow);
+
+    font-size:50px;
+
+    font-weight:900;
+
+    line-height:1;
+
+    text-shadow:
+        0 0 20px rgba(255,213,0,.35);
+}
+
+.preco-oferta small{
+    font-size:15px;
+
+    color:#fff;
+}
+
+.oferta-info{
+    position:relative;
+
+    margin-top:14px;
+
+    color:#cfe0f5;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+/* =========================
    BENEFÍCIOS
-========================================== */
+========================= */
 
 .benefits{
     display:grid;
@@ -330,98 +491,72 @@ body{
 
     gap:10px;
 
-    margin:
-        15px 0 25px;
+    margin-bottom:25px;
 }
 
 .benefit{
-    padding:14px 8px;
+    padding:14px 6px;
+
+    text-align:center;
 
     border:
-        1px solid
-        rgba(0,183,255,.25);
+        1px solid rgba(0,183,255,.25);
 
     border-radius:14px;
 
     background:
-        rgba(5,24,52,.78);
-
-    text-align:center;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.2);
+        rgba(5,24,52,.80);
 }
 
 .benefit .icon{
     font-size:25px;
+
     margin-bottom:6px;
 }
 
 .benefit strong{
     display:block;
-    font-size:12px;
+
+    font-size:11px;
 }
 
 .benefit small{
     display:block;
 
-    color:var(--muted);
-
     margin-top:4px;
 
-    font-size:10px;
+    color:#8fa5c1;
+
+    font-size:9px;
 }
 
-/* ==========================================
-   CARD
-========================================== */
+/* =========================
+   CARD FORMULÁRIO
+========================= */
 
 .card{
     position:relative;
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(7,27,58,.97),
-            rgba(2,12,30,.98)
-        );
+    padding:27px 22px;
 
     border:
-        1px solid
-        rgba(0,183,255,.6);
+        1px solid rgba(0,183,255,.6);
 
     border-radius:25px;
 
-    padding:27px 22px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7,27,58,.98),
+            rgba(2,12,30,.98)
+        );
 
     box-shadow:
-        0 0 25px rgba(0,153,255,.18),
-        0 30px 80px rgba(0,0,0,.5);
-
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    background:var(--blue);
-
-    filter:blur(100px);
-
-    opacity:.10;
-
-    right:-70px;
-    top:-70px;
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 25px rgba(0,153,255,.18);
 }
 
 .card-title{
-    position:relative;
     text-align:center;
 }
 
@@ -434,25 +569,28 @@ body{
 }
 
 .card-title p{
+    margin-top:8px;
+
     color:var(--muted);
 
-    font-size:14px;
-
-    margin-top:8px;
+    font-size:13px;
 
     line-height:1.5;
 }
 
-/* ==========================================
+/* =========================
    COBERTURA
-========================================== */
+========================= */
 
 .coverage{
-    position:relative;
-
     margin:22px 0;
 
     padding:15px;
+
+    border:
+        1px solid rgba(0,213,255,.35);
+
+    border-radius:14px;
 
     background:
         linear-gradient(
@@ -460,12 +598,6 @@ body{
             rgba(0,130,255,.16),
             rgba(0,255,110,.10)
         );
-
-    border:
-        1px solid
-        rgba(0,213,255,.35);
-
-    border-radius:14px;
 }
 
 .coverage strong{
@@ -475,16 +607,16 @@ body{
 .coverage small{
     display:block;
 
-    color:#bcd0e8;
-
     margin-top:5px;
+
+    color:#bcd0e8;
 
     line-height:1.4;
 }
 
-/* ==========================================
+/* =========================
    CAMPOS
-========================================== */
+========================= */
 
 .field{
     margin-top:17px;
@@ -514,8 +646,6 @@ body{
     transform:
         translateY(-50%);
 
-    font-size:18px;
-
     z-index:2;
 }
 
@@ -526,14 +656,14 @@ select{
     padding:
         15px 15px 15px 45px;
 
-    border-radius:12px;
-
     border:
         1px solid #294d76;
 
+    border-radius:12px;
+
     background:#06162e;
 
-    color:white;
+    color:#fff;
 
     font-size:15px;
 
@@ -542,51 +672,29 @@ select{
     transition:.25s;
 }
 
-select{
-    cursor:pointer;
-}
-
 input:focus,
 select:focus{
-
-    border-color:
-        var(--blue);
+    border-color:var(--blue);
 
     box-shadow:
-        0 0 0 3px
-        rgba(0,183,255,.08),
-
-        0 0 18px
-        rgba(0,183,255,.18);
-
-    background:#071c3b;
+        0 0 0 3px rgba(0,183,255,.08),
+        0 0 18px rgba(0,183,255,.18);
 }
 
 input::placeholder{
     color:#6e87a5;
 }
 
-/* ==========================================
+/* =========================
    INSTALAÇÃO GRÁTIS
-========================================== */
+========================= */
 
 .instalacao-gratis{
-
     position:relative;
 
-    margin:
-        28px 0 25px;
+    margin:27px 0;
 
-    padding:
-        21px 15px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:15px;
+    padding:21px 15px;
 
     text-align:center;
 
@@ -603,21 +711,15 @@ input::placeholder{
         );
 
     box-shadow:
-        0 0 20px
-        rgba(53,255,108,.25),
-
-        inset 0 0 25px
-        rgba(53,255,108,.06);
+        0 0 25px rgba(53,255,108,.30);
 
     overflow:hidden;
 
     animation:
-        gratisPulse
-        2.5s infinite;
+        gratisPulse 2.5s infinite;
 }
 
 .instalacao-gratis::before{
-
     content:"";
 
     position:absolute;
@@ -640,109 +742,71 @@ input::placeholder{
         skewX(-25deg);
 
     animation:
-        gratisLight
-        3s infinite;
+        gratisLight 3s infinite;
 }
 
-.gratis-icon{
-
-    font-size:45px;
-
-    position:relative;
-
-    z-index:2;
-
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,213,0,.5)
-        );
-}
-
-.gratis-texto{
-
+.gratis-content{
     position:relative;
 
     z-index:2;
 }
 
 .gratis-badge{
-
     display:inline-block;
 
-    background:#ffd500;
+    padding:5px 12px;
+
+    background:var(--yellow);
 
     color:#111;
-
-    padding:5px 10px;
 
     border-radius:20px;
 
     font-size:10px;
 
     font-weight:900;
-
-    margin-bottom:7px;
 }
 
-.gratis-texto h3{
+.gratis-content h3{
+    margin-top:8px;
 
     font-size:14px;
-
-    color:#fff;
 }
 
 .gratis-preco{
-
     margin:5px 0;
 
-    font-size:37px;
+    color:var(--lime);
 
-    line-height:1;
+    font-size:40px;
 
     font-weight:900;
 
-    color:#8cff00;
-
     text-shadow:
-        0 0 15px
-        rgba(140,255,0,.5);
+        0 0 15px rgba(140,255,0,.5);
 }
 
-.gratis-texto strong{
-
+.gratis-content strong{
     display:block;
 
-    color:#ffd500;
+    color:var(--yellow);
 
     font-size:18px;
 }
 
-.gratis-texto p{
-
+.gratis-content p{
     margin-top:6px;
 
     color:#d6ffe1;
 
     font-size:12px;
-
-    line-height:1.4;
 }
 
 @keyframes gratisPulse{
 
-    0%,100%{
-
-        box-shadow:
-            0 0 15px
-            rgba(53,255,108,.20);
-    }
-
     50%{
-
         box-shadow:
-            0 0 32px
-            rgba(53,255,108,.50);
+            0 0 40px rgba(53,255,108,.48);
     }
 }
 
@@ -757,12 +821,11 @@ input::placeholder{
     }
 }
 
-/* ==========================================
-   PLANOS
-========================================== */
+/* =========================
+   PLANO
+========================= */
 
 .plan-title{
-
     margin:
         25px 0 12px;
 
@@ -771,42 +834,18 @@ input::placeholder{
     font-weight:900;
 }
 
-.planos{
-
-    display:grid;
-
-    gap:12px;
-}
-
 .plano{
-
     cursor:pointer;
-
-    position:relative;
 }
 
 .plano input{
-
     display:none;
 }
 
 .plano-box{
-
     position:relative;
 
-    padding:18px;
-
-    border:
-        2px solid #23496f;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #071b38,
-            #051329
-        );
+    padding:22px 18px;
 
     display:flex;
 
@@ -815,13 +854,25 @@ input::placeholder{
 
     align-items:center;
 
-    transition:.25s;
+    border:
+        2px solid var(--yellow);
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #09295c,
+            #05162f
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,213,0,.16);
 
     overflow:hidden;
 }
 
 .plano-box::before{
-
     content:"";
 
     position:absolute;
@@ -829,41 +880,35 @@ input::placeholder{
     left:-100%;
     top:0;
 
-    width:60%;
+    width:50%;
     height:100%;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.08),
+            rgba(255,255,255,.12),
             transparent
         );
 
-    transform:
-        skewX(-25deg);
+    transform:skewX(-25deg);
 
-    transition:.6s;
+    animation:
+        planShine 3s infinite;
 }
 
-.plano:hover
-.plano-box::before{
+@keyframes planShine{
 
-    left:150%;
+    0%{
+        left:-100%;
+    }
+
+    60%,100%{
+        left:160%;
+    }
 }
 
-.plano:hover
-.plano-box{
-
-    transform:
-        translateY(-2px);
-
-    border-color:#00aaff;
-}
-
-.plano input:checked
-+ .plano-box{
-
+.plano input:checked + .plano-box{
     border-color:#35ff6c;
 
     background:
@@ -874,107 +919,67 @@ input::placeholder{
         );
 
     box-shadow:
-        0 0 22px
-        rgba(53,255,108,.20);
+        0 0 30px rgba(53,255,108,.30);
 }
 
 .speed{
+    position:relative;
 
-    font-size:24px;
+    font-size:26px;
 
     font-weight:900;
 }
 
 .speed small{
-
     display:block;
 
-    margin-top:4px;
+    max-width:200px;
 
-    color:#9eb3ce;
+    margin-top:5px;
+
+    color:#b4c6db;
 
     font-size:10px;
 
-    font-weight:600;
+    line-height:1.4;
 }
 
 .price{
+    position:relative;
 
     text-align:right;
 }
 
 .price small{
-
     display:block;
 
-    color:#8fa5c1;
+    color:#a5bad3;
 
-    font-size:10px;
+    font-size:9px;
 }
 
 .price strong{
-
-    font-size:23px;
-
     color:var(--yellow);
+
+    font-size:25px;
 }
 
-.popular{
-
-    position:absolute;
-
-    right:12px;
-
-    top:-9px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff9700,
-            #ffd500
-        );
-
-    color:#111;
-
-    font-size:9px;
-
-    font-weight:900;
-
-    padding:
-        5px 10px;
-
-    border-radius:20px;
-
-    z-index:5;
-
-    box-shadow:
-        0 3px 10px
-        rgba(255,180,0,.3);
-}
-
-/* ==========================================
+/* =========================
    BOTÃO WHATSAPP
-========================================== */
+========================= */
 
 .submit{
+    position:relative;
 
     width:100%;
 
     margin-top:27px;
 
-    padding:18px;
+    padding:19px 12px;
 
     border:0;
 
     border-radius:15px;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:900;
-
-    cursor:pointer;
 
     background:
         linear-gradient(
@@ -983,19 +988,23 @@ input::placeholder{
             #079b39
         );
 
-    box-shadow:
-        0 0 25px
-        rgba(37,211,102,.30);
+    color:#fff;
 
-    transition:.25s;
+    font-size:16px;
 
-    position:relative;
+    font-weight:900;
+
+    cursor:pointer;
 
     overflow:hidden;
+
+    box-shadow:
+        0 0 28px rgba(37,211,102,.35);
+
+    transition:.25s;
 }
 
 .submit::after{
-
     content:"";
 
     position:absolute;
@@ -1012,7 +1021,7 @@ input::placeholder{
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.25),
+            rgba(255,255,255,.28),
             transparent
         );
 
@@ -1020,8 +1029,7 @@ input::placeholder{
         skewX(-25deg);
 
     animation:
-        buttonLight
-        3s infinite;
+        buttonLight 3s infinite;
 }
 
 @keyframes buttonLight{
@@ -1036,36 +1044,28 @@ input::placeholder{
 }
 
 .submit:hover{
-
     transform:
         translateY(-2px)
         scale(1.01);
 
     box-shadow:
-        0 0 35px
-        rgba(37,211,102,.50);
+        0 0 40px rgba(37,211,102,.55);
 }
 
-.submit span{
-
-    font-size:20px;
-}
-
-/* ==========================================
+/* =========================
    ONLINE
-========================================== */
+========================= */
 
 .online{
-
     display:flex;
-
-    align-items:center;
 
     justify-content:center;
 
+    align-items:center;
+
     gap:7px;
 
-    margin-top:18px;
+    margin-top:17px;
 
     color:#a9bdd5;
 
@@ -1073,14 +1073,12 @@ input::placeholder{
 }
 
 .online-dot{
-
     width:8px;
-
     height:8px;
 
-    background:#33ff69;
-
     border-radius:50%;
+
+    background:#33ff69;
 
     box-shadow:
         0 0 12px #33ff69;
@@ -1097,8 +1095,7 @@ input::placeholder{
 }
 
 .secure{
-
-    margin-top:16px;
+    margin-top:15px;
 
     text-align:center;
 
@@ -1109,16 +1106,14 @@ input::placeholder{
     line-height:1.5;
 }
 
-/* ==========================================
-   FOOTER
-========================================== */
+/* =========================
+   RODAPÉ
+========================= */
 
 .footer{
-
     text-align:center;
 
-    padding:
-        28px 10px 0;
+    padding-top:28px;
 
     color:#8195af;
 
@@ -1126,22 +1121,20 @@ input::placeholder{
 }
 
 .footer strong{
-
-    color:white;
+    color:#fff;
 }
 
 .footer-slogan{
+    margin-top:7px;
 
     color:var(--yellow);
-
-    margin-top:7px;
 
     font-weight:bold;
 }
 
-/* ==========================================
+/* =========================
    CELULAR
-========================================== */
+========================= */
 
 @media(max-width:450px){
 
@@ -1153,62 +1146,42 @@ input::placeholder{
         font-size:27px;
     }
 
-    .benefit{
-        padding:12px 4px;
+    .super-oferta h2{
+        font-size:34px;
     }
 
-    .benefit strong{
-        font-size:10px;
+    .preco-oferta{
+        font-size:44px;
     }
 
     .card{
-        padding:
-            23px 17px;
+        padding:23px 17px;
     }
 
     .speed{
-        font-size:20px;
+        font-size:21px;
     }
 
     .price strong{
-        font-size:20px;
-    }
-
-    .instalacao-gratis{
-        flex-direction:column;
-        gap:7px;
-    }
-
-    .gratis-icon{
-        font-size:37px;
+        font-size:21px;
     }
 }
 
 </style>
 </head>
 
-
 <body>
 
-
-<!-- FUNDO -->
-
 <div class="network"></div>
-
 <div class="orb orb1"></div>
-
 <div class="orb orb2"></div>
-
 
 <div class="container">
 
 
-<!-- ==========================================
-     CABEÇALHO
-========================================== -->
+<!-- CABEÇALHO -->
 
 <section class="hero">
-
 
 <div class="logo">
 
@@ -1226,22 +1199,15 @@ Unni Fibra
 
 </div>
 
-
 <div class="fusion">
-
 🔗 UMA NOVA FASE DA NOSSA REDE
-
 </div>
 
-
-<!-- WIFI -->
 
 <div class="wifi-box">
 
 <div class="wave w3"></div>
-
 <div class="wave w2"></div>
-
 <div class="wave w1"></div>
 
 <div class="dot"></div>
@@ -1251,35 +1217,71 @@ Unni Fibra
 
 <h1>
 
-Sua internet está prestes a ficar
-
-<span>
-ainda melhor.
-</span>
+Internet rápida para
+<span>sua casa inteira!</span>
 
 </h1>
 
 
 <p>
 
-Consulte agora se a
-
-<strong>
-YAYU + Unni Fibra
-</strong>
-
-já está disponível no seu endereço.
+Consulte agora a disponibilidade da
+<strong>YAYU + Unni Fibra</strong>
+no seu endereço.
 
 </p>
-
 
 </section>
 
 
+<!-- =========================
+     OFERTA PRINCIPAL
+========================= -->
 
-<!-- ==========================================
-     BENEFÍCIOS
-========================================== -->
+<div class="super-oferta">
+
+<div class="oferta-badge">
+
+🔥 OFERTA ESPECIAL
+
+</div>
+
+
+<h2>
+
+🚀 300 <span>MEGAS</span>
+
+</h2>
+
+
+<div class="por-apenas">
+
+POR APENAS
+
+</div>
+
+
+<div class="preco-oferta">
+
+R$ 69,99
+
+<small>/mês</small>
+
+</div>
+
+
+<div class="oferta-info">
+
+📶 Internet 100% fibra óptica para
+assistir, navegar, trabalhar, estudar
+e conectar seus dispositivos com muito mais estabilidade.
+
+</div>
+
+</div>
+
+
+<!-- BENEFÍCIOS -->
 
 <div class="benefits">
 
@@ -1291,15 +1293,14 @@ já está disponível no seu endereço.
 </div>
 
 <strong>
-Alta velocidade
+300 MEGAS
 </strong>
 
 <small>
-Fibra de verdade
+Alta velocidade
 </small>
 
 </div>
-
 
 
 <div class="benefit">
@@ -1309,41 +1310,36 @@ Fibra de verdade
 </div>
 
 <strong>
-Wi-Fi rápido
+100% Fibra
 </strong>
 
 <small>
-Mais conexão
+Mais estabilidade
 </small>
 
 </div>
-
 
 
 <div class="benefit">
 
 <div class="icon">
-🛡️
+🎁
 </div>
 
 <strong>
-Mais estabilidade
+Instalação grátis
 </strong>
 
 <small>
-Sem travamentos
+R$ 0,00
 </small>
 
 </div>
 
-
 </div>
 
 
-
-<!-- ==========================================
-     CARD
-========================================== -->
+<!-- FORMULÁRIO -->
 
 <div class="card">
 
@@ -1353,27 +1349,21 @@ Sem travamentos
 <h2>
 
 📍 Consulte seu
-
-<span>
-bairro
-</span>
+<span>bairro</span>
 
 </h2>
 
 
 <p>
 
-Faça seu pré-cadastro e nossa equipe
-verifica a disponibilidade da fibra
+Preencha seus dados e consulte
+a disponibilidade da oferta
 no seu endereço.
 
 </p>
 
 </div>
 
-
-
-<!-- COBERTURA -->
 
 <div class="coverage">
 
@@ -1385,29 +1375,26 @@ NOVAS ÁREAS DE ATENDIMENTO!
 
 <small>
 
-Estamos ampliando nossa cobertura
-em Praia Grande.
+A YAYU + Unni Fibra está ampliando
+sua cobertura em Praia Grande.
 
-Seu bairro pode já estar conectado
-à nossa rede.
+Seu bairro pode já estar conectado.
+Faça sua consulta agora!
 
 </small>
 
 </div>
 
 
-
 <form id="cadastro">
 
 
-<!-- ==========================================
-     NOME
-========================================== -->
+<!-- NOME -->
 
 <div class="field">
 
 <label>
-Nome completo
+👤 Nome completo
 </label>
 
 <div class="input-wrap">
@@ -1428,15 +1415,12 @@ required
 </div>
 
 
-
-<!-- ==========================================
-     CPF
-========================================== -->
+<!-- CPF -->
 
 <div class="field">
 
 <label>
-CPF
+🪪 CPF
 </label>
 
 <div class="input-wrap">
@@ -1459,15 +1443,12 @@ required
 </div>
 
 
-
-<!-- ==========================================
-     WHATSAPP
-========================================== -->
+<!-- WHATSAPP -->
 
 <div class="field">
 
 <label>
-Seu WhatsApp
+📱 Seu WhatsApp
 </label>
 
 <div class="input-wrap">
@@ -1489,15 +1470,12 @@ required
 </div>
 
 
-
-<!-- ==========================================
-     BAIRRO
-========================================== -->
+<!-- BAIRRO -->
 
 <div class="field">
 
 <label>
-Seu bairro
+📍 Seu bairro
 </label>
 
 <div class="input-wrap">
@@ -1507,10 +1485,7 @@ Seu bairro
 </span>
 
 
-<select
-id="bairro"
-required
->
+<select id="bairro" required>
 
 <option value="">
 Selecione seu bairro
@@ -1559,15 +1534,12 @@ Outro bairro
 </div>
 
 
-
-<!-- ==========================================
-     REFERÊNCIA
-========================================== -->
+<!-- REFERÊNCIA -->
 
 <div class="field">
 
 <label>
-Ponto de referência
+🏠 Ponto de referência
 </label>
 
 <div class="input-wrap">
@@ -1588,27 +1560,18 @@ required
 </div>
 
 
-
-<!-- ==========================================
+<!-- =========================
      INSTALAÇÃO GRÁTIS
-========================================== -->
+========================= -->
 
 <div class="instalacao-gratis">
 
-
-<div class="gratis-icon">
-
-🎁
-
-</div>
-
-
-<div class="gratis-texto">
+<div class="gratis-content">
 
 
 <span class="gratis-badge">
 
-🔥 OFERTA ESPECIAL
+🔥 BENEFÍCIO ESPECIAL
 
 </span>
 
@@ -1629,7 +1592,7 @@ R$ 0,00
 
 <strong>
 
-INSTALAÇÃO GRATUITA! 😍
+🎁 INSTALAÇÃO GRATUITA! 😍
 
 </strong>
 
@@ -1641,29 +1604,21 @@ taxa de instalação!
 
 </p>
 
-
 </div>
 
 </div>
 
 
-
-<!-- ==========================================
-     PLANOS
-========================================== -->
+<!-- =========================
+     PLANO
+========================= -->
 
 <div class="plan-title">
 
-🚀 Qual plano você deseja?
+🚀 Oferta selecionada:
 
 </div>
 
-
-<div class="planos">
-
-
-
-<!-- 150 MEGAS -->
 
 <label class="plano">
 
@@ -1671,7 +1626,8 @@ taxa de instalação!
 <input
 type="radio"
 name="plano"
-value="150 MEGAS - R$ 69,99"
+value="300 MEGAS - R$ 69,99/mês"
+checked
 required
 >
 
@@ -1681,12 +1637,13 @@ required
 
 <div class="speed">
 
-150 MEGAS
+🔥 300 MEGAS
 
 <small>
 
-Ideal para navegar,
-assistir vídeos e redes sociais
+Internet 100% fibra para
+streaming, estudos, trabalho,
+redes sociais e muito mais.
 
 </small>
 
@@ -1711,148 +1668,32 @@ R$ 69,99
 </label>
 
 
-
-<!-- 300 MEGAS -->
-
-<label class="plano">
-
-
-<div class="popular">
-
-⭐ MAIS ESCOLHIDO
-
-</div>
-
-
-<input
-type="radio"
-name="plano"
-value="300 MEGAS - R$ 79,99"
->
-
-
-<div class="plano-box">
-
-
-<div class="speed">
-
-300 MEGAS
-
-<small>
-
-Streaming, jogos
-e home office
-
-</small>
-
-</div>
-
-
-<div class="price">
-
-<small>
-POR MÊS
-</small>
-
-<strong>
-R$ 79,99
-</strong>
-
-</div>
-
-
-</div>
-
-</label>
-
-
-
-<!-- 600 MEGAS -->
-
-<label class="plano">
-
-
-<input
-type="radio"
-name="plano"
-value="600 MEGAS - R$ 99,99"
->
-
-
-<div class="plano-box">
-
-
-<div class="speed">
-
-600 MEGAS
-
-<small>
-
-🔥 Alta performance
-para toda a casa
-
-</small>
-
-</div>
-
-
-<div class="price">
-
-<small>
-POR MÊS
-</small>
-
-<strong>
-R$ 99,99
-</strong>
-
-</div>
-
-
-</div>
-
-</label>
-
-
-</div>
-
-
-
-<!-- ==========================================
-     BOTÃO
-========================================== -->
+<!-- BOTÃO -->
 
 <button
 class="submit"
 type="submit"
 >
 
-<span>
-💬
-</span>
-
-CONSULTAR DISPONIBILIDADE
+💬 QUERO 300 MEGAS POR R$ 69,99
 
 </button>
-
 
 
 <div class="online">
 
 <div class="online-dot"></div>
 
-Atendimento YAYU disponível
-pelo WhatsApp
+Atendimento YAYU pelo WhatsApp
 
 </div>
-
 
 
 <div class="secure">
 
 🔒 Seus dados serão utilizados
-para consulta de cobertura
-e atendimento comercial da
+para consulta de cobertura e
+atendimento comercial da
 YAYU + Unni Fibra.
 
 </div>
@@ -1863,10 +1704,7 @@ YAYU + Unni Fibra.
 </div>
 
 
-
-<!-- ==========================================
-     RODAPÉ
-========================================== -->
+<!-- RODAPÉ -->
 
 <div class="footer">
 
@@ -1879,8 +1717,7 @@ YAYU + Unni Fibra.
 
 <div class="footer-slogan">
 
-Mais bairros • Mais velocidade •
-Mais conexão 🚀
+🚀 300 MEGAS • R$ 69,99/mês • Instalação grátis 🎁
 
 </div>
 
@@ -1888,18 +1725,16 @@ Mais conexão 🚀
 
 
 </div>
-
 
 
 <script>
 
-/* ==========================================
-   MÁSCARA CPF
-========================================== */
+/* ==========================
+   CPF
+========================== */
 
 const cpf =
 document.getElementById("cpf");
-
 
 cpf.addEventListener(
 "input",
@@ -1911,20 +1746,17 @@ this.value.replace(/\D/g,"");
 valor =
 valor.substring(0,11);
 
-
 valor =
 valor.replace(
 /(\d{3})(\d)/,
 "$1.$2"
 );
 
-
 valor =
 valor.replace(
 /(\d{3})(\d)/,
 "$1.$2"
 );
-
 
 valor =
 valor.replace(
@@ -1932,20 +1764,17 @@ valor.replace(
 "$1-$2"
 );
 
-
 this.value = valor;
 
 });
 
 
-
-/* ==========================================
-   MÁSCARA TELEFONE
-========================================== */
+/* ==========================
+   TELEFONE
+========================== */
 
 const telefone =
 document.getElementById("telefone");
-
 
 telefone.addEventListener(
 "input",
@@ -1956,7 +1785,6 @@ this.value.replace(/\D/g,"");
 
 valor =
 valor.substring(0,11);
-
 
 if(valor.length > 10){
 
@@ -1976,16 +1804,14 @@ valor.replace(
 
 }
 
-
 this.value = valor;
 
 });
 
 
-
-/* ==========================================
+/* ==========================
    ENVIO PARA WHATSAPP
-========================================== */
+========================== */
 
 document
 .getElementById("cadastro")
@@ -1996,13 +1822,11 @@ function(event){
 event.preventDefault();
 
 
-
 const nome =
 document
 .getElementById("nome")
 .value
 .trim();
-
 
 
 const cpfCliente =
@@ -2012,7 +1836,6 @@ document
 .trim();
 
 
-
 const telefoneCliente =
 document
 .getElementById("telefone")
@@ -2020,12 +1843,10 @@ document
 .trim();
 
 
-
 const bairro =
 document
 .getElementById("bairro")
 .value;
-
 
 
 const referencia =
@@ -2035,33 +1856,17 @@ document
 .trim();
 
 
-
 const plano =
-document.querySelector(
-'input[name="plano"]:checked'
-);
+"300 MEGAS - R$ 69,99/mês";
 
 
-
-if(!plano){
-
-alert(
-"🚀 Escolha o plano desejado."
-);
-
-return;
-
-}
-
-
-
-/* ==========================================
-   MENSAGEM WHATSAPP
-========================================== */
+/* ==========================
+   MENSAGEM DO WHATSAPP
+========================== */
 
 const mensagem =
 
-`🚀 *NOVO INTERESSADO*
+`🚀 *NOVO CADASTRO*
 *YAYU + UNNI FIBRA*
 
 ━━━━━━━━━━━━━━━━━━
@@ -2081,34 +1886,30 @@ const mensagem =
 
 ━━━━━━━━━━━━━━━━━━
 
-📡 *PLANO DE INTERESSE*
+🔥 *OFERTA ESCOLHIDA*
 
-🔥 *${plano.value}*
+🚀 *300 MEGAS*
+💰 *R$ 69,99/mês*
 
-━━━━━━━━━━━━━━━━━━
-
-🎁 *OFERTA*
-
+🎁 *INSTALAÇÃO GRATUITA*
 💰 Taxa de adesão / instalação:
-*GRÁTIS - R$ 0,00*
+*R$ 0,00*
 
 ━━━━━━━━━━━━━━━━━━
 
-📍 Gostaria de verificar a disponibilidade da fibra no meu endereço.
+📍 Gostaria de consultar a disponibilidade da fibra no meu endereço.
 
-✅ Tenho interesse em contratar.
+✅ Tenho interesse em contratar a oferta de *300 MEGAS por R$ 69,99/mês*.
 
 _Aguardo atendimento da equipe YAYU + Unni Fibra._`;
 
 
-
-/* ==========================================
+/* ==========================
    WHATSAPP YAYU
-========================================== */
+========================== */
 
 const whatsapp =
 "5513988777008";
-
 
 
 const url =
@@ -2124,15 +1925,11 @@ const url =
 + "&type=phone_number&app_absent=0";
 
 
-
-window.location.href =
-url;
-
+window.location.href = url;
 
 });
 
 </script>
-
 
 </body>
 </html>
